@@ -66,6 +66,30 @@ class WPMozo_Addons_For_Gutenberg {
 	protected $version;
 
 	/**
+     * The single instance of the class.
+     *
+     * @since 1.0.0
+     * @access protected
+     * @var WPMozo_Addons_For_Gutenberg $_instance The instances of this class.
+     */
+    protected static $_instance = null;
+
+    /**
+     * The instance of this class.
+     *
+     * Ensures only one instance of WPMozo_Addons_For_Gutenberg is loaded or can be loaded.
+     *
+     * @since 1.0.0
+     * @return WPMozo_Addons_For_Gutenberg - Main instance.
+     */
+    public static function instance() {
+        if ( is_null( self::$_instance ) ) {
+            self::$_instance = new self();
+        }
+        return self::$_instance;
+    }
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -105,19 +129,19 @@ class WPMozo_Addons_For_Gutenberg {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once WPMOZO_ADDONS_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-for-gutenberg-loader.php';
+		require_once WPMOZO_ADDONS_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-gutenberg-loader.php';
 		$this->loader = new WPMozo_Addons_Gutenberg_Loader();
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once WPMOZO_ADDONS_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-for-gutenberg-i18n.php';
+		require_once WPMOZO_ADDONS_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-gutenberg-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions for WP initialization of the plugin.
 		 */
-		include_once WPMOZO_ADDONS_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-for-gutenberg-init.php';
+		include_once WPMOZO_ADDONS_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-gutenberg-init.php';
 
 		$wpmozo_i18n = new WPMozo_Addons_Gutenberg_I18n();
 		$wpmozo_init = new WPMozo_Addons_Gutenberg_Init();

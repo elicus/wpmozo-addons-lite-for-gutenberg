@@ -53,14 +53,30 @@ define( 'WPMOZO_ADDONS_GUTENBERG_BLOCKS_DIR_PATH', WPMOZO_ADDONS_GUTENBERG_INC_D
 // Blocks dir url.
 define( 'WPMOZO_ADDONS_GUTENBERG_BLOCKS_DIR_URL', WPMOZO_ADDONS_GUTENBERG_INC_DIR_URL . 'blocks/' );
 
+// Src dir url.
+define( 'WPMOZO_ADDONS_GUTENBERG_SRC_DIR_URL', WPMOZO_ADDONS_GUTENBERG_PLUGIN_DIR_URL . 'src/' );
+
 // Assets dir url.
-define( 'WPMOZO_ADDONS_GUTENBERG_ASSE_DIR_URL', WPMOZO_ADDONS_GUTENBERG_PLUGIN_DIR_URL . 'assets/' );
+define( 'WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL', WPMOZO_ADDONS_GUTENBERG_PLUGIN_DIR_URL . 'assets/' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-wpmozo-addons-for-gutenberg.php';
+
+/**
+ * Returns the instance of WPMozo_Addons_For_Gutenberg.
+ *
+ * The main function responsible for returning the one true,
+ * WPMozo_Addons_For_Gutenberg instance to functions everywhere.
+ *
+ * @since 1.0.0
+ * @return WPMozo_Addons_For_Gutenberg The instance of main class.
+ */
+function wpmozo_adfgu() {
+    return WPMozo_Addons_For_Gutenberg::instance();
+}
 
 /**
  * Begins execution of the plugin.
@@ -74,12 +90,12 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-wpmozo-addons-for-gutenber
 function wpmozo_addons_for_gutenberg_run() {
 
     global $wp_version;
-	$wpmozo = new WPMozo_Addons_For_Gutenberg();
+	$wpmozo_adfgu = wpmozo_adfgu();
 
 	if ( version_compare( $wp_version, '5.0' ) >= 0 ) {
-        $wpmozo->run();
+        $wpmozo_adfgu->run();
 	} else {
-		$wpmozo->deactivate();
+		$wpmozo_adfgu->deactivate();
 	}
 
 }

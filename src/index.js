@@ -1,0 +1,1 @@
+import "./blocks/before-after-slider/js/index.js";
