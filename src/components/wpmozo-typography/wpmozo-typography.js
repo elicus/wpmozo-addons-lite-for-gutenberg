@@ -23,7 +23,7 @@ const WpmozoTypography = function(args){
 
 	const setValue = function(styleType, value){
 
-		if ( null === value && 'undefined' !== typeof preAttributes[ TypographyKey + styleType ].default ) {
+		if ( null === value && 'undefined' !== typeof preAttributes[ TypographyKey + styleType ] && preAttributes[ TypographyKey + styleType ].hasOwnProperty( 'default' ) ) {
 			value = preAttributes[ TypographyKey + styleType ].default;
 		}
 		value = ( null !== value ) ? value : '';
@@ -55,7 +55,7 @@ const WpmozoTypography = function(args){
 		el(
 			__experimentalToolsPanel,
 			{
-				label: __( 'Typography', 'wpmozo-product-grid-for-woocommerce' ),
+				label: __( 'Typography', 'wpmozo-addons-for-gutenberg' ),
 				resetAll: () => {
 
 					if ( null === TypoTypes ) {
@@ -86,7 +86,7 @@ const WpmozoTypography = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Font Size', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Font Size', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'FontSize' ),
@@ -105,7 +105,7 @@ const WpmozoTypography = function(args){
 					__experimentalToolsPanelItem,
 					{
 						className: "single-column",
-						label: __( 'Appearance', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Appearance', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'FontAppearance' ),
@@ -113,7 +113,7 @@ const WpmozoTypography = function(args){
 					el(
 						__experimentalFontAppearanceControl,
 						{
-							key: 'wpmozo-product-grid-titleapp',
+							key: 'wpmozo-titleapp',
 							hasFontStyles: hasFontStyles,
 							hasFontWeights: hasFontWeights,
 							value: _FontAppearanceValues,
@@ -126,7 +126,7 @@ const WpmozoTypography = function(args){
 					__experimentalToolsPanelItem,
 					{
 						className: "single-column",
-						label: __( 'Letter spacing', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Letter spacing', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'LetterSpacing' ),
@@ -143,7 +143,7 @@ const WpmozoTypography = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Decoration', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Decoration', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'Decoration' ),
@@ -160,7 +160,7 @@ const WpmozoTypography = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Letter case', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Letter case', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'LetterCase' ),
@@ -178,7 +178,7 @@ const WpmozoTypography = function(args){
 					__experimentalToolsPanelItem,
 					{
 						className: "single-column",
-						label: __( 'Line Height', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Line Height', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'LineHeight' ),

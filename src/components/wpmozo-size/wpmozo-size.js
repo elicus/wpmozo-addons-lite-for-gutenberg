@@ -21,7 +21,7 @@ const WpmozoSize = function(args){
 
 	const setValue = function(styleType, value){
 
-		if ( null === value && 'undefined' !== typeof preAttributes[ SizeKey + styleType ].default ) {
+		if ( null === value && 'undefined' !== typeof preAttributes[ SizeKey + styleType ] && preAttributes[ SizeKey + styleType ].hasOwnProperty( 'default' ) ) {
 			value = preAttributes[ SizeKey + styleType ].default;
 		}
 		value = ( null !== value ) ? value : '';
@@ -36,7 +36,7 @@ const WpmozoSize = function(args){
 		el(
 			__experimentalToolsPanel,
 			{
-				label: __( 'Size', 'wpmozo-product-grid-for-woocommerce' ),
+				label: __( 'Size', 'wpmozo-addons-for-gutenberg' ),
 				resetAll: () => {
 
 					if ( null === SizeTypes ) {
@@ -59,7 +59,7 @@ const WpmozoSize = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Width', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Width', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => sizeSetValue( 'width' ),
@@ -78,7 +78,7 @@ const WpmozoSize = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Height', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Height', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => sizeSetValue( 'height' ),

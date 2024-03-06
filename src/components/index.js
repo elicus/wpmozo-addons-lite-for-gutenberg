@@ -5,3 +5,12 @@ import WpmozoDimensions from './wpmozo-dimensions/wpmozo-dimensions';
 import WpmozoSize from './wpmozo-size/wpmozo-size';
 import WpmozoBorder from './wpmozo-border/wpmozo-border';
 import WpmozoMediaUploader from './wpmozo-media-uploader/wpmozo-media-uploader';
+
+export {
+WpmozoTypography,
+WpmozoColorPicker,
+WpmozoDimensions,
+WpmozoSize,
+WpmozoBorder,
+WpmozoMediaUploader,
+}

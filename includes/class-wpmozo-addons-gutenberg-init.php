@@ -53,17 +53,25 @@ class WPMozo_Addons_Gutenberg_Init {
             $plugin_name . '-editor-script',
             WPMOZO_ADDONS_GUTENBERG_PLUGIN_DIR_URL . 'build/index.js',
             array( 'wp-blocks', 'wp-editor', 'wp-element', 'wp-components', 'wp-i18n', 'jquery' ),
-            time()
+            time(),
+            true
         );
 
         wp_enqueue_script( $plugin_name . '-editor-script' );
 
-        wp_register_script(
-            $plugin_name . '-twentytwenty-script',
-            WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'js/jquery_twentytwenty.min.js',
-            array( 'jquery' ),
+        $all_options = array(
+            'placeholderImg' => WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'images/placeholder.webp',
+        );
+        wp_localize_script( $plugin_name . '-editor-script', 'wpmozo_adfgu_editor_object', $all_options );
+
+        wp_register_style(
+            $plugin_name . '-editor-style',
+            WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'css/wpmozo-addons-for-gutenberg-editor.css',
+            array( 'wp-edit-blocks' ),
             time()
         );
+
+        wp_enqueue_style( $plugin_name . '-editor-style' );
 
         $this->wpmozo_blocks->register_blocks();
 

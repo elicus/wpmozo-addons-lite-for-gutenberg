@@ -8,7 +8,7 @@ const WpmozoDimensions = function(args){
 	const { DimensionKey, props } = args;
 	const preAttributes = props.preAttributes;
 	let DimensionsTypes           = args.hasOwnProperty( 'DimensionsTypes' ) ? args.DimensionsTypes : null;
-	const label                   = args.hasOwnProperty( 'label' ) ? args.label : __( 'Dimensions', 'wpmozo-product-grid-for-woocommerce' );
+	const label                   = args.hasOwnProperty( 'label' ) ? args.label : __( 'Dimensions', 'wpmozo-addons-for-gutenberg' );
 
 	const dimensionsSetValue = function( styleType, value = null ) {
 
@@ -23,7 +23,7 @@ const WpmozoDimensions = function(args){
 
 	const setValue = function(styleType, value){
 
-		if ( null === value && 'undefined' !== typeof preAttributes[ DimensionKey + styleType ].default ) {
+		if ( null === value && 'undefined' !== typeof preAttributes[ DimensionKey + styleType ] && preAttributes[ DimensionKey + styleType ].hasOwnProperty( 'default' ) ) {
 			value = preAttributes[ DimensionKey + styleType ].default;
 		}
 		value = ( null !== value ) ? value : '';
@@ -61,7 +61,7 @@ const WpmozoDimensions = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Padding', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Padding', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						className: 'tools-panel-item-spacing',
@@ -80,7 +80,7 @@ const WpmozoDimensions = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Margin', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Margin', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						className: 'tools-panel-item-spacing',
@@ -99,7 +99,7 @@ const WpmozoDimensions = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Position', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Position', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						className: 'tools-panel-item-spacing',

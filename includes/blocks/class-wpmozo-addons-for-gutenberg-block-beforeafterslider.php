@@ -60,9 +60,27 @@ class WPMozo_Addons_Gutenberg_Block_Beforeafterslider extends WPMozo_Addons_Gute
     public function __construct() {
 
         parent::__construct();
+
+        $this->scripts[] = array(
+            'handle' => $this->plugin_name . '-twentytwenty-script',
+            'src' => WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'js/jquery_twentytwenty.min.js',
+            'deps' => array( 'jquery' ),
+            'ver' => time(),
+        );
+
+        $this->styles[] = array(
+            'handle' => $this->plugin_name . '-twentytwenty-style',
+            'src' => WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'css/twentytwenty.css',
+            'deps' => array(),
+            'ver' => time()
+        );
+
         $this->args = array(
             'script_handles' => array(
                 $this->plugin_name . '-twentytwenty-script',
+            ),
+            'style_handles' => array(
+                $this->plugin_name . '-twentytwenty-style',
             ),
         );
 

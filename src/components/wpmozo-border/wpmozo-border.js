@@ -22,7 +22,7 @@ const WpmozoBorder = function(args){
 
 	const setValue = function(styleType, value){
 
-		if ( null === value && 'undefined' !== typeof preAttributes[ BorderKey + styleType ].default ) {
+		if ( null === value && 'undefined' !== typeof preAttributes[ BorderKey + styleType ] && preAttributes[ BorderKey + styleType ].hasOwnProperty( 'default' ) ) {
 			value = preAttributes[ BorderKey + styleType ].default;
 		}
 		value = ( null !== value ) ? value : '';
@@ -37,7 +37,7 @@ const WpmozoBorder = function(args){
 		el(
 			__experimentalToolsPanel,
 			{
-				label: __( 'Border', 'wpmozo-product-grid-for-woocommerce' ),
+				label: __( 'Border', 'wpmozo-addons-for-gutenberg' ),
 				resetAll: () => {
 
 					if ( null === BorderTypes ) {
@@ -61,7 +61,7 @@ const WpmozoBorder = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Border', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Border', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => borderSetValue( 'border' ),
@@ -79,7 +79,7 @@ const WpmozoBorder = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Radius', 'wpmozo-product-grid-for-woocommerce' ),
+						label: __( 'Radius', 'wpmozo-addons-for-gutenberg' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => borderSetValue( 'borderRadius' ),

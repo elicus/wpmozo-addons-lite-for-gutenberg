@@ -8,6 +8,7 @@ const WpmozoColorPicker = function(args){
 
     const { ColorKey, ColorTypes, props } = args;
     const preAttributes = props.preAttributes;
+    const withToolPanel = ( args.hasOwnProperty('withToolPanel') ) ? args.withToolPanel : true;
     const AllColors                               = __experimentalUseMultipleOriginColorsAndGradients();
 
     const colorSetValue = function( styleType, value = null ) {
@@ -23,7 +24,7 @@ const WpmozoColorPicker = function(args){
 
     const setValue = function(styleType, value){
 
-        if ( null === value && 'undefined' !== typeof preAttributes[ ColorKey+styleType ].default ) {
+        if ( null === value && 'undefined' !== typeof preAttributes[ ColorKey + styleType ] && preAttributes[ ColorKey + styleType ].hasOwnProperty( 'default' ) ) {
             value = preAttributes[ ColorKey+styleType ].default;
         }
         value = ( null !== value ) ? value : '';
@@ -34,97 +35,128 @@ const WpmozoColorPicker = function(args){
 
     const onChange = args.hasOwnProperty( 'onChange' ) ? args.onChange : colorSetValue;
 
-    const colorDropdown = function( colorType, label ) {
+    if ( withToolPanel ) {
 
-        let _color = props.attributes[ ColorKey+colorType ]
+        const colorDropdown = function( colorType, label ) {
 
-        if ( '' === _color && args.hasOwnProperty( 'default' ) ) {
-            _color = args.default[colorType];
+            let _color = props.attributes[ ColorKey+colorType ]
+
+            if ( '' === _color && args.hasOwnProperty( 'default' ) ) {
+                _color = args.default[colorType];
+            }
+
+            return el(
+                Dropdown,
+                {
+                    className: "wpmozo-color-dropdown-container",
+                    contentClassName: "wpmozo-color-popover-content",
+                    popoverProps: {
+                        placement: 'left-start',
+                        offset: 36,
+                        shift: true
+                    },
+                    renderToggle: ({ isOpen, onToggle }) =>
+                    el(
+                        Button,
+                        {
+                            onClick: onToggle,
+                            "aria-expanded": isOpen,
+                            children: [
+                            el(
+                                ColorIndicator,
+                                {
+                                    colorValue: _color,
+                                }
+                            ),
+                            label
+                        ],
+                        }
+                    ),
+                renderContent: () =>
+                    el(
+                        ColorPalette,
+                        {
+                            colors: AllColors.colors,
+                            value: _color,
+                            onChange: (NewColor) => onChange( colorType, NewColor ),
+                        }
+                    ),
+                }
+            );
+
         }
 
-        return el(
-            Dropdown,
-            {
-                className: "wpmozo-product-grid-color-dropdown-container",
-                contentClassName: "wpmozo-product-grid-color-popover-content",
-                popoverProps: {
-                    placement: 'left-start',
-                    offset: 36,
-                    shift: true
+        const Panels = [];
+        for (var i = 0; i < ColorTypes.length; i++) {
+            let ct    = ColorTypes[i];
+            let Panel = el(
+                __experimentalToolsPanelItem,
+                {
+                    label: ct.label,
+                    hasValue: () => true,
+                    isShownByDefault: true,
+                    onDeselect: () => colorSetValue( ct.key ),
                 },
-                renderToggle: ({ isOpen, onToggle }) =>
-                el(
-                    Button,
-                    {
-                        onClick: onToggle,
-                        "aria-expanded": isOpen,
-                        children: [
-                        el(
-                            ColorIndicator,
-                            {
-                                colorValue: _color,
-                            }
-                        ),
-                        label
-                    ],
-                    }
+                colorDropdown(
+                    ct.key,
+                    ct.label
                 ),
-            renderContent: () =>
-                el(
-                    ColorPalette,
-                    {
-                        colors: AllColors.colors,
-                        value: _color,
-                        onChange: (NewColor) => onChange( colorType, NewColor ),
+            );
+            Panels.push( Panel );
+        }
+
+        return [
+            el(
+                __experimentalToolsPanel,
+                {
+                    label: __( 'Color', 'wpmozo-addons-for-gutenberg' ),
+                    className: 'wpmozo-color-tools-panel',
+                    resetAll: () => {
+                        ColorTypes.map( type => { 
+
+                            let value = setValue( type.key, null );
+                            props.setAttributes( {[ ColorKey+type.key ]: value} ); 
+
+                        } );
+                        
+
+                        if ( args.hasOwnProperty( 'afterOnChange' ) ) {
+                            args.afterOnChange( props );
+                        }
                     }
-                ),
-            }
-        );
-
-    }
-
-    const Panels = [];
-    for (var i = 0; i < ColorTypes.length; i++) {
-        let ct    = ColorTypes[i];
-        let Panel = el(
-            __experimentalToolsPanelItem,
-            {
-                label: ct.label,
-                hasValue: () => true,
-                isShownByDefault: true,
-                onDeselect: () => colorSetValue( ct.key ),
-            },
-            colorDropdown(
-                ct.key,
-                ct.label
+                },
+                Panels,
             ),
-        );
-        Panels.push( Panel );
-    }
+        ];
 
-    return [
-        el(
-            __experimentalToolsPanel,
-            {
-                label: __( 'Color', 'wpmozo-product-grid-for-woocommerce' ),
-                className: 'wpmozo-product-grid-color-tools-panel',
-                resetAll: () => {
-                    ColorTypes.map( type => { 
+    }else{
 
-                        let value = setValue( type.key, null );
-                        props.setAttributes( {[ ColorKey+type.key ]: value} ); 
+        const Panels = [];
+        for (var i = 0; i < ColorTypes.length; i++) {
+            let ct    = ColorTypes[i];
 
-                    } );
-                    
+            let colorType = ct.key;
+            let label = ct.label;
 
-                    if ( args.hasOwnProperty( 'afterOnChange' ) ) {
-                        args.afterOnChange( props );
-                    }
+            let _color = props.attributes[ ColorKey+colorType ]
+
+            if ( '' === _color && args.hasOwnProperty( 'default' ) ) {
+                _color = args.default[colorType];
+            }
+            let Panel = el(
+                ColorPalette,
+                {
+                    colors: AllColors.colors,
+                    value: _color,
+                    onChange: (NewColor) => onChange( colorType, NewColor ),
                 }
-            },
-            Panels,
-        ),
-    ];
+            );
+            Panels.push( Panel );
+        }
+
+        return [ Panels ];
+
+    }
 
 }
 
