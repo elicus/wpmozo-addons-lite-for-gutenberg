@@ -146,8 +146,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./inspector */ "./src/blocks/before-after-slider/js/inspector.js");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -156,29 +159,40 @@ const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 const Edit = props => {
   const attributes = props.attributes,
     clientId = props.clientId;
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
-    className: 'wpmozo-adfgu-before-after-slider-wrapper'
-  });
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)();
   let beforeImage = attributes.beforeImage ? attributes.beforeImage : WPMozoEditorObj.placeholderImg,
-    afterImage = attributes.afterImage ? attributes.afterImage : WPMozoEditorObj.placeholderImg;
-  jQuery("#block-" + clientId).html();
-  //jQuery(document).ready(function(){
-  //if ( jQuery("#block-"+clientId).find('.twentytwenty-wrapper').length < 1 ) {
-  jQuery("#block-" + clientId + " .wpmozo-ae-before-after-image-wrapper").twentytwenty();
-  //}
-  //});
-
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    ...props
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    afterImage = attributes.afterImage ? attributes.afterImage : WPMozoEditorObj.placeholderImg,
+    beforeLabel = attributes.beforeHasLabel ? attributes.beforeLabel : '',
+    afterLabel = attributes.afterHasLabel ? attributes.afterLabel : '';
+  jQuery(document).ready(function () {
+    let main = jQuery('#block-' + clientId);
+    if (main.find('.twentytwenty-wrapper').length > 0) {
+      let content = main.find('.twentytwenty-wrapper').html();
+      main.html(content);
+      main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-overlay').remove();
+      main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-handle').remove();
+    }
+    main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
+      default_offset_pct: attributes.handleOffset,
+      orientation: attributes.sliderOrientation,
+      before_label: beforeLabel,
+      after_label: afterLabel,
+      move_slider_on_hover: attributes.moveHandleOnHover,
+      move_with_handle_only: true,
+      click_to_move: attributes.moveHandleOnClick
+    });
+  });
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wpmozo-ae-before-after-image-wrapper"
+    className: "wpmozo-adfgu-before-after-image-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: beforeImage
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: afterImage
-  }))));
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    ...props
+  }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
