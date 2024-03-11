@@ -50,16 +50,24 @@ const Inspector = (props) => {
                         initialPosition={ 0.5 }
                         resetFallbackValue={ 0.5 }
                     />
-                    <ToggleControl
-                        label={ __( 'Move Handle on Hover', 'wpmozo-addons-for-gutenberg' ) }
-                        checked={ attributes.moveHandleOnHover }
-                        onChange={ ( newValue ) => setAttributes( { moveHandleOnHover: newValue } ) }
-                    />
-                    <ToggleControl
-                        label={ __( 'Move Handle on Click', 'wpmozo-addons-for-gutenberg' ) }
-                        checked={ attributes.moveHandleOnClick }
-                        onChange={ ( newValue ) => setAttributes( { moveHandleOnClick: newValue } ) }
-                    />
+                    { ! attributes.moveHandleOnClick && (
+                        <>
+                            <ToggleControl
+                                label={ __( 'Move Handle on Hover', 'wpmozo-addons-for-gutenberg' ) }
+                                checked={ attributes.moveHandleOnHover }
+                                onChange={ ( newValue ) => setAttributes( { moveHandleOnHover: newValue } ) }
+                            />
+                        </>
+                    )}
+                    { ! attributes.moveHandleOnHover && (
+                        <>
+                            <ToggleControl
+                                label={ __( 'Move Handle on Click', 'wpmozo-addons-for-gutenberg' ) }
+                                checked={ attributes.moveHandleOnClick }
+                                onChange={ ( newValue ) => setAttributes( { moveHandleOnClick: newValue } ) }
+                            />
+                        </>
+                    )}
                 </PanelBody>
             	<PanelBody title={beforeTitle} initialOpen={false}>
                     <WpmozoMediaUploader 

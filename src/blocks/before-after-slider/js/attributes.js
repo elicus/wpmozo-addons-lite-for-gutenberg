@@ -1,4 +1,7 @@
 const attributes = {
+    clientId: {
+        type: "string",
+    },
     sliderOrientation: {
         type: "string",
     },

@@ -17,7 +17,7 @@ jQuery(document).ready(function($){
             after_label: after_label,
             move_slider_on_hover: move_onhover,
             move_with_handle_only: true,
-            click_to_move: move_onclick,
+            click_to_move: move_onclick
         });
 
     });

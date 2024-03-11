@@ -61,6 +61,16 @@ class WPMozo_Addons_Gutenberg_Init {
         $plugin_name = $wpmozo_adfgu->get_plugin_name();
 
         wp_register_script(
+            $plugin_name . '-common-function-script',
+            WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'js/wpmozo-common-functions.js',
+            array(),
+            time(),
+            true
+        );
+
+        wp_enqueue_script( $plugin_name . '-common-function-script' );
+
+        wp_register_script(
             $plugin_name . '-editor-script',
             WPMOZO_ADDONS_GUTENBERG_PLUGIN_DIR_URL . 'build/index.js',
             array( 'react', 'wp-polyfill', 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-api', 'wp-api-fetch', 'lodash', 'wp-editor', 'wp-dom-ready', 'jquery' ),
@@ -96,6 +106,16 @@ class WPMozo_Addons_Gutenberg_Init {
 
         $wpmozo_adfgu = wpmozo_adfgu();
         $plugin_name = $wpmozo_adfgu->get_plugin_name();
+
+        wp_register_script(
+            $plugin_name . '-common-function-script',
+            WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'js/wpmozo-common-functions.js',
+            array(),
+            time(),
+            true
+        );
+
+        wp_enqueue_script( $plugin_name . '-common-function-script' );
 
         wp_register_script(
             $plugin_name . '-blocks-script',
