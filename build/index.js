@@ -159,28 +159,34 @@ const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 const Edit = props => {
   const attributes = props.attributes,
     clientId = props.clientId;
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)();
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
+    className: 'wpmozo-adfgu-before-after-parent-wrapper'
+  });
   let beforeImage = attributes.beforeImage ? attributes.beforeImage : WPMozoEditorObj.placeholderImg,
     afterImage = attributes.afterImage ? attributes.afterImage : WPMozoEditorObj.placeholderImg,
     beforeLabel = attributes.beforeHasLabel ? attributes.beforeLabel : '',
     afterLabel = attributes.afterHasLabel ? attributes.afterLabel : '';
-  jQuery(document).ready(function () {
-    let main = jQuery('#block-' + clientId);
-    if (main.find('.twentytwenty-wrapper').length > 0) {
-      let content = main.find('.twentytwenty-wrapper').html();
-      main.html(content);
-      main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-overlay').remove();
-      main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-handle').remove();
-    }
-    main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
-      default_offset_pct: attributes.handleOffset,
-      orientation: attributes.sliderOrientation,
-      before_label: beforeLabel,
-      after_label: afterLabel,
-      move_slider_on_hover: attributes.moveHandleOnHover,
-      move_with_handle_only: true,
-      click_to_move: attributes.moveHandleOnClick
-    });
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    setTimeout(function () {
+      let editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
+        main = editorIfram.find('body').find('#block-' + clientId),
+        imgWrap = main.find('.wpmozo-adfgu-before-after-image-wrapper');
+      if (main.find('.twentytwenty-wrapper').length > 0) {
+        let content = main.find('.twentytwenty-wrapper').html();
+        main.html(content);
+        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-overlay').remove();
+        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-handle').remove();
+      }
+      main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
+        default_offset_pct: attributes.handleOffset,
+        orientation: attributes.sliderOrientation,
+        before_label: beforeLabel,
+        after_label: afterLabel,
+        move_slider_on_hover: attributes.moveHandleOnHover,
+        move_with_handle_only: true,
+        click_to_move: attributes.moveHandleOnClick
+      });
+    }, 10);
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
@@ -434,13 +440,33 @@ __webpack_require__.r(__webpack_exports__);
 const {
   useBlockProps
 } = window.wp.blockEditor;
+const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 const Save = ({
   attributes
 }) => {
-  const {} = attributes;
+  let beforeImage = attributes.beforeImage ? attributes.beforeImage : WPMozoEditorObj.placeholderImg,
+    afterImage = attributes.afterImage ? attributes.afterImage : WPMozoEditorObj.placeholderImg,
+    beforeLabel = attributes.beforeHasLabel ? attributes.beforeLabel : '',
+    afterLabel = attributes.afterHasLabel ? attributes.afterLabel : '',
+    handleOffset = attributes.handleOffset,
+    sliderOrientation = attributes.sliderOrientation,
+    moveHandleOnHover = attributes.moveHandleOnHover,
+    moveHandleOnClick = attributes.moveHandleOnClick;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...useBlockProps.save()
-  });
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wpmozo-adfgu-before-after-image-wrapper",
+    "data-before-label": beforeLabel,
+    "data-after-label": afterLabel,
+    "data-handle-offset": handleOffset,
+    "data-slider-orientation": sliderOrientation,
+    "data-move-onhover": moveHandleOnHover,
+    "data-move-onclick": moveHandleOnClick
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: beforeImage
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: afterImage
+  })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
 

@@ -88,6 +88,28 @@ class WPMozo_Addons_Gutenberg_Init {
     }
 
     /**
+     * Enqueue frontend block assets.
+     *
+     * @since 1.0.0
+     */
+    public function enqueue_block_assets() {
+
+        $wpmozo_adfgu = wpmozo_adfgu();
+        $plugin_name = $wpmozo_adfgu->get_plugin_name();
+
+        wp_register_script(
+            $plugin_name . '-blocks-script',
+            WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'js/frontend.js',
+            array( 'wp-i18n', 'jquery' ),
+            time(),
+            true
+        );
+
+        wp_enqueue_script( $plugin_name . '-blocks-script', );
+
+    }
+
+    /**
      * Add block category.
      *
      * @since 1.0.0
@@ -125,6 +147,7 @@ class WPMozo_Addons_Gutenberg_Init {
         $loader->add_filter( 'block_categories_all', $instance, 'wpmozo_block_category', 10, 2 );
         $loader->add_action( 'init', $instance, 'wpmozo_register_blocks' );
         $loader->add_action( 'enqueue_block_editor_assets', $instance, 'enqueue_block_editor_assets' );
+        $loader->add_action( 'wp_enqueue_scripts', $instance, 'enqueue_block_assets' );
 
 	}
 
