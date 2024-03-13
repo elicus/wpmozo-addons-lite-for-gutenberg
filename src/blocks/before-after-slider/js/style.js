@@ -16,13 +16,18 @@ const Style = (attributes) => {
             .twentytwenty-handle:before, 
             .twentytwenty-handle:after {
                 background-color: ${attributes.handlecolor} !important;
+                -webkit-box-shadow: 0 3px 0 ${attributes.handlecolor}, 0px 0px 12px ${attributes.handlecolor};
+                -moz-box-shadow: 0 3px 0 ${attributes.handlecolor}, 0px 0px 12px ${attributes.handlecolor};
+                box-shadow: 0 3px 0 ${attributes.handlecolor}, 0px 0px 12px ${attributes.handlecolor};
             }
             .twentytwenty-handle{
                 border-color: ${attributes.handlecolor};
             }
-            .twentytwenty-left-arrow, 
-            twentytwenty-right-arrow{
-                border-color: ${attributes.handlecolor};
+            .twentytwenty-left-arrow{
+                border-right-color: ${attributes.handlecolor};
+            }
+            .twentytwenty-right-arrow{
+                border-left-color: ${attributes.handlecolor};
             }
             .twentytwenty-overlay:hover{
                 background-color: ${attributes.overlaycolor};

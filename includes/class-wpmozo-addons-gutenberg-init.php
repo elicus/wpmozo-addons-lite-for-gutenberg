@@ -80,8 +80,11 @@ class WPMozo_Addons_Gutenberg_Init {
 
         wp_enqueue_script( $plugin_name . '-editor-script' );
 
+        $icons = $this->wpmozo_get_icons();
+
         $all_options = array(
             'placeholderImg' => WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'images/placeholder.webp',
+            'icons' => $icons,
         );
         wp_localize_script( $plugin_name . '-editor-script', 'wpmozo_adfgu_editor_object', $all_options );
 
@@ -153,6 +156,23 @@ class WPMozo_Addons_Gutenberg_Init {
                 ),
             )
         );
+    }
+
+    /**
+     * Get font awesome icons array.
+     *
+     * @since 1.0.0
+     * @return array $icons All icons.
+     */
+    public function wpmozo_get_icons() {
+
+        $json = file_get_contents( WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_PATH . 'assets/libs/fontawesome/fonts.json' );
+        if ( empty( $json ) ) {
+            return array();
+        }
+        $default_icons = json_decode( $json );
+        $icons         = apply_filters( 'wpmozo_addons_gutenberg_block_icons', $default_icons );
+        return $icons;
     }
 
 	/**
