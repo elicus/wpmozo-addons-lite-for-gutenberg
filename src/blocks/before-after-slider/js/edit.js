@@ -25,6 +25,18 @@ const Edit = (props) => {
         main.find('.twentytwenty-wrapper').removeClass('twentytwenty-wrapper');
         main.find('.twentytwenty-horizontal').removeClass('twentytwenty-horizontal');
         main.find('.wpmozo-adfgu-before-after-image-wrapper').unwrap();
+        main.find('.wpmozo-adfgu-before-after-image-wrapper').removeClass('twentytwenty-container');
+        
+        let beforeSrc = main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-before').attr('src');
+        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-before').remove();
+        let afterSrc = main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-after').attr('src');
+        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-after').remove();
+
+        main.find('.wpmozo-adfgu-before-after-image-wrapper').append( '<img src="'+beforeSrc+'">' );
+        main.find('.wpmozo-adfgu-before-after-image-wrapper').append( '<img src="'+afterSrc+'">' );
+
+        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-before').removeClass('twentytwenty-before');
+        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-after').removeClass('twentytwenty-after');
         main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-overlay').remove();
         main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-handle').remove();
     }
