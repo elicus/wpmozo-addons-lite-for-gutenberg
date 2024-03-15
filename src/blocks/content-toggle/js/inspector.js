@@ -29,8 +29,53 @@ const Inspector = (props) => {
                     <WpmozoIconpicker
                         label={ __( 'Icon', 'wpmozo-addons-for-gutenberg' ) }
                         iconPickerKey='toggleOneIcon'
-                        props={props}
+                        props={ props }
+                        value={ attributes.toggleOneIcon }
                         onChange={ ( newValue ) => setAttributes( { toggleOneIcon: newValue } ) }
+                    />
+                    <SelectControl
+                        label={ __( 'Content Type', 'wpmozo-addons-for-gutenberg' ) }
+                        value={ attributes.toggleOneContentType }
+                        options={[
+                            {
+                                label: __( 'Text', 'wpmozo-addons-for-gutenberg' ),
+                                value: 'text',
+                            },
+                            {
+                                label: __( 'Page', 'wpmozo-addons-for-gutenberg' ),
+                                value: 'page',
+                            }
+                        ]}
+                        onChange={ ( newValue ) => setAttributes( { toggleOneContentType: newValue } ) }
+                    />
+                </PanelBody>
+                <PanelBody title={ __( 'Toggle Two Content', 'wpmozo-addons-for-gutenberg' ) } initialOpen={false}>
+                    <TextControl
+                        label={ __( 'Toggle Title', 'wpmozo-addons-for-gutenberg' ) }
+                        value={ attributes.toggleTwoTitle }
+                        onChange={ ( newValue ) => setAttributes( { toggleTwoTitle: newValue } ) }
+                    />
+                    <WpmozoIconpicker
+                        label={ __( 'Icon', 'wpmozo-addons-for-gutenberg' ) }
+                        iconPickerKey='toggleTwoIcon'
+                        props={ props }
+                        value={ attributes.toggleTwoIcon }
+                        onChange={ ( newValue ) => setAttributes( { toggleTwoIcon: newValue } ) }
+                    />
+                    <SelectControl
+                        label={ __( 'Content Type', 'wpmozo-addons-for-gutenberg' ) }
+                        value={ attributes.toggleTwoContentType }
+                        options={[
+                            {
+                                label: __( 'Text', 'wpmozo-addons-for-gutenberg' ),
+                                value: 'text',
+                            },
+                            {
+                                label: __( 'Page', 'wpmozo-addons-for-gutenberg' ),
+                                value: 'page',
+                            }
+                        ]}
+                        onChange={ ( newValue ) => setAttributes( { toggleTwoContentType: newValue } ) }
                     />
                 </PanelBody>
            	</InspectorControls>

@@ -8,7 +8,16 @@ const attributes = {
     toggleOneIcon: {
         type: "string",
     },
+    toggleOneContentType: {
+        type: "string",
+    },
     toggleTwoTitle: {
+        type: "string",
+    },
+    toggleTwoIcon: {
+        type: "string",
+    },
+    toggleTwoContentType: {
         type: "string",
     },
 };

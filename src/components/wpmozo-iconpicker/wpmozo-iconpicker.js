@@ -4,6 +4,8 @@ const el                  = wp.element.createElement;
 
 const options = wpmozo_adfgu_editor_object.icons;
 
+const { Component } = wp.element;
+
 const WpmozoIconpicker = function(args){
 
 	const iconSetValue = function( value = null ) {
@@ -18,6 +20,8 @@ const WpmozoIconpicker = function(args){
 
 	const { iconPickerKey, props, label } = args,
 	attributes = props.attributes,
+	value = ( '' !== args.value ) ? args.value : '',
+	icon = ( 'undefined' !== typeof attributes[ args.iconPickerKey ] && '' !== attributes[ args.iconPickerKey ] ) ? attributes[ args.iconPickerKey ] : 'fas fa-ban',
 	onChange = args.hasOwnProperty( 'onChange' ) ? args.onChange : iconSetValue;
 
 	return [
@@ -30,7 +34,7 @@ const WpmozoIconpicker = function(args){
 				ComboboxControl,
 				{
 					label: label,
-					value: args.value,
+					value: value,
 					allowReset: false,
 					onChange: onChange,
 					options: options,
@@ -54,17 +58,16 @@ const WpmozoIconpicker = function(args){
 					},
 				},
 			),
-			attributes.hasOwnProperty( args.iconPickerKey ) && attributes[ args.iconPickerKey ] &&
+			el(
+				'div',
+				{className: 'wpmozo-icon-wraper'},
 				el(
-					'div',
-					{className: 'wpmozo-icon-wraper'},
-					el(
-						'i',
-						{
-							class: attributes[ args.iconPickerKey ]
-						}
-					),
+					'i',
+					{
+						class: icon
+					}
 				),
+			),
 		)
 	];
 

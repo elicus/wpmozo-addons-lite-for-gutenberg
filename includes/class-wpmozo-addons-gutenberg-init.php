@@ -128,7 +128,7 @@ class WPMozo_Addons_Gutenberg_Init {
             true
         );
 
-        wp_enqueue_script( $plugin_name . '-blocks-script', );
+        wp_enqueue_script( $plugin_name . '-blocks-script' );
 
     }
 
@@ -166,11 +166,17 @@ class WPMozo_Addons_Gutenberg_Init {
      */
     public function wpmozo_get_icons() {
 
-        $json = file_get_contents( WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_PATH . 'assets/libs/fontawesome/fonts.json' );
+        $json = file_get_contents( WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_PATH . 'libs/fontawesome/fonts.json' );
         if ( empty( $json ) ) {
             return array();
         }
         $default_icons = json_decode( $json );
+        $jklsfd = array();
+        $klsdf = new stdClass();
+        $klsdf->label = 'None';
+        $klsdf->value = '';
+        $jklsfd[] = $klsdf;
+        $default_icons = array_merge( $jklsfd, $default_icons );
         $icons         = apply_filters( 'wpmozo_addons_gutenberg_block_icons', $default_icons );
         return $icons;
     }

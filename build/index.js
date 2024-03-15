@@ -627,7 +627,16 @@ const attributes = {
   toggleOneIcon: {
     type: "string"
   },
+  toggleOneContentType: {
+    type: "string"
+  },
   toggleTwoTitle: {
+    type: "string"
+  },
+  toggleTwoIcon: {
+    type: "string"
+  },
+  toggleTwoContentType: {
     type: "string"
   }
 };
@@ -756,8 +765,52 @@ const Inspector = props => {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'wpmozo-addons-for-gutenberg'),
     iconPickerKey: "toggleOneIcon",
     props: props,
+    value: attributes.toggleOneIcon,
     onChange: newValue => setAttributes({
       toggleOneIcon: newValue
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content Type', 'wpmozo-addons-for-gutenberg'),
+    value: attributes.toggleOneContentType,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text', 'wpmozo-addons-for-gutenberg'),
+      value: 'text'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Page', 'wpmozo-addons-for-gutenberg'),
+      value: 'page'
+    }],
+    onChange: newValue => setAttributes({
+      toggleOneContentType: newValue
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Toggle Two Content', 'wpmozo-addons-for-gutenberg'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Toggle Title', 'wpmozo-addons-for-gutenberg'),
+    value: attributes.toggleTwoTitle,
+    onChange: newValue => setAttributes({
+      toggleTwoTitle: newValue
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoIconpicker, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'wpmozo-addons-for-gutenberg'),
+    iconPickerKey: "toggleTwoIcon",
+    props: props,
+    value: attributes.toggleTwoIcon,
+    onChange: newValue => setAttributes({
+      toggleTwoIcon: newValue
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content Type', 'wpmozo-addons-for-gutenberg'),
+    value: attributes.toggleTwoContentType,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text', 'wpmozo-addons-for-gutenberg'),
+      value: 'text'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Page', 'wpmozo-addons-for-gutenberg'),
+      value: 'page'
+    }],
+    onChange: newValue => setAttributes({
+      toggleTwoContentType: newValue
     })
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
     key: "styles",
@@ -1196,6 +1249,9 @@ const {
 } = wp.components;
 const el = wp.element.createElement;
 const options = wpmozo_adfgu_editor_object.icons;
+const {
+  Component
+} = wp.element;
 const WpmozoIconpicker = function (args) {
   const iconSetValue = function (value = null) {
     props.setAttributes({
@@ -1211,12 +1267,14 @@ const WpmozoIconpicker = function (args) {
       label
     } = args,
     attributes = props.attributes,
+    value = '' !== args.value ? args.value : '',
+    icon = 'undefined' !== typeof attributes[args.iconPickerKey] && '' !== attributes[args.iconPickerKey] ? attributes[args.iconPickerKey] : 'fas fa-ban',
     onChange = args.hasOwnProperty('onChange') ? args.onChange : iconSetValue;
   return [el('div', {
     className: 'wpmozo-icon-picker'
   }, el(ComboboxControl, {
     label: label,
-    value: args.value,
+    value: value,
     allowReset: false,
     onChange: onChange,
     options: options,
@@ -1228,10 +1286,10 @@ const WpmozoIconpicker = function (args) {
         }), " ", option.item.label]
       });
     }
-  }), attributes.hasOwnProperty(args.iconPickerKey) && attributes[args.iconPickerKey] && el('div', {
+  }), el('div', {
     className: 'wpmozo-icon-wraper'
   }, el('i', {
-    class: attributes[args.iconPickerKey]
+    class: icon
   })))];
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WpmozoIconpicker);

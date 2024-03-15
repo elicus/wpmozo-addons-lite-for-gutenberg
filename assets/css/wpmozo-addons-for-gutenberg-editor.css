@@ -36,6 +36,9 @@
 	text-align: center;
 	font-size: 18px;
 }
+.wpmozo-icon-picker .components-combobox-control__suggestions-container{
+	padding: 4px;
+}
 .wpmozo-color-dropdown-container{
 	width: 100%;
 }

@@ -61,6 +61,20 @@ class WPMozo_Addons_Gutenberg_Block_Contenttoggle extends WPMozo_Addons_Gutenber
 
         parent::__construct();
 
+        // rgister fontawesome style.
+        $this->styles[] = array(
+            'handle' => $this->plugin_name . '-fontawesome-style',
+            'src' => WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'libs/fontawesome/all.min.css',
+            'deps' => array(),
+            'ver' => time()
+        );
+
+        $this->args = array(
+            'style_handles' => array(
+                $this->plugin_name . '-fontawesome-style',
+            ),
+        );
+
     }
 
 }
