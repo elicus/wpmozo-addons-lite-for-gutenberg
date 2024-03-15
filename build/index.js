@@ -268,7 +268,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.registerBlockType)('wpmozo/before-after-slider', {
-  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Before After Slider', 'wpmozo-product-carousel-for-woocommerce'),
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Before After Slider', 'wpmozo-addons-for-gutenberg'),
   icon: '',
   apiVersion: 3,
   category: 'wpmozo',
@@ -708,7 +708,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.registerBlockType)('wpmozo/content-toggle', {
-  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Content Toggle', 'wpmozo-product-carousel-for-woocommerce'),
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Content Toggle', 'wpmozo-addons-for-gutenberg'),
   icon: '',
   apiVersion: 3,
   category: 'wpmozo',
