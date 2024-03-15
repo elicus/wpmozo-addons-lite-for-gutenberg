@@ -3,9 +3,8 @@ import Inspector from "./inspector";
 import Style from "./style";
 
 import { __ } from "@wordpress/i18n";
-import { useEffect, Fragment } from "@wordpress/element";
+import { Fragment } from "@wordpress/element";
 import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
-const WPMozoEditorObj = wpmozo_adfgu_editor_object; 
 
 const Edit = (props) => {
 
@@ -14,12 +13,25 @@ const Edit = (props) => {
     attributes.clientId = clientId;
 
 	const blockProps = useBlockProps();
+
+    const wraperTemplate = [
+        [ 'wpmozo/content-wraper', {
+            lock: { 
+                remove: true 
+            }
+        } ],
+    ];
+
+
 	return (
         <Fragment>
             <Inspector {...props} />
             <div {...blockProps}>
                 <Style {...attributes} />
-                
+                <InnerBlocks 
+                    template={ wraperTemplate }
+                    allowedBlocks={false}
+                />
             </div>
         </Fragment>
     );

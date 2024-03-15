@@ -268,7 +268,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.registerBlockType)('wpmozo/before-after-slider', {
-  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Before After Slider', 'wpmozo-product-carousel-for-woocommerce'),
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Before After Slider', 'wpmozo-addons-for-gutenberg'),
   icon: '',
   apiVersion: 3,
   category: 'wpmozo',
@@ -630,6 +630,9 @@ const attributes = {
   toggleOneContentType: {
     type: "string"
   },
+  toggleOneContent: {
+    type: "string"
+  },
   toggleTwoTitle: {
     type: "string"
   },
@@ -670,18 +673,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 const Edit = props => {
   const attributes = props.attributes,
     clientId = props.clientId;
   attributes.clientId = clientId;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)();
+  const wraperTemplate = [['wpmozo/content-wraper', {
+    lock: {
+      remove: true
+    }
+  }]];
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_1__["default"], {
     ...props
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_style__WEBPACK_IMPORTED_MODULE_2__["default"], {
     ...attributes
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks, {
+    template: wraperTemplate,
+    allowedBlocks: false
   })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
@@ -708,7 +718,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.registerBlockType)('wpmozo/content-toggle', {
-  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Content Toggle', 'wpmozo-product-carousel-for-woocommerce'),
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Content Toggle', 'wpmozo-addons-for-gutenberg'),
   icon: '',
   apiVersion: 3,
   category: 'wpmozo',
@@ -837,21 +847,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style */ "./src/blocks/content-toggle/js/style.js");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 
 
-const {
-  useBlockProps
-} = window.wp.blockEditor;
+
 const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 const Save = ({
   attributes
 }) => {
   const elId = 'block-' + attributes.clientId;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...useBlockProps.save()
+    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save()
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_style__WEBPACK_IMPORTED_MODULE_1__["default"], {
     ...attributes
-  }));
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
 

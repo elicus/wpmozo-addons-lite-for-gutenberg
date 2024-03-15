@@ -11,6 +11,9 @@ const attributes = {
     toggleOneContentType: {
         type: "string",
     },
+    toggleOneContent: {
+        type: "string",
+    },
     toggleTwoTitle: {
         type: "string",
     },
