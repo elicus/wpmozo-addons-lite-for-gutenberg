@@ -20,8 +20,12 @@ const Edit = (props) => {
                 remove: true 
             }
         } ],
+        [ 'wpmozo/content-wraper', {
+            lock: { 
+                remove: true 
+            }
+        } ],
     ];
-
 
 	return (
         <Fragment>
