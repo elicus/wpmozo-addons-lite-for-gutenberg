@@ -1,7 +1,7 @@
 
 import Style from "./style";
 
-const { useBlockProps } = window.wp.blockEditor;
+import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
 const WPMozoEditorObj = wpmozo_adfgu_editor_object; 
 
 const Save = ({ attributes }) => {
@@ -11,7 +11,7 @@ const Save = ({ attributes }) => {
     return (
         <div {...useBlockProps.save()}>
             <Style {...attributes} />
-            
+            <InnerBlocks.Content />
         </div>
     );
 };
