@@ -14,6 +14,27 @@ const Inspector = (props) => {
 
     const attributes = props.attributes,
     setAttributes = props.setAttributes;
+
+    const positionValues = [
+        {
+            label: __( 'Before', 'wpmozo-addons-for-gutenberg' ),
+            value: 'before',
+        },
+        {
+            label: __( 'After', 'wpmozo-addons-for-gutenberg' ),
+            value: 'after',
+        }
+    ];
+    const contentTypeValues = [
+        {
+            label: __( 'Blocks', 'wpmozo-addons-for-gutenberg' ),
+            value: 'blocks',
+        },
+        {
+            label: __( 'Page', 'wpmozo-addons-for-gutenberg' ),
+            value: 'page',
+        }
+    ];
     
     props = Object.assign({}, props, {preAttributes: {}});
 
@@ -33,19 +54,18 @@ const Inspector = (props) => {
                         value={ attributes.toggleOneIcon }
                         onChange={ ( newValue ) => setAttributes( { toggleOneIcon: newValue } ) }
                     />
+                    { ! window.wpmozo.wpmozo_is_empty( attributes.toggleOneIcon ) &&
+                        <SelectControl
+                            label={ __( 'Icon Position', 'wpmozo-addons-for-gutenberg' ) }
+                            value={ attributes.toggleOneIconPostion }
+                            options={ positionValues }
+                            onChange={ ( newValue ) => setAttributes( { toggleOneIconPostion: newValue } ) }
+                        />
+                    }
                     <SelectControl
                         label={ __( 'Content Type', 'wpmozo-addons-for-gutenberg' ) }
                         value={ attributes.toggleOneContentType }
-                        options={[
-                            {
-                                label: __( 'Text', 'wpmozo-addons-for-gutenberg' ),
-                                value: 'text',
-                            },
-                            {
-                                label: __( 'Page', 'wpmozo-addons-for-gutenberg' ),
-                                value: 'page',
-                            }
-                        ]}
+                        options={ contentTypeValues }
                         onChange={ ( newValue ) => setAttributes( { toggleOneContentType: newValue } ) }
                     />
                 </PanelBody>
@@ -62,19 +82,18 @@ const Inspector = (props) => {
                         value={ attributes.toggleTwoIcon }
                         onChange={ ( newValue ) => setAttributes( { toggleTwoIcon: newValue } ) }
                     />
+                    { ! window.wpmozo.wpmozo_is_empty( attributes.toggleTwoIcon ) &&
+                        <SelectControl
+                            label={ __( 'Icon Position', 'wpmozo-addons-for-gutenberg' ) }
+                            value={ attributes.toggleTwoIconPostion }
+                            options={ positionValues }
+                            onChange={ ( newValue ) => setAttributes( { toggleTwoIconPostion: newValue } ) }
+                        />
+                    }
                     <SelectControl
                         label={ __( 'Content Type', 'wpmozo-addons-for-gutenberg' ) }
                         value={ attributes.toggleTwoContentType }
-                        options={[
-                            {
-                                label: __( 'Text', 'wpmozo-addons-for-gutenberg' ),
-                                value: 'text',
-                            },
-                            {
-                                label: __( 'Page', 'wpmozo-addons-for-gutenberg' ),
-                                value: 'page',
-                            }
-                        ]}
+                        options={ contentTypeValues }
                         onChange={ ( newValue ) => setAttributes( { toggleTwoContentType: newValue } ) }
                     />
                 </PanelBody>

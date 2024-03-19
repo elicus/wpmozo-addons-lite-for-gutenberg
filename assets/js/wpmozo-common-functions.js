@@ -208,3 +208,16 @@ window.wpmozo.convetInlineStyleStr = function( options, attributes ){
 
     return styleStr;
 }
+
+window.wpmozo.wpmozo_is_empty = function( value ){
+    var is_empty = false;
+    if ( '' === value
+    || 'undefined' === typeof value
+    || null === value
+    || false === value
+    || ( 'object' === typeof value && ! Array.isArray( value ) && Object.keys( value ).length === 0 )
+    || ( 'object' === typeof value && Array.isArray( value ) && value.length === 0 ) ) {
+        is_empty = true;
+    }
+    return is_empty;
+}

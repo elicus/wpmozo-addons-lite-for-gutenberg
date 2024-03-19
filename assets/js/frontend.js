@@ -22,4 +22,32 @@ jQuery(document).ready(function($){
 
     });
 
+    jQuery('.wpmozo-adfgu-toggle-field').change(function(e){
+
+        let selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main');
+        if( jQuery(this).is(':checked') ){
+            selector.find('.wpmozo-adfgu-content-toggle-one').hide();
+            selector.find('.wpmozo-adfgu-content-toggle-two').show();
+        }else{
+            selector.find('.wpmozo-adfgu-content-toggle-one').show();
+            selector.find('.wpmozo-adfgu-content-toggle-two').hide();
+        }
+
+    });
+
+    jQuery(document).ready(function ($) {
+        jQuery('.wpmozo-adfgu-toggle-field').each(function( keym, el ){
+
+            let selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main');
+            if( jQuery(this).is(':checked') ){
+                selector.find('.wpmozo-adfgu-content-toggle-one').hide();
+                selector.find('.wpmozo-adfgu-content-toggle-two').show();
+            }else{
+                selector.find('.wpmozo-adfgu-content-toggle-one').show();
+                selector.find('.wpmozo-adfgu-content-toggle-two').hide();
+            }
+
+        });
+    });
+
 })

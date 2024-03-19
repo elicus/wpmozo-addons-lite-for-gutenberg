@@ -9,7 +9,6 @@ import { __ } from "@wordpress/i18n";
 registerBlockType( 'wpmozo/content-toggle', {
 	title: __( 'Content Toggle', 'wpmozo-addons-for-gutenberg' ),
     icon: '',
-    apiVersion: 3,
     category: 'wpmozo',
     keywords: [ 'wpmozo', 'content-toggle', 'content' ],
     attributes: attributes,
