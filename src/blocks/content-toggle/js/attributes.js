@@ -20,10 +20,6 @@ const attributes = {
         type: "string",
         default: "before",
     },
-    toggleOneContentType: {
-        type: "string",
-        default: 'blocks',
-    },
     toggleTwoTitle: {
         type: "string",
         default: __('Title Two', 'wpmozo-addons-for-gutenberg')
@@ -34,10 +30,6 @@ const attributes = {
     toggleTwoIconPostion: {
         type: "string",
         default: "before",
-    },
-    toggleTwoContentType: {
-        type: "string",
-        default: 'blocks',
     },
 };
 

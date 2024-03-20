@@ -62,12 +62,6 @@ const Inspector = (props) => {
                             onChange={ ( newValue ) => setAttributes( { toggleOneIconPostion: newValue } ) }
                         />
                     }
-                    <SelectControl
-                        label={ __( 'Content Type', 'wpmozo-addons-for-gutenberg' ) }
-                        value={ attributes.toggleOneContentType }
-                        options={ contentTypeValues }
-                        onChange={ ( newValue ) => setAttributes( { toggleOneContentType: newValue } ) }
-                    />
                 </PanelBody>
                 <PanelBody title={ __( 'Toggle Two Content', 'wpmozo-addons-for-gutenberg' ) } initialOpen={false}>
                     <TextControl
@@ -90,12 +84,6 @@ const Inspector = (props) => {
                             onChange={ ( newValue ) => setAttributes( { toggleTwoIconPostion: newValue } ) }
                         />
                     }
-                    <SelectControl
-                        label={ __( 'Content Type', 'wpmozo-addons-for-gutenberg' ) }
-                        value={ attributes.toggleTwoContentType }
-                        options={ contentTypeValues }
-                        onChange={ ( newValue ) => setAttributes( { toggleTwoContentType: newValue } ) }
-                    />
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">

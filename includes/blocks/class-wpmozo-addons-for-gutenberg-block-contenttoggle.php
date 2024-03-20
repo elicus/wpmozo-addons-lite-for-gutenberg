@@ -72,28 +72,8 @@ class WPMozo_Addons_Gutenberg_Block_Contenttoggle extends WPMozo_Addons_Gutenber
         $this->args = array(
             'style_handles' => array(
                 $this->plugin_name . '-fontawesome-style',
-            ),
-            'render_callback' => array( $this, 'render_callback')            
+            ),          
         );
-
-    }
-
-    /**
-     * Render markup.
-     *
-     * @since 1.0.0
-     * @param array $args The arguments of carousel.
-     */
-    public function render_callback( $args ){
-
-        $page_ID = 0;
-
-        ob_start();
-
-        $content = get_the_content( null, false, $page_ID );
-        echo apply_filters( 'the_content', $content );
-        
-        return ob_get_clean();
 
     }
 
