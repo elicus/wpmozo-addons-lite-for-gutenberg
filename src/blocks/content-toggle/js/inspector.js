@@ -1,5 +1,5 @@
 
-import { WpmozoMediaUploader, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../../components/index';
+import { WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 import { 
@@ -87,8 +87,63 @@ const Inspector = (props) => {
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
-                <PanelBody title={ __( 'General Style' ) } initialOpen={false}>
-                    
+                <PanelBody title={ __( 'Toggle Switch' ) } initialOpen={false}>
+                    <PanelBody title={ __( 'Normal Switch Color' ) } initialOpen={false}>
+                        <WpmozoColorPicker
+                            ColorKey="toggleSwitch"
+                            props={props}
+                            ColorTypes={[ 
+                                {
+                                    key: 'Color',
+                                    label: __( 'Switch Color', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'OnState',
+                                    label: __( 'Switch Color (on state)', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'Background',
+                                    label: __( 'Switch Background', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'OnStateBackground',
+                                    label: __( 'Switch Background (on state)', 'wpmozo-addons-for-gutenberg' ),
+                                } 
+                            ]}
+                        />
+                    </PanelBody>
+                    <PanelBody title={ __( 'Hover Switch Color' ) } initialOpen={false}>
+                        <WpmozoColorPicker
+                            ColorKey="toggleSwitch"
+                            props={props}
+                            ColorTypes={[ 
+                                {
+                                    key: 'HoverColor',
+                                    label: __( 'Switch Color', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'HoverOnState',
+                                    label: __( 'Switch Color (on state)', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'HoverBackground',
+                                    label: __( 'Switch Background', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'HoverOnStateBackground',
+                                    label: __( 'Switch Background (on state)', 'wpmozo-addons-for-gutenberg' ),
+                                } 
+                            ]}
+                        />
+                    </PanelBody>
+                    <WpmozoDimensions
+                        DimensionKey='toggleSwitchDimensions'
+                        DimensionsTypes={{
+                            padding: true,
+                            margin: true,
+                        }}
+                        props={props}
+                    />
                 </PanelBody>
             </InspectorControls>
         </>

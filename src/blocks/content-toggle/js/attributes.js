@@ -9,6 +9,33 @@ const attributes = {
         type: "string",
         default: 'rounded',
     },
+    toggleSwitchColor: {
+        type: "string",
+    },
+    toggleSwitchOnState: {
+        type: "string",
+    },
+    toggleSwitchBackground: {
+        type: "string",
+    },
+    toggleSwitchOnStateBackground: {
+        type: "string",
+    },
+    toggleSwitchHoverColor: {
+        type: "string",
+    },
+    toggleSwitchHoverOnState: {
+        type: "string",
+    },
+    toggleSwitchHoverBackground: {
+        type: "string",
+    },
+    toggleSwitchHoverOnStateBackground: {
+        type: "string",
+    },
+    toggleSwitchDimensions: {
+        type: "object",
+    },
     toggleOneTitle: {
         type: "string",
         default: __('Title One', 'wpmozo-addons-for-gutenberg')
