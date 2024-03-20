@@ -58,3 +58,9 @@
 .wpmozo-typography-panel .wpmozo-color-tools-panel .components-tools-panel-header{
 	margin-bottom: 10px;
 }
+.wpmozo-alignment-compo{
+	justify-content: space-between;
+}
+.wpmozo-alignment-compo > div{
+	flex: unset !important;
+}
