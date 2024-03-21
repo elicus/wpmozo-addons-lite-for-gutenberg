@@ -99,7 +99,7 @@ window.wpmozo.convetInlineStyle = function( options, atts ){
         'undefined' !== typeof options.padding.right || 
         'undefined' !== typeof options.padding.bottom || 
         'undefined' !== typeof options.padding.left ) ) {
-        let spacing = convetVarStyle(options.padding);
+        let spacing = window.wpmozo.convetVarStyle(options.padding);
         for (const padding in options.padding) {
             if ( 'undefined' !== typeof spacing[padding] && '' !== spacing[padding] ) {
                 style += 'padding-'+padding+': '+spacing[padding]+';';
@@ -111,7 +111,7 @@ window.wpmozo.convetInlineStyle = function( options, atts ){
         'undefined' !== typeof options.margin.right || 
         'undefined' !== typeof options.margin.bottom || 
         'undefined' !== typeof options.margin.left ) ) {
-        let spacing = convetVarStyle(options.margin);
+        let spacing = window.wpmozo.convetVarStyle(options.margin);
         for (const margin in options.margin) {
             if ( 'undefined' !== typeof spacing[margin] && '' !== spacing[margin] ) {
                 style += 'margin-'+margin+': '+spacing[margin]+';';
@@ -123,7 +123,7 @@ window.wpmozo.convetInlineStyle = function( options, atts ){
         'undefined' !== typeof options.position.right || 
         'undefined' !== typeof options.position.bottom || 
         'undefined' !== typeof options.position.left ) ) {
-        let spacing = convetVarStyle(options.position);
+        let spacing = window.wpmozo.convetVarStyle(options.position);
         for (const position in options.position) {
             if ( 'undefined' !== typeof spacing[position] && '' !== spacing[position] ) {
                 style += position+': '+spacing[position]+';';

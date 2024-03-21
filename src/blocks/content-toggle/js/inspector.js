@@ -1,5 +1,5 @@
 
-import { WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../../components/index';
+import { WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 import { 
@@ -25,14 +25,18 @@ const Inspector = (props) => {
             value: 'after',
         }
     ];
-    const contentTypeValues = [
+    const switchTypeValues = [
         {
-            label: __( 'Blocks', 'wpmozo-addons-for-gutenberg' ),
-            value: 'blocks',
+            label: __( 'Rounded', 'wpmozo-addons-for-gutenberg' ),
+            value: 'rounded',
         },
         {
-            label: __( 'Page', 'wpmozo-addons-for-gutenberg' ),
-            value: 'page',
+            label: __( 'Rectangle', 'wpmozo-addons-for-gutenberg' ),
+            value: 'rectangle',
+        },
+        {
+            label: __( 'Toggle', 'wpmozo-addons-for-gutenberg' ),
+            value: 'toggle',
         }
     ];
     
@@ -88,6 +92,12 @@ const Inspector = (props) => {
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
                 <PanelBody title={ __( 'Toggle Switch' ) } initialOpen={false}>
+                    <SelectControl
+                        label={ __( 'Switch Type', 'wpmozo-addons-for-gutenberg' ) }
+                        value={ attributes.toggleSwitchType }
+                        options={ switchTypeValues }
+                        onChange={ ( newValue ) => setAttributes( { toggleSwitchType: newValue } ) }
+                    />
                     <PanelBody title={ __( 'Normal Switch Color' ) } initialOpen={false}>
                         <WpmozoColorPicker
                             ColorKey="toggleSwitch"
@@ -138,6 +148,165 @@ const Inspector = (props) => {
                     </PanelBody>
                     <WpmozoDimensions
                         DimensionKey='toggleSwitchDimensions'
+                        DimensionsTypes={{
+                            padding: true,
+                            margin: true,
+                        }}
+                        props={props}
+                    />
+                    <WpmozoAlignment
+                        label={__( 'Switch Alignment', 'wpmozo-addons-for-gutenberg')}
+                        onChange={ ( newValue ) => setAttributes( { toggleSwitchAlignment: newValue } ) }
+                        value={ attributes.toggleSwitchAlignment }
+                    />
+                </PanelBody>
+                <PanelBody title={ __( 'Title One' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoColorPicker
+                        ColorKey="titleOne"
+                        props={props}
+                        ColorTypes={[ 
+                            {
+                                key: 'Color',
+                                label: __( 'Title Color', 'wpmozo-addons-for-gutenberg' ),
+                            },
+                        ]}
+                    />
+                    <WpmozoTypography
+                        TypographyKey="titleOne"
+                        props={props}
+                    />
+                    { ! window.wpmozo.wpmozo_is_empty( attributes.toggleOneIcon ) && (
+                        <>
+                            <RangeControl
+                                label={ __( 'Icon Size', 'wpmozo-addons-for-gutenberg' ) }
+                                value={ attributes.titleOneIconSize }
+                                onChange={ ( newValue ) => setAttributes( { titleOneIconSize: newValue } ) }
+                                min={ 0 }
+                                max={ 200 }
+                            />
+                            <RangeControl
+                                label={ __( 'Icon Spacing', 'wpmozo-addons-for-gutenberg' ) }
+                                value={ attributes.titleOneIconSpacing }
+                                onChange={ ( newValue ) => setAttributes( { titleOneIconSpacing: newValue } ) }
+                                min={ 0 }
+                                max={ 200 }
+                            />
+                            <WpmozoColorPicker
+                                ColorKey="titleOneIcon"
+                                props={props}
+                                ColorTypes={[ 
+                                    {
+                                        key: 'Color',
+                                        label: __( 'Icon Color', 'wpmozo-addons-for-gutenberg' ),
+                                    },
+                                ]}
+                            />
+                        </>
+                    )}
+                </PanelBody>
+                <PanelBody title={ __( 'Title Two' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoColorPicker
+                        ColorKey="titleTwo"
+                        props={props}
+                        ColorTypes={[ 
+                            {
+                                key: 'Color',
+                                label: __( 'Title Color', 'wpmozo-addons-for-gutenberg' ),
+                            },
+                        ]}
+                    />
+                    <WpmozoTypography
+                        TypographyKey="titleTwo"
+                        props={props}
+                    />
+                    { ! window.wpmozo.wpmozo_is_empty( attributes.toggleTwoIcon ) && (
+                        <>
+                            <RangeControl
+                                label={ __( 'Icon Size', 'wpmozo-addons-for-gutenberg' ) }
+                                value={ attributes.titleTwoIconSize }
+                                onChange={ ( newValue ) => setAttributes( { titleTwoIconSize: newValue } ) }
+                                min={ 0 }
+                                max={ 200 }
+                            />
+                            <RangeControl
+                                label={ __( 'Icon Spacing', 'wpmozo-addons-for-gutenberg' ) }
+                                value={ attributes.titleTwoIconSpacing }
+                                onChange={ ( newValue ) => setAttributes( { titleTwoIconSpacing: newValue } ) }
+                                min={ 0 }
+                                max={ 200 }
+                            />
+                            <WpmozoColorPicker
+                                ColorKey="titleTwoIcon"
+                                props={props}
+                                ColorTypes={[ 
+                                    {
+                                        key: 'Color',
+                                        label: __( 'Icon Color', 'wpmozo-addons-for-gutenberg' ),
+                                    },
+                                ]}
+                            />
+                        </>
+                    )}
+                </PanelBody>
+                <PanelBody title={ __( 'Content One' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoColorPicker
+                        ColorKey="contentOne"
+                        props={props}
+                        ColorTypes={[ 
+                            {
+                                key: 'Color',
+                                label: __( 'Content Color', 'wpmozo-addons-for-gutenberg' ),
+                            },
+                            {
+                                key: 'Background',
+                                label: __( 'Content Background Color', 'wpmozo-addons-for-gutenberg' ),
+                            },
+                        ]}
+                    />
+                    <WpmozoAlignment
+                        label={__( 'Content One Alignment', 'wpmozo-addons-for-gutenberg')}
+                        onChange={ ( newValue ) => setAttributes( { contentOneAlignment: newValue } ) }
+                        value={ attributes.contentOneAlignment }
+                    />
+                    <WpmozoTypography
+                        TypographyKey="contentOne"
+                        props={props}
+                    />
+                    <WpmozoDimensions
+                        DimensionKey='contentOneDimensions'
+                        DimensionsTypes={{
+                            padding: true,
+                            margin: true,
+                        }}
+                        props={props}
+                    />
+                </PanelBody>
+                <PanelBody title={ __( 'Content Two' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoColorPicker
+                        ColorKey="contentTwo"
+                        props={props}
+                        ColorTypes={[ 
+                            {
+                                key: 'Color',
+                                label: __( 'Content Color', 'wpmozo-addons-for-gutenberg' ),
+                            },
+                            {
+                                key: 'Background',
+                                label: __( 'Content Background Color', 'wpmozo-addons-for-gutenberg' ),
+                            },
+                        ]}
+                    />
+                    <WpmozoAlignment
+                        label={__( 'Content Two Alignment', 'wpmozo-addons-for-gutenberg')}
+                        onChange={ ( newValue ) => setAttributes( { contentTwoAlignment: newValue } ) }
+                        value={ attributes.contentTwoAlignment }
+                    />
+                    <WpmozoTypography
+                        TypographyKey="contentTwo"
+                        props={props}
+                    />
+                    <WpmozoDimensions
+                        DimensionKey='contentTwoDimensions'
                         DimensionsTypes={{
                             padding: true,
                             margin: true,

@@ -25,29 +25,42 @@ jQuery(document).ready(function($){
     jQuery('.wpmozo-adfgu-toggle-field').change(function(e){
 
         let selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main');
-        if( jQuery(this).is(':checked') ){
-            selector.find('.wpmozo-adfgu-content-toggle-one').hide();
-            selector.find('.wpmozo-adfgu-content-toggle-two').show();
+        wpmozo_toggle_switch( jQuery(this), selector );
+
+    });
+
+    jQuery('.wpmozo-adfgu-toggle-title-wrap').click(function(e){
+
+        let selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main'),
+        input = selector.find('.wpmozo-adfgu-toggle-field');
+
+        if ( jQuery(this).hasClass('wpmozo-adfgu-toggle-title-one') ) {
+            input.prop('checked', false);
         }else{
-            selector.find('.wpmozo-adfgu-content-toggle-one').show();
-            selector.find('.wpmozo-adfgu-content-toggle-two').hide();
+            input.prop('checked', true);
         }
 
+        wpmozo_toggle_switch( input, selector );
+
     });
 
-    jQuery(document).ready(function ($) {
-        jQuery('.wpmozo-adfgu-toggle-field').each(function( keym, el ){
+    jQuery('.wpmozo-adfgu-toggle-field').each(function( keym, el ){
 
-            let selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main');
-            if( jQuery(this).is(':checked') ){
-                selector.find('.wpmozo-adfgu-content-toggle-one').hide();
-                selector.find('.wpmozo-adfgu-content-toggle-two').show();
-            }else{
-                selector.find('.wpmozo-adfgu-content-toggle-one').show();
-                selector.find('.wpmozo-adfgu-content-toggle-two').hide();
-            }
+        let selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main');
+        wpmozo_toggle_switch( jQuery(this), selector );
 
-        });
     });
+
+    function wpmozo_toggle_switch( input, main ){
+
+        if( input.is(':checked') ){
+            main.find('.wpmozo-adfgu-content-toggle-one').hide();
+            main.find('.wpmozo-adfgu-content-toggle-two').show();
+        }else{
+            main.find('.wpmozo-adfgu-content-toggle-one').show();
+            main.find('.wpmozo-adfgu-content-toggle-two').hide();
+        }
+
+    }
 
 })

@@ -69,9 +69,17 @@ class WPMozo_Addons_Gutenberg_Block_Contenttoggle extends WPMozo_Addons_Gutenber
             'ver' => time()
         );
 
+        $this->styles[] = array(
+            'handle' => $this->plugin_name . '-content-toggle-style',
+            'src' => WPMOZO_ADDONS_GUTENBERG_SRC_DIR_URL . 'blocks/content-toggle/css/content-toggle.css',
+            'deps' => array(),
+            'ver' => time()
+        );
+
         $this->args = array(
             'style_handles' => array(
                 $this->plugin_name . '-fontawesome-style',
+                $this->plugin_name . '-content-toggle-style',
             ),          
         );
 
