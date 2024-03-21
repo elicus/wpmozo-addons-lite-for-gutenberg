@@ -54,6 +54,7 @@ class WPMozo_Addons_Gutenberg_Blocks {
         $blocks = array(
             'beforeafterslider' => 'Beforeafterslider',
             'contenttoggle' => 'Contenttoggle',
+            'fancyheading' => 'Fancyheading', 
         );
 
         return $blocks;
