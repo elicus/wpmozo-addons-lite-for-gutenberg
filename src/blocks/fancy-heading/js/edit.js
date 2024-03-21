@@ -11,6 +11,8 @@ const Edit = (props) => {
     const attributes = props.attributes,
     clientId = props.clientId;
 
+    const blockProps = useBlockProps();
+
 	return (
         <Fragment>
             <Inspector {...props} />
