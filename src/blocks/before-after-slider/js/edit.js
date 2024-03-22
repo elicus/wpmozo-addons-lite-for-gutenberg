@@ -45,7 +45,9 @@ const Edit = (props) => {
         setTimeout(function() {
            
             let editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
-            main = editorIfram.find('body').find('#block-'+clientId),
+            mainFromIfram = editorIfram.find('body').find('#block-'+clientId),
+            mainFromBody = jQuery('body').find('#block-'+clientId),
+            main = ( mainFromIfram.length > 0 ) ? mainFromIfram : mainFromBody,
             imgWrap = main.find('.wpmozo-adfgu-before-after-image-wrapper');
 
             if( main.find('.twentytwenty-wrapper').length < 1 ){

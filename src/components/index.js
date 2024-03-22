@@ -7,6 +7,7 @@ import WpmozoBorder from './wpmozo-border/wpmozo-border';
 import WpmozoMediaUploader from './wpmozo-media-uploader/wpmozo-media-uploader';
 import WpmozoIconpicker from './wpmozo-iconpicker/wpmozo-iconpicker';
 import WpmozoAlignment from './wpmozo-alignment/wpmozo-alignment';
+import WpmozoColorCombo from './wpmozo-colorcombo/wpmozo-colorcombo';
 
 export {
 WpmozoTypography,
@@ -16,5 +17,6 @@ WpmozoSize,
 WpmozoBorder,
 WpmozoMediaUploader,
 WpmozoIconpicker,
-WpmozoAlignment
+WpmozoAlignment,
+WpmozoColorCombo
 }
