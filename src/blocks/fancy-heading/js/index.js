@@ -9,6 +9,7 @@ import { __ } from "@wordpress/i18n";
 registerBlockType( 'wpmozo/fancy-heading', {
 	title: __( 'Fancy Heading', 'wpmozo-addons-for-gutenberg' ),
     icon: '',
+    apiVersion: 2,
     category: 'wpmozo',
     keywords: [ 'wpmozo', 'fancy-heading', 'heading' ],
     attributes: attributes,

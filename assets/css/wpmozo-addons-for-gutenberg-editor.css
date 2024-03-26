@@ -76,3 +76,7 @@
     padding-top: 6px;
     text-align: center;
 }
+.wpmozo-active-sub-block{
+	border-radius: 1px;
+    box-shadow: 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
+}

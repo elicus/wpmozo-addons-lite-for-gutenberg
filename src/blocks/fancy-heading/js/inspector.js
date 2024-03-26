@@ -1,13 +1,11 @@
 
-import { WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../../components/index';
+import { WpmozoColorCombo, WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography } from '../../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 import { 
     PanelBody,
     ToggleControl,
     TextControl,
-    SelectControl,
-    RangeControl,
     BaseControl,
     ButtonGroup,
     Button
@@ -74,27 +72,7 @@ const Inspector = (props) => {
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
-                <PanelBody title={ __( 'Global Text Settings', 'wpmozo-addons-for-gutenberg' ) } initialOpen={false}>
-                    <BaseControl
-                        label={ __( 'Heading Lavel', 'wpmozo-addons-for-gutenberg' ) }
-                    >    
-                        <ButtonGroup>
-                            {headingLavels.map((item, key) => (
-                                <Button 
-                                    variant="tertiary"
-                                    isPressed={ ( item.value === attributes.headingLavel ) ? true : false }
-                                    onClick={ ( newValue ) => setAttributes( { headingLavel: item.value } ) }
-                                >
-                                    { item.label }
-                                </Button>
-                            ))}
-                        </ButtonGroup>
-                    </BaseControl>
-                    <WpmozoAlignment
-                        label={__( 'Heading Alignment', 'wpmozo-addons-for-gutenberg')}
-                        onChange={ ( newValue ) => setAttributes( { headingAlignment: newValue } ) }
-                        value={ attributes.headingAlignment }
-                    />
+                <PanelBody title={ __( 'Global Text Settings', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorPicker
                         ColorKey="heading"
                         props={props}
@@ -108,6 +86,160 @@ const Inspector = (props) => {
                                 label: __( 'Background', 'wpmozo-addons-for-gutenberg' ),
                             },
                         ]}
+                    />
+                    <BaseControl
+                        label={ __( 'Heading Lavel', 'wpmozo-addons-for-gutenberg' ) }
+                    >    
+                        <ButtonGroup>
+                            {headingLavels.map((item, key) => (
+                                <Button
+                                    isPressed={ ( item.value === attributes.headingLavel ) ? true : false }
+                                    onClick={ ( newValue ) => setAttributes( { headingLavel: item.value } ) }
+                                >
+                                    { item.label }
+                                </Button>
+                            ))}
+                        </ButtonGroup>
+                    </BaseControl>
+                    <WpmozoAlignment
+                        label={__( 'Heading Alignment', 'wpmozo-addons-for-gutenberg')}
+                        onChange={ ( newValue ) => setAttributes( { headingAlignment: newValue } ) }
+                        value={ attributes.headingAlignment }
+                    />
+                </PanelBody>
+                <PanelBody title={ __( 'Pre Text Settings', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoColorCombo
+                        label={ __( 'Pre Text Color', 'wpmozo-addons-for-gutenberg' ) }
+                        normal={{
+                            ColorKey: "preText",
+                            props: props,
+                            ColorTypes: [ 
+                                {
+                                    key: 'Color',
+                                    label: __( 'Color', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'Background',
+                                    label: __( 'Background', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                            ]
+                        }}
+                        hover={{
+                            ColorKey: "preTextHover",
+                            props: props,
+                            ColorTypes: [ 
+                                {
+                                    key: 'Color',
+                                    label: __( 'Color', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'Background',
+                                    label: __( 'Background', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                            ]
+                        }}
+                    />
+                    <WpmozoTypography
+                        TypographyKey="preText"
+                        props={props}
+                    />
+                    <WpmozoDimensions
+                        DimensionKey='preTextDimensions'
+                        DimensionsTypes={{
+                            padding: true,
+                            margin: true,
+                        }}
+                        props={props}
+                    />
+                </PanelBody>
+                <PanelBody title={ __( 'Main Text Settings', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoColorCombo
+                        label={ __( 'Main Text Color', 'wpmozo-addons-for-gutenberg' ) }
+                        normal={{
+                            ColorKey: "mainText",
+                            props: props,
+                            ColorTypes: [ 
+                                {
+                                    key: 'Color',
+                                    label: __( 'Color', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'Background',
+                                    label: __( 'Background', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                            ]
+                        }}
+                        hover={{
+                            ColorKey: "mainTextHover",
+                            props: props,
+                            ColorTypes: [ 
+                                {
+                                    key: 'Color',
+                                    label: __( 'Color', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'Background',
+                                    label: __( 'Background', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                            ]
+                        }}
+                    />
+                    <WpmozoTypography
+                        TypographyKey="mainText"
+                        props={props}
+                    />
+                    <WpmozoDimensions
+                        DimensionKey='mainTextDimensions'
+                        DimensionsTypes={{
+                            padding: true,
+                            margin: true,
+                        }}
+                        props={props}
+                    />
+                </PanelBody>
+                <PanelBody title={ __( 'Post Text Settings', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoColorCombo
+                        label={ __( 'Post Text Color', 'wpmozo-addons-for-gutenberg' ) }
+                        normal={{
+                            ColorKey: "postText",
+                            props: props,
+                            ColorTypes: [ 
+                                {
+                                    key: 'Color',
+                                    label: __( 'Color', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'Background',
+                                    label: __( 'Background', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                            ]
+                        }}
+                        hover={{
+                            ColorKey: "postTextHover",
+                            props: props,
+                            ColorTypes: [ 
+                                {
+                                    key: 'Color',
+                                    label: __( 'Color', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'Background',
+                                    label: __( 'Background', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                            ]
+                        }}
+                    />
+                    <WpmozoTypography
+                        TypographyKey="postText"
+                        props={props}
+                    />
+                    <WpmozoDimensions
+                        DimensionKey='postTextDimensions'
+                        DimensionsTypes={{
+                            padding: true,
+                            margin: true,
+                        }}
+                        props={props}
                     />
                 </PanelBody>
             </InspectorControls>
