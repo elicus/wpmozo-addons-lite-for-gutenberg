@@ -13,76 +13,145 @@ const Style = (attributes) => {
     	'contentTwoDimensions' 
     ];
 
-    let convertedStyle = window.wpmozo.convetInlineStyleStr( toConvertStyles, attributes );
-    
-    let css = `
-    	${parent} {
-    		.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch:before{
-    			background-color: ${attributes.toggleSwitchColor};
-    		}
-    		.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch:before{
-    			background-color: ${attributes.toggleSwitchOnState};
-    		}
-    		.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch{
-    			background-color: ${attributes.toggleSwitchBackground};
-    		}
-    		.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch{
-    			background-color: ${attributes.toggleSwitchOnStateBackground};
-    		}
-    		.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch:hover::before{
-    			background-color: ${attributes.toggleSwitchHoverColor};
-    		}
-    		.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch:hover::before{
-    			background-color: ${attributes.toggleSwitchHoverOnState};
-    		}
-    		.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch:hover{
-    			background-color: ${attributes.toggleSwitchHoverBackground};
-    		}
-    		.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch:hover{
-    			background-color: ${attributes.toggleSwitchHoverOnStateBackground};
-    		}
-    		.wpmozo-adfgu-toggle-button-wrap{
-    			${convertedStyle.toggleSwitchDimensions}
-    			justify-content: ${attributes.toggleSwitchAlignment};
-    		}
-    		.wpmozo-adfgu-toggle-title-one h5{
-    			${convertedStyle.titleOne}
-    			color: ${attributes.titleOneColor};
-    			gap: ${attributes.titleOneIconSpacing}px;
-    		}
-    		.wpmozo-adfgu-toggle-title-two h5{
-    			${convertedStyle.titleTwo}
-    			color: ${attributes.titleTwoColor};
-    			gap: ${attributes.titleTwoIconSpacing}px;
-    		}
-    		.wpmozo-adfgu-toggle-title-one .icon-wrapper i{
-    			font-size: ${attributes.titleOneIconSize}px;
-    			color: ${attributes.titleOneIconColor};
-    		}
-    		.wpmozo-adfgu-toggle-title-two .icon-wrapper i{
-    			font-size: ${attributes.titleTwoIconSize}px;
-    			color: ${attributes.titleTwoIconColor};
-    		}
-    		.wpmozo-adfgu-content-toggle-one{
-    			${convertedStyle.contentOne}
-    			${convertedStyle.contentOneDimensions}
-    			color: ${attributes.contentOneColor};
-    			background-color: ${attributes.contentOneBackground};
-    			text-align: ${attributes.contentOneAlignment};
-    		}
-    		.wpmozo-adfgu-content-toggle-two{
-    			${convertedStyle.contentTwo}
-    			${convertedStyle.contentTwoDimensions}
-    			color: ${attributes.contentTwoColor};
-    			background-color: ${attributes.contentTwoBackground};
-    			text-align: ${attributes.contentTwoAlignment};
-    		}
-    	}
-    `;
+    let css = '', 
+    convertedStyle = window.wpmozo.convetInlineStyleStr( toConvertStyles, attributes ),
+    contentOneAddi = convertedStyle.contentOne + convertedStyle.contentOneDimensions,
+    contentTwoAddi = convertedStyle.contentTwo + convertedStyle.contentTwoDimensions;
 
-	return (
-		<style>{css}</style>
-	);
+    let allInline = [
+        {
+            selector: '.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch:before',
+            style: {
+                'background-color': attributes.toggleSwitchColor,
+            }
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch:before',
+            style: {
+                'background-color': attributes.toggleSwitchOnState,
+            }
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch',
+            style: {
+                'background-color': attributes.toggleSwitchBackground,
+            }
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch',
+            style: {
+                'background-color': attributes.toggleSwitchOnStateBackground,
+            }
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch:hover::before',
+            style: {
+                'background-color': attributes.toggleSwitchHoverColor,
+            }
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch:hover::before',
+            style: {
+                'background-color': attributes.toggleSwitchHoverOnState,
+            }
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch:hover',
+            style: {
+                'background-color': attributes.toggleSwitchHoverBackground,
+            }
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch:hover',
+            style: {
+                'background-color': attributes.toggleSwitchHoverOnStateBackground,
+            }
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-button-wrap',
+            style: {
+                'justify-content': attributes.toggleSwitchAlignment,
+            },
+            additional: convertedStyle.toggleSwitchDimensions
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-title-one h5',
+            style: {
+                'color': attributes.titleOneColor,
+                'gap': {
+                    value: attributes.titleOneIconSpacing,
+                    suffix: 'px',
+                },
+            },
+            additional: convertedStyle.titleOne
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-title-two h5',
+            style: {
+                'color': attributes.titleTwoColor,
+                'gap': {
+                    value: attributes.titleTwoIconSpacing,
+                    suffix: 'px',
+                },
+            },
+            additional: convertedStyle.titleTwo
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-title-one .icon-wrapper i',
+            style: {
+                'font-size': {
+                    value: attributes.titleOneIconSize,
+                    suffix: 'px',
+                },
+                'color': attributes.titleOneIconColor,
+            },
+        },
+        {
+            selector: '.wpmozo-adfgu-toggle-title-two .icon-wrapper i',
+            style: {
+                'font-size': {
+                    value: attributes.titleTwoIconSize,
+                    suffix: 'px',
+                },
+                'color': attributes.titleTwoIconColor,
+            },
+        },
+        {
+            selector: '.wpmozo-adfgu-content-toggle-one',
+            style: {
+                'background-color': attributes.contentOneBackground,
+                'text-align': attributes.contentOneAlignment,
+                'color': attributes.contentOneColor,
+            },
+            additional: contentOneAddi,
+        },
+        {
+            selector: '.wpmozo-adfgu-content-toggle-two',
+            style: {
+                'background-color': attributes.contentTwoBackground,
+                'text-align': attributes.contentTwoAlignment,
+                'color': attributes.contentTwoColor,
+            },
+            additional: contentTwoAddi,
+        },
+    ],
+    generateStyle = window.wpmozo.wpmozo_generate_style(allInline);
+    
+    if ( ! window.wpmozo.wpmozo_is_empty( generateStyle ) ) {
+        css += `
+            ${parent} {
+                ${generateStyle}
+            }
+        `;
+    }
+
+    return (
+        <>
+            { ! window.wpmozo.wpmozo_is_empty( css ) &&
+                <style>{css}</style>
+            }
+        </>
+    );
 
 }
 

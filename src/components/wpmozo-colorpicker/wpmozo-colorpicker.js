@@ -79,6 +79,7 @@ const WpmozoColorPicker = function(args){
                             colors: AllColors.colors,
                             value: _color,
                             onChange: (NewColor) => onChange( colorType, NewColor ),
+                            enableAlpha: true,
                         }
                     ),
                 }

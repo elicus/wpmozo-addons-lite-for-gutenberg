@@ -29,7 +29,23 @@ jQuery(document).ready(function($){
 
     });
 
-    jQuery('.wpmozo-adfgu-toggle-title-wrap').click(function(e){
+     jQuery('.wpmozo-adfgu-toggle-title-wrap > :header').click(function(e){
+
+        let wrap = jQuery(this).closest('.wpmozo-adfgu-toggle-title-wrap'),
+        selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main'),
+        input = selector.find('.wpmozo-adfgu-toggle-field');
+
+        if ( wrap.hasClass('wpmozo-adfgu-toggle-title-one') ) {
+            input.prop('checked', false);
+        }else{
+            input.prop('checked', true);
+        }
+
+        wpmozo_toggle_switch( input, selector );
+
+    });
+
+    jQuery('.wpmozo_switch_trigger').click(function(e){
 
         let selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main'),
         input = selector.find('.wpmozo-adfgu-toggle-field');

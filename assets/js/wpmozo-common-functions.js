@@ -221,3 +221,62 @@ window.wpmozo.wpmozo_is_empty = function( value ){
     }
     return is_empty;
 }
+
+window.wpmozo.wpmozo_parse_style = function( property, style ){
+
+    let styleStr = '';
+
+    if ( ! window.wpmozo.wpmozo_is_empty( style ) ) {
+       styleStr = property+': '+style+';'; 
+    }
+
+    return styleStr;
+}
+
+window.wpmozo.wpmozo_generate_style = function( styles ){
+
+    let styleStr = '';
+
+    for (var i = 0; i < styles.length; i++) {
+
+        let singleStyle = '', 
+        styleProps = styles[i],
+        styleObject = styleProps['style'],
+        selector = styleProps['selector'],
+        additional =  styleProps.hasOwnProperty('additional') ? styleProps['additional'] : '';
+
+        for ( const styleProp in styleObject ) {
+
+            let styleValue = styleObject[ styleProp ],
+            style = '',
+            styleValuePrefix = ( typeof styleValue === 'object' && styleValue.hasOwnProperty('prefix') ) 
+                ? styleValue.prefix 
+                : '',
+            styleValueSuffix = ( typeof styleValue === 'object' && styleValue.hasOwnProperty('suffix') )
+                ? styleValue.suffix 
+                : '';
+
+            if ( typeof styleValue === 'object' && styleValue.hasOwnProperty('value') ) {
+                if ( ! window.wpmozo.wpmozo_is_empty( styleValue.value ) ) {
+                   style = styleProp+': '+styleValuePrefix+styleValue.value+styleValueSuffix+';'; 
+                }
+            }else{
+                style = window.wpmozo.wpmozo_parse_style( styleProp, styleValue );
+            }
+            
+            if ( ! window.wpmozo.wpmozo_is_empty( style ) ) {
+                singleStyle += style;
+            }
+
+        }
+
+        singleStyle += additional;
+
+        if ( ! window.wpmozo.wpmozo_is_empty( singleStyle ) ) {
+            styleStr += `${selector}{${singleStyle}}`;
+        }
+
+    }
+
+    return styleStr;
+}

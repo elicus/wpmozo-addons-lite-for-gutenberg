@@ -10,15 +10,18 @@ const attributes = {
     },
     moveHandleOnHover: {
         type: "boolean",
+        default: false,
     },
     moveHandleOnClick: {
         type: "boolean",
+        default: false,
     },
     handlecolor: {
         type: "string",
     },
     overlayOnHover: {
         type: "boolean",
+        default: false,
     },
     overlaycolor: {
         type: "string",
@@ -28,9 +31,11 @@ const attributes = {
     },
     beforeHasLabel: {
         type: "boolean",
+        default: false,
     },
     beforeLabelOnHover: {
         type: "boolean",
+        default: false,
     },
     beforeLabel: {
         type: "string",
@@ -74,9 +79,11 @@ const attributes = {
     },
     afterHasLabel: {
         type: "boolean",
+        default: false,
     },
     afterLabelOnHover: {
         type: "boolean",
+        default: false,
     },
     afterLabel: {
         type: "string",

@@ -6,11 +6,13 @@ import { __ } from "@wordpress/i18n";
 import { Fragment } from "@wordpress/element";
 import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
 
+
 const Edit = (props) => {
 
     const attributes = props.attributes,
     clientId = props.clientId,
     toggleSwitchTypeClass = ' wpmozo_'+attributes.toggleSwitchType,
+    parent = '#block-'+clientId,
     titleWrapClass = ( 'toggle' === attributes.toggleSwitchType ) ? ' wpmozo_switch_trigger' : '';
 
     attributes.clientId = clientId;
@@ -41,7 +43,23 @@ const Edit = (props) => {
 
     });
 
-    jQuery('.wpmozo-adfgu-toggle-title-wrap').click(function(e){
+    jQuery('.wpmozo-adfgu-toggle-title-wrap > :header').click(function(e){
+
+        let wrap = jQuery(this).closest('.wpmozo-adfgu-toggle-title-wrap'),
+        selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main'),
+        input = selector.find('.wpmozo-adfgu-toggle-field');
+
+        if ( wrap.hasClass('wpmozo-adfgu-toggle-title-one') ) {
+            input.prop('checked', false);
+        }else{
+            input.prop('checked', true);
+        }
+
+        wpmozo_toggle_switch( input, selector );
+
+    });
+
+    jQuery('.wpmozo_switch_trigger').click(function(e){
 
         let selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main'),
         input = selector.find('.wpmozo-adfgu-toggle-field');

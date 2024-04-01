@@ -8,38 +8,98 @@ const Style = (attributes) => {
     convertedStyle = window.wpmozo.convetInlineStyleStr( toConvertStyles, attributes ),
     no_overlay = attributes.overlayOnHover ? false : true;
 
-    let beforeLabelStyle = convertedStyle['beforeLabel'],
-    afterLabelStyle = convertedStyle['afterLabel'];
-
-    let css = `
-        ${parent} {
-            .twentytwenty-handle:before, 
-            .twentytwenty-handle:after {
-                background-color: ${attributes.handlecolor} !important;
-                -webkit-box-shadow: 0 3px 0 ${attributes.handlecolor}, 0px 0px 12px ${attributes.handlecolor};
-                -moz-box-shadow: 0 3px 0 ${attributes.handlecolor}, 0px 0px 12px ${attributes.handlecolor};
-                box-shadow: 0 3px 0 ${attributes.handlecolor}, 0px 0px 12px ${attributes.handlecolor};
-            }
-            .twentytwenty-handle{
-                border-color: ${attributes.handlecolor};
-            }
-            .twentytwenty-left-arrow{
-                border-right-color: ${attributes.handlecolor};
-            }
-            .twentytwenty-right-arrow{
-                border-left-color: ${attributes.handlecolor};
-            }
-            .twentytwenty-overlay:hover{
-                background-color: ${attributes.overlaycolor};
-            }
-            .twentytwenty-before-label:before{
-                ${beforeLabelStyle}
-            }
-            .twentytwenty-after-label:before{
-                ${afterLabelStyle}
-            }
+    let css = '',
+    beforeLabelStyle = convertedStyle['beforeLabel'],
+    afterLabelStyle = convertedStyle['afterLabel'],
+    handleStyle = {
+        'background-color': {
+            value: attributes.handlecolor,
+            suffix: '!important',
         }
-    `;
+    };
+
+    if ( ! window.wpmozo.wpmozo_is_empty( attributes.handlecolor ) && 'horizontal' === attributes.sliderOrientation ) {
+        handleStyle['-webkit-box-shadow'] = `0 3px 0 ${attributes.handlecolor}, 0px 0px 12px rgba(51, 51, 51, 0.5)`;
+        handleStyle['-moz-box-shadow'] = `0 3px 0 ${attributes.handlecolor}, 0px 0px 12px rgba(51, 51, 51, 0.5)`;
+        handleStyle['box-shadow'] = `0 3px 0 ${attributes.handlecolor}, 0px 0px 12px rgba(51, 51, 51, 0.5)`;
+    }
+
+    let allInline = [
+        {
+            selector: '.twentytwenty-handle:before, .twentytwenty-handle:after',
+            style: handleStyle,
+        },
+        {
+            selector: '.twentytwenty-handle',
+            style: {
+                'border-color': attributes.handlecolor,
+            },
+        },
+        {
+            selector: '.twentytwenty-left-arrow',
+            style: {
+                'border-right-color': attributes.handlecolor,
+            },
+        },
+        {
+            selector: '.twentytwenty-right-arrow',
+            style: {
+                'border-left-color': attributes.handlecolor,
+            },
+        },
+        {
+            selector: '.twentytwenty-overlay:hover',
+            style: {
+                'background-color': attributes.overlaycolor,
+            },
+        },
+        {
+            selector: '.twentytwenty-before-label:before',
+            additional: beforeLabelStyle,
+        },
+        {
+            selector: '.twentytwenty-after-label:before',
+            additional: afterLabelStyle,
+        },
+    ];
+
+    if ( 'horizontal' === attributes.sliderOrientation ) {
+        allInline.push({
+            selector: '.twentytwenty-left-arrow',
+            style: {
+                'border-right-color': attributes.handlecolor,
+            },
+        });
+        allInline.push({
+            selector: '.twentytwenty-right-arrow',
+            style: {
+                'border-left-color': attributes.handlecolor,
+            },
+        });
+    }else{
+        allInline.push({
+            selector: '.twentytwenty-down-arrow',
+            style: {
+                'border-top-color': attributes.handlecolor,
+            },
+        });
+        allInline.push({
+            selector: '.twentytwenty-up-arrow',
+            style: {
+                'border-bottom-color': attributes.handlecolor,
+            },
+        });
+    }
+
+    let generateStyle = window.wpmozo.wpmozo_generate_style(allInline);
+
+    if ( ! window.wpmozo.wpmozo_is_empty( generateStyle ) ) {
+        css += `
+            ${parent} {
+                ${generateStyle}
+            }
+        `;
+    }
 
     if ( no_overlay ) {
         css += `
@@ -72,8 +132,12 @@ const Style = (attributes) => {
     }
 
 	return (
-		<style>{css}</style>
-	);
+        <>
+            { ! window.wpmozo.wpmozo_is_empty( css ) &&
+                <style>{css}</style>
+            }
+        </>
+    );
 
 }
 

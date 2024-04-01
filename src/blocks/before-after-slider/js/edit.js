@@ -13,7 +13,9 @@ const Edit = (props) => {
     clientId = props.clientId;
     attributes.clientId = clientId;
 
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps({
+        className: 'wpmozo-adfgu-before-after-main',
+    });
     let init = false;
 
     let beforeImage = ( attributes.beforeImage ) ? attributes.beforeImage : WPMozoEditorObj.placeholderImg,
@@ -25,11 +27,16 @@ const Edit = (props) => {
         main.find('.twentytwenty-wrapper').removeClass('twentytwenty-wrapper');
         main.find('.twentytwenty-horizontal').removeClass('twentytwenty-horizontal');
         main.find('.wpmozo-adfgu-before-after-image-wrapper').unwrap();
+        main.find('.wpmozo-adfgu-before-after-image-wrapper').unbind();
         main.find('.wpmozo-adfgu-before-after-image-wrapper').removeClass('twentytwenty-container');
         
-        let beforeSrc = main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-before').attr('src');
+        let beforeSrc = ( ! window.wpmozo.wpmozo_is_empty( beforeImage ) ) 
+            ? beforeImage 
+            : main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-before').attr('src');
         main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-before').remove();
-        let afterSrc = main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-after').attr('src');
+        let afterSrc = ( ! window.wpmozo.wpmozo_is_empty( afterImage ) )
+            ? afterImage
+            : main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-after').attr('src');
         main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-after').remove();
 
         main.find('.wpmozo-adfgu-before-after-image-wrapper').append( '<img src="'+beforeSrc+'">' );
@@ -67,19 +74,23 @@ const Edit = (props) => {
             }
 
         }, 10);
-        
     });
 
     useEffect(() => {
         setTimeout(function() {
            
             let editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
-            main = editorIfram.find('body').find('#block-'+clientId),
+            mainFromIfram = editorIfram.find('body').find('#block-'+clientId),
+            mainFromBody = jQuery('body').find('#block-'+clientId),
+            main = ( mainFromIfram.length > 0 ) ? mainFromIfram : mainFromBody,
             imgWrap = main.find('.wpmozo-adfgu-before-after-image-wrapper');
+
             if ( ! init ) {
+                
                 if( main.find('.twentytwenty-wrapper').length > 0 ){
                     wpmozo_before_init( main );
                 }
+
                 main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
                     default_offset_pct: attributes.handleOffset,
                     orientation: attributes.sliderOrientation,
@@ -89,12 +100,21 @@ const Edit = (props) => {
                     move_with_handle_only: true,
                     click_to_move: attributes.moveHandleOnClick,
                 });
+
             }
 
         }, 10);
-        
-    }, [ attributes.handleOffset, attributes.sliderOrientation, attributes.beforeLabel, attributes.afterLabel, attributes.moveHandleOnHover, attributes.moveHandleOnClick, attributes.overlayOnHover ]);
-
+    },[ 
+        attributes.handleOffset, 
+        attributes.sliderOrientation, 
+        attributes.beforeLabel, 
+        attributes.afterLabel, 
+        attributes.moveHandleOnHover, 
+        attributes.moveHandleOnClick, 
+        attributes.overlayOnHover,
+        attributes.beforeImage,
+        attributes.afterImage,
+    ]);
 
 	return (
         <Fragment>

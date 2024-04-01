@@ -122,6 +122,11 @@ const Inspector = (props) => {
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
                 <PanelBody title={ __( 'General Style' ) } initialOpen={false}>
+                    <ToggleControl
+                        label={ __( 'Overlay on Hover', 'wpmozo-addons-for-gutenberg' ) }
+                        checked={ attributes.overlayOnHover }
+                        onChange={ ( newValue ) => setAttributes( { overlayOnHover: newValue } ) }
+                    />
                     <WpmozoColorPicker
                         ColorKey="handle"
                         props={props}
@@ -131,11 +136,6 @@ const Inspector = (props) => {
                                 label: __( 'Handle Color', 'wpmozo-addons-for-gutenberg' ),
                             },
                         ]}
-                    />
-                    <ToggleControl
-                        label={ __( 'Overlay on Hover', 'wpmozo-addons-for-gutenberg' ) }
-                        checked={ attributes.overlayOnHover }
-                        onChange={ ( newValue ) => setAttributes( { overlayOnHover: newValue } ) }
                     />
                     {attributes.overlayOnHover && (
                         <>

@@ -278,6 +278,13 @@ const Inspector = (props) => {
                             padding: true,
                             margin: true,
                         }}
+                        onChange={ ( type, NewPadding ) => {
+                            if ( 'padding' === type ) {
+                                setAttributes( { contentOneDimensionspadding: NewPadding } )
+                            }else{
+                                setAttributes( { contentOneDimensionsmargin: NewPadding } )
+                            }
+                        }}
                         props={props}
                     />
                 </PanelBody>
