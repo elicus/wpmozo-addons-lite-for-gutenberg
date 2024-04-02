@@ -40,6 +40,12 @@ const attributes = {
     preTextBackground: {
         type: "string",
     },
+    preTextBackgroundSolid: {
+        type: "string",
+    },
+    preTextBackgroundGradient: {
+        type: "string",
+    },
     preTextHoverColor: {
         type: "string",
     },

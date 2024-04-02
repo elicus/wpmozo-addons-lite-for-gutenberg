@@ -2,7 +2,7 @@
 const el = window.wp.element.createElement;
 const __ = wp.i18n.__;
 const { __experimentalUseMultipleOriginColorsAndGradients} = window.wp.blockEditor;
-const { __experimentalToolsPanel, __experimentalToolsPanelItem, Dropdown, Button, ColorIndicator, ColorPalette } = window.wp.components;
+const { __experimentalToolsPanel, __experimentalToolsPanelItem, Dropdown, Button, ColorIndicator, ColorPalette, TabPanel, GradientPicker } = window.wp.components;
 
 const WpmozoColorPicker = function(args){
 
@@ -37,9 +37,12 @@ const WpmozoColorPicker = function(args){
 
     if ( withToolPanel ) {
 
-        const colorDropdown = function( colorType, label ) {
+        const colorDropdown = function( colorType, label, colorTypeObj ) {
 
             let _color = props.attributes[ ColorKey+colorType ]
+
+            const withGradient = ( colorTypeObj.hasOwnProperty('withGradient') ) ? colorTypeObj.withGradient : false;
+            const onlyGradient = ( colorTypeObj.hasOwnProperty('onlyGradient') ) ? colorTypeObj.onlyGradient : false;
 
             if ( '' === _color && args.hasOwnProperty( 'default' ) ) {
                 _color = args.default[colorType];
@@ -72,16 +75,84 @@ const WpmozoColorPicker = function(args){
                         ],
                         }
                     ),
-                renderContent: () =>
-                    el(
-                        ColorPalette,
-                        {
-                            colors: AllColors.colors,
-                            value: _color,
-                            onChange: (NewColor) => onChange( colorType, NewColor ),
-                            enableAlpha: true,
+                    renderContent: () => {
+                        if ( ! withGradient && ! onlyGradient ) {
+                            return el(
+                                ColorPalette,
+                                {
+                                    colors: AllColors.colors,
+                                    value: _color,
+                                    onChange: (NewColor) => onChange( colorType, NewColor ),
+                                    enableAlpha: true,
+                                }
+                            )
+                        }else if ( withGradient ){
+                            return el(TabPanel, {
+                                tabs: [
+                                    {
+                                        name: "solid",
+                                        title: __( 'Solid', 'wpmozo-addons-for-gutenberg' ),
+                                        className: "wpmozo-color-tab-solid"
+                                    },
+                                    {
+                                        name: "gradient",
+                                        title: __( 'Gradient', 'wpmozo-addons-for-gutenberg' ),
+                                        className: "wpmozo-color-tab-gradient"
+                                    }
+                                ],
+                                children: (currentTab) => {
+                                    let tabContent;
+                                    let _colorSolid = props.attributes[ ColorKey+colorType+'Solid' ];
+                                    if ( '' === _colorSolid && args.hasOwnProperty( 'default' ) ) {
+                                        _colorSolid = args.default[colorType+'Solid'];
+                                    }
+                                    let _colorGradient = props.attributes[ ColorKey+colorType+'Gradient' ];
+                                    if ( '' === _colorGradient && args.hasOwnProperty( 'default' ) ) {
+                                        _colorGradient = args.default[colorType+'Gradient'];
+                                    }
+                                    if( 'solid' === currentTab.name ){
+                                        tabContent = el(
+                                            ColorPalette,
+                                            {
+                                                colors: AllColors.colors,
+                                                value: _colorSolid,
+                                                onChange: (NewColor) => {
+                                                    onChange( colorType, NewColor )
+                                                    onChange( colorType+'Solid', NewColor )
+                                                    onChange( colorType+'Gradient', 'linear-gradient(90deg, rgb(6, 147, 227) 0%, rgb(155, 81, 224) 100%)' )
+                                                },
+                                                enableAlpha: true,
+                                            }
+                                        )
+                                    }else{
+                                        tabContent = el(
+                                            GradientPicker,
+                                            {
+                                                gradients: AllColors.gradients,
+                                                value: _colorGradient,
+                                                onChange: (NewColor) => {
+                                                    onChange( colorType, NewColor )
+                                                    onChange( colorType+'Solid', '' )
+                                                    onChange( colorType+'Gradient', NewColor )
+                                                },
+                                            }
+                                        )
+                                    }
+
+                                    return tabContent;
+                                }
+                            })
+                        }else{
+                            return el(
+                                GradientPicker,
+                                {
+                                    gradients: AllColors.gradients,
+                                    value: _color,
+                                    onChange: (NewColor) => onChange( colorType, NewColor ),
+                                }
+                            )
                         }
-                    ),
+                    }
                 }
             );
 
@@ -100,7 +171,8 @@ const WpmozoColorPicker = function(args){
                 },
                 colorDropdown(
                     ct.key,
-                    ct.label
+                    ct.label,
+                    ct
                 ),
             );
             Panels.push( Panel );
