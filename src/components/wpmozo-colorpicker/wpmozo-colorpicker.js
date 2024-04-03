@@ -10,6 +10,7 @@ const WpmozoColorPicker = function(args){
     const preAttributes = props.preAttributes;
     const withToolPanel = ( args.hasOwnProperty('withToolPanel') ) ? args.withToolPanel : true;
     const AllColors                               = __experimentalUseMultipleOriginColorsAndGradients();
+    const defaultGradientColor = 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)'; 
 
     const colorSetValue = function( styleType, value = null ) {
 
@@ -88,6 +89,7 @@ const WpmozoColorPicker = function(args){
                             )
                         }else if ( withGradient ){
                             return el(TabPanel, {
+                                className: "wpmozo-color-tabs",
                                 tabs: [
                                     {
                                         name: "solid",
@@ -119,7 +121,7 @@ const WpmozoColorPicker = function(args){
                                                 onChange: (NewColor) => {
                                                     onChange( colorType, NewColor )
                                                     onChange( colorType+'Solid', NewColor )
-                                                    onChange( colorType+'Gradient', 'linear-gradient(90deg, rgb(6, 147, 227) 0%, rgb(155, 81, 224) 100%)' )
+                                                    onChange( colorType+'Gradient', defaultGradientColor )
                                                 },
                                                 enableAlpha: true,
                                             }
@@ -131,9 +133,14 @@ const WpmozoColorPicker = function(args){
                                                 gradients: AllColors.gradients,
                                                 value: _colorGradient,
                                                 onChange: (NewColor) => {
-                                                    onChange( colorType, NewColor )
                                                     onChange( colorType+'Solid', '' )
-                                                    onChange( colorType+'Gradient', NewColor )
+                                                    if ( 'undefined' === typeof NewColor ) {
+                                                        onChange( colorType+'Gradient', defaultGradientColor )
+                                                        onChange( colorType, null )
+                                                    }else{
+                                                        onChange( colorType+'Gradient', NewColor )
+                                                        onChange( colorType, NewColor )
+                                                    }
                                                 },
                                             }
                                         )
@@ -143,12 +150,23 @@ const WpmozoColorPicker = function(args){
                                 }
                             })
                         }else{
+
+                            if ( '' === _color ) {
+                                _color = defaultGradientColor;
+                            }
+
                             return el(
                                 GradientPicker,
                                 {
                                     gradients: AllColors.gradients,
                                     value: _color,
-                                    onChange: (NewColor) => onChange( colorType, NewColor ),
+                                    onChange: (NewColor) => {
+                                        if ( 'undefined' === typeof NewColor ) {
+                                            onChange( colorType, null )
+                                        }else{
+                                            onChange( colorType, NewColor )
+                                        }
+                                    }
                                 }
                             )
                         }

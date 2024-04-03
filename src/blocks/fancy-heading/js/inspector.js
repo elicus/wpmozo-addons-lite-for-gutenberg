@@ -121,7 +121,6 @@ const Inspector = (props) => {
                                 {
                                     key: 'Background',
                                     label: __( 'Background', 'wpmozo-addons-for-gutenberg' ),
-                                    withGradient: true,
                                 },
                             ]
                         }}

@@ -80,3 +80,6 @@
 	border-radius: 1px;
     box-shadow: 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
 }
+.wpmozo-color-tabs .components-tab-panel__tab-content{
+	padding: 15px;
+}
