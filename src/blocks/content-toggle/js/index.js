@@ -15,4 +15,5 @@ registerBlockType( 'wpmozo/content-toggle', {
     attributes: attributes,
     edit: Edit,
 	save: Save,
+    example: {},
 });

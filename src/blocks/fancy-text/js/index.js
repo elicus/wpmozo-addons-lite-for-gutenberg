@@ -15,4 +15,5 @@ registerBlockType( 'wpmozo/fancy-test', {
     attributes: attributes,
     edit: Edit,
 	save: Save,
+    example: {},
 });
