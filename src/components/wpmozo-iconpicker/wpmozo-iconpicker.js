@@ -28,11 +28,13 @@ const WpmozoIconpicker = function(args){
 		el(
 			'div',
 			{
+				key: 'wpmozo-icon-picker-'+iconPickerKey,
 				className: 'wpmozo-icon-picker'
 			},
 			el(
 				ComboboxControl,
 				{
+					key: 'wpmozo-icon-combobox-'+iconPickerKey,
 					label: label,
 					value: value,
 					allowReset: false,
@@ -43,11 +45,13 @@ const WpmozoIconpicker = function(args){
 						return el(
 							"span",
 							{
+								key: 'wpmozo-icon-span-'+iconPickerKey,
 								children: [
 								el(
 									"i",
 									{
-										class: iconClass,
+										key: 'wpmozo-icon-el-'+iconPickerKey,
+										className: iconClass,
 									}
 								),
 							" ",
@@ -60,11 +64,14 @@ const WpmozoIconpicker = function(args){
 			),
 			el(
 				'div',
-				{className: 'wpmozo-icon-wraper'},
+				{
+					key: 'wpmozo-icon-wrap-'+iconPickerKey,
+					className: 'wpmozo-icon-wraper'
+				},
 				el(
 					'i',
 					{
-						class: icon
+						className: icon
 					}
 				),
 			),

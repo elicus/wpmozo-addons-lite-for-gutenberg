@@ -36,6 +36,7 @@ const WpmozoSize = function(args){
 		el(
 			__experimentalToolsPanel,
 			{
+				key: 'wpmozo-size-panel-'+SizeKey,
 				label: __( 'Size', 'wpmozo-addons-for-gutenberg' ),
 				resetAll: () => {
 

@@ -38,6 +38,7 @@ const WpmozoDimensions = function(args){
 		el(
 			__experimentalToolsPanel,
 			{
+				key: 'wpmozo-dimensions-panel-'+DimensionKey,
 				label: label,
 				resetAll: () => {
 					if ( null === DimensionsTypes ) {

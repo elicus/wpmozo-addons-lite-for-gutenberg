@@ -40,7 +40,9 @@ const WpmozoColorPicker = function(args){
 
         const colorDropdown = function( colorType, label, colorTypeObj ) {
 
-            let _color = props.attributes[ ColorKey+colorType ]
+            let _color = props.attributes[ ColorKey+colorType ],
+            fullKey = ColorKey+'-'+colorType,
+            colorPlateKey = 'wpmozo-color-palette-'+fullKey;
 
             const withGradient = ( colorTypeObj.hasOwnProperty('withGradient') ) ? colorTypeObj.withGradient : false;
             const onlyGradient = ( colorTypeObj.hasOwnProperty('onlyGradient') ) ? colorTypeObj.onlyGradient : false;
@@ -52,6 +54,7 @@ const WpmozoColorPicker = function(args){
             return el(
                 Dropdown,
                 {
+                    key: 'wpmozo-color-dropdown-container-'+fullKey,
                     className: "wpmozo-color-dropdown-container",
                     contentClassName: "wpmozo-color-popover-content",
                     popoverProps: {
@@ -63,12 +66,14 @@ const WpmozoColorPicker = function(args){
                     el(
                         Button,
                         {
+                            key: 'wpmozo-color-dropdown-button-'+fullKey,
                             onClick: onToggle,
                             "aria-expanded": isOpen,
                             children: [
                             el(
                                 ColorIndicator,
                                 {
+                                    key: 'wpmozo-color-dropdown-indicator-'+fullKey,
                                     colorValue: _color,
                                 }
                             ),
@@ -81,6 +86,7 @@ const WpmozoColorPicker = function(args){
                             return el(
                                 ColorPalette,
                                 {
+                                    key: colorPlateKey,
                                     colors: AllColors.colors,
                                     value: _color,
                                     onChange: (NewColor) => onChange( colorType, NewColor ),
@@ -89,6 +95,7 @@ const WpmozoColorPicker = function(args){
                             )
                         }else if ( withGradient ){
                             return el(TabPanel, {
+                                key: colorPlateKey,
                                 className: "wpmozo-color-tabs",
                                 tabs: [
                                     {
@@ -158,6 +165,7 @@ const WpmozoColorPicker = function(args){
                             return el(
                                 GradientPicker,
                                 {
+                                    key: colorPlateKey,
                                     gradients: AllColors.gradients,
                                     value: _color,
                                     onChange: (NewColor) => {
@@ -178,10 +186,12 @@ const WpmozoColorPicker = function(args){
 
         const Panels = [];
         for (var i = 0; i < ColorTypes.length; i++) {
-            let ct    = ColorTypes[i];
+            let ct    = ColorTypes[i],
+            fullKey = ColorKey+'-'+ct.key;
             let Panel = el(
                 __experimentalToolsPanelItem,
                 {
+                    key: 'wpmozo-color-tools-panel-item-'+fullKey,
                     label: ct.label,
                     hasValue: () => true,
                     isShownByDefault: true,
@@ -200,6 +210,7 @@ const WpmozoColorPicker = function(args){
             el(
                 __experimentalToolsPanel,
                 {
+                    key: 'wpmozo-color-tools-panel-'+ColorKey,
                     label: __( 'Color', 'wpmozo-addons-for-gutenberg' ),
                     className: 'wpmozo-color-tools-panel',
                     resetAll: () => {
@@ -224,12 +235,12 @@ const WpmozoColorPicker = function(args){
 
         const Panels = [];
         for (var i = 0; i < ColorTypes.length; i++) {
-            let ct    = ColorTypes[i];
 
-            let colorType = ct.key;
-            let label = ct.label;
-
-            let _color = props.attributes[ ColorKey+colorType ]
+            let ct    = ColorTypes[i],
+            colorType = ct.key,
+            label = ct.label,
+            fullKey = ColorKey+'-'+colorType,
+            _color = props.attributes[ ColorKey+colorType ];
 
             if ( '' === _color && args.hasOwnProperty( 'default' ) ) {
                 _color = args.default[colorType];
@@ -237,6 +248,7 @@ const WpmozoColorPicker = function(args){
             let Panel = el(
                 ColorPalette,
                 {
+                    key: 'wpmozo-color-palette-'+fullKey,
                     colors: AllColors.colors,
                     value: _color,
                     onChange: (NewColor) => onChange( colorType, NewColor ),

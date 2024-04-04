@@ -55,6 +55,7 @@ const WpmozoTypography = function(args){
 		el(
 			__experimentalToolsPanel,
 			{
+				key: 'wpmozo-typography-panel-'+TypographyKey,
 				label: __( 'Typography', 'wpmozo-addons-for-gutenberg' ),
 				resetAll: () => {
 

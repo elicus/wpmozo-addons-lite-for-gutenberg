@@ -37,6 +37,7 @@ const WpmozoBorder = function(args){
 		el(
 			__experimentalToolsPanel,
 			{
+				key: 'wpmozo-border-panel-'+BorderKey,
 				label: __( 'Border', 'wpmozo-addons-for-gutenberg' ),
 				resetAll: () => {
 
