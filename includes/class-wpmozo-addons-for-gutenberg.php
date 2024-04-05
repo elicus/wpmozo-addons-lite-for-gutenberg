@@ -66,28 +66,28 @@ class WPMozo_Addons_For_Gutenberg {
 	protected $version;
 
 	/**
-     * The single instance of the class.
-     *
-     * @since 1.0.0
-     * @access protected
-     * @var WPMozo_Addons_For_Gutenberg $_instance The instances of this class.
-     */
-    protected static $_instance = null;
+	 * The single instance of the class.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @var WPMozo_Addons_For_Gutenberg $_instance The instances of this class.
+	 */
+	protected static $_instance = null;
 
-    /**
-     * The instance of this class.
-     *
-     * Ensures only one instance of WPMozo_Addons_For_Gutenberg is loaded or can be loaded.
-     *
-     * @since 1.0.0
-     * @return WPMozo_Addons_For_Gutenberg - Main instance.
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+	/**
+	 * The instance of this class.
+	 *
+	 * Ensures only one instance of WPMozo_Addons_For_Gutenberg is loaded or can be loaded.
+	 *
+	 * @since 1.0.0
+	 * @return WPMozo_Addons_For_Gutenberg - Main instance.
+	 */
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
 
 	/**
 	 * Define the core functionality of the plugin.
@@ -184,7 +184,7 @@ class WPMozo_Addons_For_Gutenberg {
 	}
 
 	/**
-	 * Deactivate this plugin if wordpress version below 5.0.
+	 * Deactivate this plugin if WordPress version below 5.0.
 	 *
 	 * @since    1.0.0
 	 */
@@ -204,7 +204,7 @@ class WPMozo_Addons_For_Gutenberg {
 	}
 
 	/**
-	 * Display notice if wordpress version below 5.0.
+	 * Display notice if WordPress version below 5.0.
 	 *
 	 * @since    1.0.0
 	 */

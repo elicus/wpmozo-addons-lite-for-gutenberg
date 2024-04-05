@@ -78,7 +78,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-wpmozo-addons-for-gutenber
  * @return WPMozo_Addons_For_Gutenberg The instance of main class.
  */
 function wpmozo_adfgu() {
-    return WPMozo_Addons_For_Gutenberg::instance();
+	return WPMozo_Addons_For_Gutenberg::instance();
 }
 
 /**
@@ -92,11 +92,11 @@ function wpmozo_adfgu() {
  */
 function wpmozo_addons_for_gutenberg_run() {
 
-    global $wp_version;
+	global $wp_version;
 	$wpmozo_adfgu = wpmozo_adfgu();
 
 	if ( version_compare( $wp_version, '5.0' ) >= 0 ) {
-        $wpmozo_adfgu->run();
+		$wpmozo_adfgu->run();
 	} else {
 		$wpmozo_adfgu->deactivate();
 	}
