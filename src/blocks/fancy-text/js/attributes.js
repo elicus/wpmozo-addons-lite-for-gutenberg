@@ -41,6 +41,12 @@ const attributes = {
     textBgOverlayColor: {
         type: "string",
     },
+    textBgOverlayColorSolid: {
+        type: "string",
+    },
+    textBgOverlayColorGradient: {
+        type: "string",
+    },
     textBgDimensionspadding: {
         type: "object",
     },

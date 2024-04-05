@@ -74,8 +74,8 @@ const Style = (attributes) => {
 				    'bottom': '0',
 				    'left': '0',
 				    'z-index': '-1',
-				    ...('color' === attributes.textBgOverlay && {'background-color': attributes.textBgOverlayColor}),
-				    ...('gradient' === attributes.textBgOverlay && {'background': attributes.textBgOverlayColor})
+				    ...( ! wpmozoCoreFun.wpmozo_is_empty( attributes.textBgOverlayColorSolid ) && {'background-color': attributes.textBgOverlayColor}),
+				    ...( ! wpmozoCoreFun.wpmozo_is_empty( attributes.textBgOverlayColorGradient ) && {'background': attributes.textBgOverlayColor})
 	    		},
 	    	})
 	    	css += `

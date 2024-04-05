@@ -1,7 +1,7 @@
 
 import Style from "./style";
 
-import { useBlockProps } from "@wordpress/block-editor";
+import { useBlockProps, RichText } from "@wordpress/block-editor";
 
 const Save = ({ attributes }) => {
 
@@ -13,7 +13,10 @@ const Save = ({ attributes }) => {
             <div
                 className={`wpmozo-adfgu-fancy-text-inner ${attributes.textStyle}`}
             >
-            { attributes.fancyText }
+            <RichText.Content
+                tagName=''
+                value={ attributes.fancyText }
+            />
             </div>
         </div>
     );

@@ -158,8 +158,9 @@ const WpmozoColorPicker = function(args){
                             })
                         }else{
 
-                            if ( '' === _color ) {
-                                _color = defaultGradientColor;
+                            let onlyGradientValue = _color
+                            if ( '' === onlyGradientValue ) {
+                                onlyGradientValue = defaultGradientColor;
                             }
 
                             return el(
@@ -167,7 +168,7 @@ const WpmozoColorPicker = function(args){
                                 {
                                     key: colorPlateKey,
                                     gradients: AllColors.gradients,
-                                    value: _color,
+                                    value: onlyGradientValue,
                                     onChange: (NewColor) => {
                                         if ( 'undefined' === typeof NewColor ) {
                                             onChange( colorType, null )

@@ -25,7 +25,6 @@ const Edit = (props) => {
             <div {...blockProps}>
                 <RichText
                     className={`wpmozo-adfgu-fancy-text-inner ${attributes.textStyle}`}
-                    allowedFormats={[]}
                     tagName='div'
                     value={ attributes.fancyText }
                     onChange={ ( newValue ) => setAttributes( { fancyText: newValue } ) } 

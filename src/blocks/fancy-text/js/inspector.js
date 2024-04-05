@@ -9,6 +9,7 @@ import {
     BaseControl,
 } from "@wordpress/components";
 const WPMozoEditorObj = wpmozo_adfgu_editor_object; 
+import preAttributes from "./attributes";
 
 const Inspector = (props) => {
 
@@ -102,16 +103,11 @@ const Inspector = (props) => {
             label: __('Color', 'wpmozo-addons-for-gutenberg'),
             value: 'color'
         },
-        {
-            label: __('Gradient', 'wpmozo-addons-for-gutenberg'),
-            value: 'gradient'
-        },
     ];
 
-    props = Object.assign({}, props, {preAttributes: {}});
+    props = Object.assign({}, props, {preAttributes: preAttributes});
 
     let backImage = ( attributes.fancyTextBackgroundImg ) ? attributes.fancyTextBackgroundImg : WPMozoEditorObj.placeholderImg;
-
 
 	return (
         <>
@@ -226,7 +222,7 @@ const Inspector = (props) => {
                                             {
                                                 key: 'Color',
                                                 label: __( 'Clip Background Color', 'wpmozo-addons-for-gutenberg' ),
-                                                onlyGradient: ( 'gradient' === attributes.textBgOverlay ) ? true : false,
+                                                withGradient: true,
                                             },
                                         ]}
                                     /> 
