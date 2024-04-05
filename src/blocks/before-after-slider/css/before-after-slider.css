@@ -7,4 +7,5 @@
 }
 .wpmozo-adfgu-before-after-image-wrapper img{
     width: 100%;
+    object-fit: cover;
 }

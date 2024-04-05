@@ -1,9 +1,18 @@
+import { __ } from "@wordpress/i18n";
+
 const attributes = {
     clientId: {
         type: "string",
     },
+    globalcolorHandle: {
+        type: "string",
+    },
+    globalcolorOverlay: {
+        type: "string",
+    },
     sliderOrientation: {
         type: "string",
+        default: "horizontal",
     },
     handleOffset: {
         type: "number",
@@ -16,15 +25,9 @@ const attributes = {
         type: "boolean",
         default: false,
     },
-    handlecolor: {
-        type: "string",
-    },
     overlayOnHover: {
         type: "boolean",
         default: false,
-    },
-    overlaycolor: {
-        type: "string",
     },
 	beforeImage: {
         type: "string",
@@ -39,6 +42,7 @@ const attributes = {
     },
     beforeLabel: {
         type: "string",
+        default: __( 'Before', 'wpmozo-addons-for-gutenberg' )
     },
     beforeLabelbackground: {
         type: "string",
@@ -87,6 +91,7 @@ const attributes = {
     },
     afterLabel: {
         type: "string",
+        default: __( 'After', 'wpmozo-addons-for-gutenberg' )
     },
     afterLabelbackground: {
         type: "string",

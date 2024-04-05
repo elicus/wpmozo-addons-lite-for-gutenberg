@@ -1,8 +1,8 @@
 jQuery(document).ready(function($){
 
-    $('.wpmozo-adfgu-before-after-image-wrapper').each(function( key, el ){
+    jQuery('.wpmozo-adfgu-before-after-image-wrapper').each(function( key, el ){
 
-        let $this = $(this),
+        let $this = jQuery(this),
         before_label = $this.data('before-label'),
         after_label = $this.data('after-label'),
         handle_offset = $this.data('handle-offset'),
@@ -29,7 +29,7 @@ jQuery(document).ready(function($){
 
     });
 
-     jQuery('.wpmozo-adfgu-toggle-title-wrap > :header').click(function(e){
+    jQuery('.wpmozo-adfgu-toggle-title-wrap > :header').click(function(e){
 
         let wrap = jQuery(this).closest('.wpmozo-adfgu-toggle-title-wrap'),
         selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main'),

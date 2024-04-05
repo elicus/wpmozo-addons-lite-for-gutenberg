@@ -106,8 +106,10 @@ const Edit = (props) => {
         }, 10);
     },[ 
         attributes.handleOffset, 
-        attributes.sliderOrientation, 
+        attributes.sliderOrientation,
+        attributes.beforeHasLabel, 
         attributes.beforeLabel, 
+        attributes.afterHasLabel,
         attributes.afterLabel, 
         attributes.moveHandleOnHover, 
         attributes.moveHandleOnClick, 

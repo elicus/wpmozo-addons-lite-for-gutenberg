@@ -16,7 +16,14 @@ const Inspector = (props) => {
     const beforeTitle = __( 'Before', 'wpmozo-addons-for-gutenberg' ),
     afterTitle = __( 'After', 'wpmozo-addons-for-gutenberg' ),
     attributes = props.attributes,
-    setAttributes = props.setAttributes;
+    setAttributes = props.setAttributes,
+    globalColorTypes = [ 
+        {
+            key: 'Handle',
+            label: __( 'Handle Color', 'wpmozo-addons-for-gutenberg' ),
+        },
+        ... attributes.overlayOnHover ? [{key: 'Overlay',label: __( 'Overlay Color', 'wpmozo-addons-for-gutenberg' )}] : [],
+    ];
     
     props = Object.assign({}, props, {preAttributes: {}});
 
@@ -121,36 +128,17 @@ const Inspector = (props) => {
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
-                <PanelBody title={ __( 'General Style' ) } initialOpen={false}>
+                <PanelBody title={ __( 'General Style' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <ToggleControl
                         label={ __( 'Overlay on Hover', 'wpmozo-addons-for-gutenberg' ) }
                         checked={ attributes.overlayOnHover }
                         onChange={ ( newValue ) => setAttributes( { overlayOnHover: newValue } ) }
                     />
                     <WpmozoColorPicker
-                        ColorKey="handle"
+                        ColorKey="globalcolor"
                         props={props}
-                        ColorTypes={[ 
-                            {
-                                key: 'color',
-                                label: __( 'Handle Color', 'wpmozo-addons-for-gutenberg' ),
-                            },
-                        ]}
+                        ColorTypes={globalColorTypes}
                     />
-                    {attributes.overlayOnHover && (
-                        <>
-                            <WpmozoColorPicker
-                                ColorKey="overlay"
-                                props={props}
-                                ColorTypes={[ 
-                                    {
-                                        key: 'color',
-                                        label: __( 'Overlay Color', 'wpmozo-addons-for-gutenberg' ),
-                                    },
-                                ]}
-                            />
-                        </>
-                    )}
                 </PanelBody>
                 {attributes.beforeHasLabel && (
                     <>

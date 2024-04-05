@@ -75,7 +75,7 @@ const Style = (attributes) => {
             additional: convertedStyle.toggleSwitchDimensions
         },
         {
-            selector: '.wpmozo-adfgu-toggle-title-one h5',
+            selector: '.wpmozo-adfgu-toggle-title-one',
             style: {
                 'color': attributes.titleOneColor,
                 'gap': {
@@ -86,7 +86,7 @@ const Style = (attributes) => {
             additional: convertedStyle.titleOne
         },
         {
-            selector: '.wpmozo-adfgu-toggle-title-two h5',
+            selector: '.wpmozo-adfgu-toggle-title-two',
             style: {
                 'color': attributes.titleTwoColor,
                 'gap': {

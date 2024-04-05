@@ -1,5 +1,5 @@
 
-import { WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../../components/index';
+import { WpmozoColorCombo, WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 import { 
@@ -91,18 +91,19 @@ const Inspector = (props) => {
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
-                <PanelBody title={ __( 'Toggle Switch' ) } initialOpen={false}>
+                <PanelBody title={ __( 'Toggle Switch' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <SelectControl
                         label={ __( 'Switch Type', 'wpmozo-addons-for-gutenberg' ) }
                         value={ attributes.toggleSwitchType }
                         options={ switchTypeValues }
                         onChange={ ( newValue ) => setAttributes( { toggleSwitchType: newValue } ) }
                     />
-                    <PanelBody title={ __( 'Normal Switch Color' ) } initialOpen={false}>
-                        <WpmozoColorPicker
-                            ColorKey="toggleSwitch"
-                            props={props}
-                            ColorTypes={[ 
+                    <WpmozoColorCombo
+                        label={ __( 'Switch Color', 'wpmozo-addons-for-gutenberg' ) }
+                        normal={{
+                            ColorKey: "toggleSwitch",
+                            props: props,
+                            ColorTypes: [ 
                                 {
                                     key: 'Color',
                                     label: __( 'Switch Color', 'wpmozo-addons-for-gutenberg' ),
@@ -119,14 +120,12 @@ const Inspector = (props) => {
                                     key: 'OnStateBackground',
                                     label: __( 'Switch Background (on state)', 'wpmozo-addons-for-gutenberg' ),
                                 } 
-                            ]}
-                        />
-                    </PanelBody>
-                    <PanelBody title={ __( 'Hover Switch Color' ) } initialOpen={false}>
-                        <WpmozoColorPicker
-                            ColorKey="toggleSwitch"
-                            props={props}
-                            ColorTypes={[ 
+                            ]
+                        }}
+                        hover={{
+                            ColorKey: "toggleSwitch",
+                            props: props,
+                            ColorTypes: [ 
                                 {
                                     key: 'HoverColor',
                                     label: __( 'Switch Color', 'wpmozo-addons-for-gutenberg' ),
@@ -143,9 +142,9 @@ const Inspector = (props) => {
                                     key: 'HoverOnStateBackground',
                                     label: __( 'Switch Background (on state)', 'wpmozo-addons-for-gutenberg' ),
                                 } 
-                            ]}
-                        />
-                    </PanelBody>
+                            ]
+                        }}
+                    />
                     <WpmozoDimensions
                         DimensionKey='toggleSwitchDimensions'
                         DimensionsTypes={{

@@ -13,15 +13,15 @@ const Style = (attributes) => {
     afterLabelStyle = convertedStyle['afterLabel'],
     handleStyle = {
         'background-color': {
-            value: attributes.handlecolor,
+            value: attributes.globalcolorHandle,
             suffix: '!important',
         }
     };
 
-    if ( ! window.wpmozo.wpmozo_is_empty( attributes.handlecolor ) && 'horizontal' === attributes.sliderOrientation ) {
-        handleStyle['-webkit-box-shadow'] = `0 3px 0 ${attributes.handlecolor}, 0px 0px 12px rgba(51, 51, 51, 0.5)`;
-        handleStyle['-moz-box-shadow'] = `0 3px 0 ${attributes.handlecolor}, 0px 0px 12px rgba(51, 51, 51, 0.5)`;
-        handleStyle['box-shadow'] = `0 3px 0 ${attributes.handlecolor}, 0px 0px 12px rgba(51, 51, 51, 0.5)`;
+    if ( ! window.wpmozo.wpmozo_is_empty( attributes.globalcolorHandle ) && 'horizontal' === attributes.sliderOrientation ) {
+        handleStyle['-webkit-box-shadow'] = `0 3px 0 ${attributes.globalcolorHandle}, 0px 0px 12px rgba(51, 51, 51, 0.5)`;
+        handleStyle['-moz-box-shadow'] = `0 3px 0 ${attributes.globalcolorHandle}, 0px 0px 12px rgba(51, 51, 51, 0.5)`;
+        handleStyle['box-shadow'] = `0 3px 0 ${attributes.globalcolorHandle}, 0px 0px 12px rgba(51, 51, 51, 0.5)`;
     }
 
     let allInline = [
@@ -32,25 +32,25 @@ const Style = (attributes) => {
         {
             selector: '.twentytwenty-handle',
             style: {
-                'border-color': attributes.handlecolor,
+                'border-color': attributes.globalcolorHandle,
             },
         },
         {
             selector: '.twentytwenty-left-arrow',
             style: {
-                'border-right-color': attributes.handlecolor,
+                'border-right-color': attributes.globalcolorHandle,
             },
         },
         {
             selector: '.twentytwenty-right-arrow',
             style: {
-                'border-left-color': attributes.handlecolor,
+                'border-left-color': attributes.globalcolorHandle,
             },
         },
         {
             selector: '.twentytwenty-overlay:hover',
             style: {
-                'background-color': attributes.overlaycolor,
+                'background-color': attributes.globalcolorOverlay,
             },
         },
         {
@@ -67,26 +67,26 @@ const Style = (attributes) => {
         allInline.push({
             selector: '.twentytwenty-left-arrow',
             style: {
-                'border-right-color': attributes.handlecolor,
+                'border-right-color': attributes.globalcolorHandle,
             },
         });
         allInline.push({
             selector: '.twentytwenty-right-arrow',
             style: {
-                'border-left-color': attributes.handlecolor,
+                'border-left-color': attributes.globalcolorHandle,
             },
         });
     }else{
         allInline.push({
             selector: '.twentytwenty-down-arrow',
             style: {
-                'border-top-color': attributes.handlecolor,
+                'border-top-color': attributes.globalcolorHandle,
             },
         });
         allInline.push({
             selector: '.twentytwenty-up-arrow',
             style: {
-                'border-bottom-color': attributes.handlecolor,
+                'border-bottom-color': attributes.globalcolorHandle,
             },
         });
     }
