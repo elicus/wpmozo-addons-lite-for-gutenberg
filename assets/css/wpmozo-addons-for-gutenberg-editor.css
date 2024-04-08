@@ -64,10 +64,13 @@
 .wpmozo-alignment-compo > div{
 	flex: unset !important;
 }
-.wpmozo-color-combo-wrap .components-button-group {
+.wpmozo-color-combo-wrap .components-button-group,
+.wpmozo-button-tabs-wrap .components-button-group{
 	display: flex;
+	margin-bottom: 10px;
 }
-.wpmozo-color-combo-wrap button.wpmozo-color-combo-type {
+.wpmozo-color-combo-wrap button.wpmozo-color-combo-type,
+.wpmozo-button-tabs-wrap button.wpmozo-button-tabs-btn{
 	align-items: center;
 	display: flex;
 	flex: 1;
