@@ -1,7 +1,7 @@
 
-import { WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker, WpmozoMediaUploader } from '../../../components/index';
+import { WpmozoRangeSize, WpmozoBorder, WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker, WpmozoMediaUploader } from '../../../components/index';
 import { __ } from "@wordpress/i18n";
-import { InspectorControls } from "@wordpress/block-editor";
+import { InspectorControls, BlockVerticalAlignmentControl, BlockIcon } from "@wordpress/block-editor";
 import { useState } from "@wordpress/element";
 import { 
     PanelBody,
@@ -13,6 +13,8 @@ import {
     Button,
     TextControl,
     TextareaControl,
+    SVG,
+    Path,
 } from "@wordpress/components";
 
 const Inspector = (props) => {
@@ -67,7 +69,10 @@ const Inspector = (props) => {
     [ flipBoxType, setFlipBoxType ] = useState('front'),
     [ frontTypographyType, setFrontTypographyType ] = useState('title'),
     [ backTypographyType, setBackTypographyType ] = useState('title'),
-    [ elementStyleType, setelEmentStyleType ] = useState('front');
+    [ elementStyleType, setelEmentStyleType ] = useState('front'),
+    [ contentAlignType, setContentAlignType ] = useState('front'),
+    [ flipboxBorderType, setFlipboxBorderType ] = useState('front'),
+    [ flipboxBackgroundType, setFlipboxBackgroundType ] = useState('front');
 
     const headingLavels = [
         {
@@ -494,7 +499,7 @@ const Inspector = (props) => {
                         }
                     </BaseControl>
                 </PanelBody>
-                 <PanelBody title={ __( 'FlipBox Image/Icon Style', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'FlipBox Image/Icon Style', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <BaseControl
                         className="wpmozo-button-tabs-wrap"
                     >    
@@ -516,23 +521,41 @@ const Inspector = (props) => {
                         </ButtonGroup>
                         { 'front' === elementStyleType &&
                             <>
-                                <WpmozoColorPicker
-                                    ColorKey="frontElement"
-                                    props={props}
-                                    ColorTypes={[ 
-                                        {
-                                            key: 'IconColor',
-                                            label: __( 'Icon Color', 'wpmozo-addons-for-gutenberg' ),
-                                        },
-                                    ]}
-                                />
-                                <RangeControl
-                                    label={ __( 'Icon Size', 'wpmozo-addons-for-gutenberg' ) }
-                                    value={ attributes.frontElementIconSize }
-                                    onChange={ ( newValue ) => setAttributes( { frontElementIconSize: newValue } ) }
-                                    min={ 0 }
-                                    max={ 300 }
-                                />
+                                { 'icon' === attributes.frontElType &&
+                                    <>
+                                        <WpmozoColorPicker  
+                                            ColorKey="front"
+                                            props={props}
+                                            ColorTypes={[ 
+                                                {
+                                                    key: 'IconColor',
+                                                    label: __( 'Icon Color', 'wpmozo-addons-for-gutenberg' ),
+                                                },
+                                            ]}
+                                        />
+                                        <RangeControl
+                                            label={ __( 'Icon Size', 'wpmozo-addons-for-gutenberg' ) }
+                                            value={ attributes.frontIconSize }
+                                            onChange={ ( newValue ) => setAttributes( { frontIconSize: newValue } ) }
+                                            min={ 0 }
+                                            max={ 300 }
+                                        />
+                                    </>
+                                }
+                                { 'image' === attributes.frontElType &&
+                                    <>
+                                        <WpmozoRangeSize
+                                            label={ __( 'Front Image Width', 'wpmozo-addons-for-gutenberg') }
+                                            rangeSizeKey='frontImageWidth'
+                                            props={props}
+                                        />
+                                        <WpmozoAlignment
+                                            label={__( 'Front Image Alignment', 'wpmozo-addons-for-gutenberg')}
+                                            onChange={ ( newValue ) => setAttributes( { frontImageAlignment: newValue } ) }
+                                            value={ attributes.frontImageAlignment }
+                                        />
+                                    </>
+                                }
                                 <SelectControl
                                     label={ __( 'Image/Icon Placment', 'wpmozo-addons-for-gutenberg' ) }
                                     value={ attributes.frontElementAlign }
@@ -552,11 +575,307 @@ const Inspector = (props) => {
                                     ]}
                                     onChange={ ( newValue ) => setAttributes( { frontElementAlign: newValue } ) }
                                 />
+                                { 'icon' === attributes.frontElType &&
+                                    <>
+                                        <ToggleControl
+                                            label={ __( 'Style Icon', 'wpmozo-addons-for-gutenberg' ) }
+                                            checked={ attributes.frontIconStyle }
+                                            onChange={ ( newValue ) => setAttributes( { frontIconStyle: newValue } ) }
+                                        />
+                                        { attributes.frontIconStyle &&
+                                            <>
+                                                <ToggleControl
+                                                    label={ __( 'Display Shape Border', 'wpmozo-addons-for-gutenberg' ) }
+                                                    checked={ attributes.frontIconHasShapeBorder }
+                                                    onChange={ ( newValue ) => setAttributes( { frontIconHasShapeBorder: newValue } ) }
+                                                />
+                                                <SelectControl
+                                                    label={ __( 'Shape', 'wpmozo-addons-for-gutenberg' ) }
+                                                    value={ attributes.frontIconShape }
+                                                    options={[
+                                                        {
+                                                            label: __( 'Square', 'wpmozo-addons-for-gutenberg' ),
+                                                            value: 'square',
+                                                        },
+                                                        {
+                                                            label: __( 'Circle', 'wpmozo-addons-for-gutenberg' ),
+                                                            value: 'circle',
+                                                        },
+                                                        {
+                                                            label: __( 'Hexagon', 'wpmozo-addons-for-gutenberg' ),
+                                                            value: 'hexagon',
+                                                        }
+                                                    ]}
+                                                    onChange={ ( newValue ) => setAttributes( { frontIconShape: newValue } ) }
+                                                />
+                                                <WpmozoColorPicker  
+                                                    ColorKey="front"
+                                                    props={props}
+                                                    ColorTypes={[ 
+                                                        {
+                                                            key: 'IconShapeBackground',
+                                                            label: __( 'Shape Background Color', 'wpmozo-addons-for-gutenberg' ),
+                                                        },
+                                                    ]}
+                                                />
+                                                { attributes.frontIconHasShapeBorder &&
+                                                    <>
+                                                        <WpmozoBorder
+                                                            BorderKey="frontIconShape"
+                                                            props={props}
+                                                        />
+                                                    </>
+                                                }
+                                            </>
+                                        }
+                                    </>
+                                }
                             </>
                         }
                         { 'back' === elementStyleType &&
                             <>
+                                { 'icon' === attributes.backElType &&
+                                    <>
+                                        <WpmozoColorPicker  
+                                            ColorKey="frontElement"
+                                            props={props}
+                                            ColorTypes={[ 
+                                                {
+                                                    key: 'IconColor',
+                                                    label: __( 'Icon Color', 'wpmozo-addons-for-gutenberg' ),
+                                                },
+                                            ]}
+                                        />
+                                        <RangeControl
+                                            label={ __( 'Icon Size', 'wpmozo-addons-for-gutenberg' ) }
+                                            value={ attributes.backIconSize }
+                                            onChange={ ( newValue ) => setAttributes( { backIconSize: newValue } ) }
+                                            min={ 0 }
+                                            max={ 300 }
+                                        />
+                                    </>
+                                }
+                                { 'image' === attributes.backElType &&
+                                    <>
+                                        <WpmozoRangeSize
+                                            label={ __( 'Back Image Width', 'wpmozo-addons-for-gutenberg') }
+                                            rangeSizeKey='backImageWidth'
+                                            props={props}
+                                        />
+                                        <WpmozoAlignment
+                                            label={ __( 'Front Image Alignment', 'wpmozo-addons-for-gutenberg') }
+                                            onChange={ ( newValue ) => setAttributes( { backImageAlignment: newValue } ) }
+                                            value={ attributes.backImageAlignment }
+                                        />                                        
+                                    </>
+                                }
+                                <SelectControl
+                                    label={ __( 'Image/Icon Placment', 'wpmozo-addons-for-gutenberg' ) }
+                                    value={ attributes.backAlign }
+                                    options={[
+                                        {
+                                            label: __( 'Top', 'wpmozo-addons-for-gutenberg' ),
+                                            value: 'top',
+                                        },
+                                        {
+                                            label: __( 'Left', 'wpmozo-addons-for-gutenberg' ),
+                                            value: 'left',
+                                        },
+                                        {
+                                            label: __( 'Right', 'wpmozo-addons-for-gutenberg' ),
+                                            value: 'right',
+                                        }
+                                    ]}
+                                    onChange={ ( newValue ) => setAttributes( { backAlign: newValue } ) }
+                                />
+                                { 'icon' === attributes.backElType &&
+                                    <>
+                                        <ToggleControl
+                                            label={ __( 'Style Icon', 'wpmozo-addons-for-gutenberg' ) }
+                                            checked={ attributes.backIconStyle }
+                                            onChange={ ( newValue ) => setAttributes( { backIconStyle: newValue } ) }
+                                        />
+                                        { attributes.backIconStyle &&
+                                            <>
+                                                <ToggleControl
+                                                    label={ __( 'Display Shape Border', 'wpmozo-addons-for-gutenberg' ) }
+                                                    checked={ attributes.backIconHasShapeBorder }
+                                                    onChange={ ( newValue ) => setAttributes( { backIconHasShapeBorder: newValue } ) }
+                                                />
+                                                <SelectControl
+                                                    label={ __( 'Shape', 'wpmozo-addons-for-gutenberg' ) }
+                                                    value={ attributes.backIconShape }
+                                                    options={[
+                                                        {
+                                                            label: __( 'Square', 'wpmozo-addons-for-gutenberg' ),
+                                                            value: 'square',
+                                                        },
+                                                        {
+                                                            label: __( 'Circle', 'wpmozo-addons-for-gutenberg' ),
+                                                            value: 'circle',
+                                                        },
+                                                        {
+                                                            label: __( 'Hexagon', 'wpmozo-addons-for-gutenberg' ),
+                                                            value: 'hexagon',
+                                                        }
+                                                    ]}
+                                                    onChange={ ( newValue ) => setAttributes( { backIconShape: newValue } ) }
+                                                />
+                                                <WpmozoColorPicker  
+                                                    ColorKey="back"
+                                                    props={props}
+                                                    ColorTypes={[ 
+                                                        {
+                                                            key: 'IconShapeBackground',
+                                                            label: __( 'Shape Background Color', 'wpmozo-addons-for-gutenberg' ),
+                                                        },
+                                                    ]}
+                                                />
+                                                { attributes.backIconHasShapeBorder &&
+                                                    <>
+                                                        <WpmozoBorder
+                                                            BorderKey="backIconShape"
+                                                            props={props}
+                                                        />
+                                                    </>
+                                                }
+                                            </>
+                                        }
+                                    </>
+                                }
                             </>
+                        }
+                    </BaseControl>
+                </PanelBody>
+                <PanelBody title={ __( 'FlipBox Content Alignment', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <BaseControl
+                        className="wpmozo-button-tabs-wrap"
+                    >    
+                        <ButtonGroup>
+                            <Button
+                                className="wpmozo-button-tabs-btn"
+                                isPressed={ ( 'front' === contentAlignType ) ? true : false }
+                                onClick={ () => setContentAlignType( 'front' ) }
+                            >
+                                { __( 'Front', 'wpmozo-addons-for-gutenberg' ) }
+                            </Button>
+                            <Button 
+                                className="wpmozo-button-tabs-btn"
+                                isPressed={ ( 'back' === contentAlignType ) ? true : false }
+                                onClick={ () => setContentAlignType( 'back' ) }
+                            >
+                                { __( 'Back', 'wpmozo-addons-for-gutenberg' ) }
+                            </Button>
+                        </ButtonGroup>
+                        { 'front' === contentAlignType &&
+                            <>
+                                <WpmozoAlignment
+                                    label={__( 'Content Alignment', 'wpmozo-addons-for-gutenberg')}
+                                    onChange={ ( newValue ) => setAttributes( { frontContentHorAlignment: newValue } ) }
+                                    value={ attributes.frontContentHorAlignment }
+                                />
+                                <WpmozoAlignment
+                                    type="vertical"
+                                    label={__( 'Vertical Alignment', 'wpmozo-addons-for-gutenberg')}
+                                    onChange={ ( newValue ) => setAttributes( { frontContentVerAlignment: newValue } ) }
+                                    value={ attributes.frontContentVerAlignment }
+                                />
+                            </>
+                        }
+                        { 'back' === contentAlignType &&
+                            <>
+                                <WpmozoAlignment
+                                    label={__( 'Content Alignment', 'wpmozo-addons-for-gutenberg')}
+                                    onChange={ ( newValue ) => setAttributes( { backContentHorAlignment: newValue } ) }
+                                    value={ attributes.backContentHorAlignment }
+                                />
+                                <WpmozoAlignment
+                                    type="vertical"
+                                    label={__( 'Vertical Alignment', 'wpmozo-addons-for-gutenberg')}
+                                    onChange={ ( newValue ) => setAttributes( { backContentVerAlignment: newValue } ) }
+                                    value={ attributes.backContentVerAlignment }
+                                />
+                            </>
+                        }
+                    </BaseControl>
+                </PanelBody>
+                <PanelBody title={ __( 'FlipBox Border', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <BaseControl
+                        className="wpmozo-button-tabs-wrap"
+                    >    
+                        <ButtonGroup>
+                            <Button
+                                className="wpmozo-button-tabs-btn"
+                                isPressed={ ( 'front' === flipboxBorderType ) ? true : false }
+                                onClick={ () => setFlipboxBorderType( 'front' ) }
+                            >
+                                { __( 'Front', 'wpmozo-addons-for-gutenberg' ) }
+                            </Button>
+                            <Button 
+                                className="wpmozo-button-tabs-btn"
+                                isPressed={ ( 'back' === flipboxBorderType ) ? true : false }
+                                onClick={ () => setFlipboxBorderType( 'back' ) }
+                            >
+                                { __( 'Back', 'wpmozo-addons-for-gutenberg' ) }
+                            </Button>
+                        </ButtonGroup>
+                        { 'front' === flipboxBorderType &&
+                            <WpmozoBorder
+                                BorderKey="frontFlipbox"
+                                props={props}
+                            />
+                        }
+                        { 'back' === flipboxBorderType &&
+                            <WpmozoBorder
+                                BorderKey="backFlipbox"
+                                props={props}
+                            />
+                        }
+                    </BaseControl>
+                </PanelBody>
+                <PanelBody title={ __( 'FlipBox Background', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <BaseControl
+                        className="wpmozo-button-tabs-wrap"
+                    >    
+                        <ButtonGroup>
+                            <Button
+                                className="wpmozo-button-tabs-btn"
+                                isPressed={ ( 'front' === flipboxBackgroundType ) ? true : false }
+                                onClick={ () => setFlipboxBackgroundType( 'front' ) }
+                            >
+                                { __( 'Front', 'wpmozo-addons-for-gutenberg' ) }
+                            </Button>
+                            <Button 
+                                className="wpmozo-button-tabs-btn"
+                                isPressed={ ( 'back' === flipboxBackgroundType ) ? true : false }
+                                onClick={ () => setFlipboxBackgroundType( 'back' ) }
+                            >
+                                { __( 'Back', 'wpmozo-addons-for-gutenberg' ) }
+                            </Button>
+                        </ButtonGroup>
+                        { 'front' === flipboxBackgroundType &&
+                            <WpmozoColorPicker  
+                                ColorKey="front"
+                                props={props}
+                                ColorTypes={[ 
+                                    {
+                                        key: 'FlipboxBackground',
+                                        label: __( 'Front Background', 'wpmozo-addons-for-gutenberg' ),
+                                    },
+                                ]}
+                            />
+                        }
+                        { 'back' === flipboxBackgroundType &&
+                            <WpmozoColorPicker  
+                                ColorKey="back"
+                                props={props}
+                                ColorTypes={[ 
+                                    {
+                                        key: 'FlipboxBackground',
+                                        label: __( 'Back Background', 'wpmozo-addons-for-gutenberg' ),
+                                    },
+                                ]}
+                            />
                         }
                     </BaseControl>
                 </PanelBody>

@@ -281,12 +281,117 @@ const attributes = {
     },
     frontElementAlign: {
         type: "string",
+        default: "top",
     },
-    frontElementIconColor: {
+    frontIconColor: {
         type: "string",
     },
-    frontElementIconSize: {
+    frontIconSize: {
         type: "number",
+    },
+    frontImageAlignment: {
+        type: "string",
+        default: "center",
+    },
+    frontImageWidth: {
+        type: "string",
+    },
+    frontImageWidthUnit: {
+        type: "string",
+    },
+    frontIconStyle: {
+        type: "boolean",
+        default: false,
+    },
+    frontIconShape: {
+        type: "string",
+        default: "square",
+    },
+    frontIconShapeBackground: {
+        type: "string",
+        default: "#000000",
+    },
+    frontIconHasShapeBorder: {
+        type: "boolean",
+        default: false,
+    },
+    frontIconShapeborderRadius: {
+        type: "string",
+    },
+    frontIconShapeborder: {
+        type: "object",
+    },
+    backElementAlign: {
+        type: "string",
+        default: "top",
+    },
+    backIconColor: {
+        type: "string",
+    },
+    backIconSize: {
+        type: "number",
+    },
+    backImageAlignment: {
+        type: "string",
+        default: "center",
+    },
+    backImageWidth: {
+        type: "string",
+    },
+    backImageWidthUnit: {
+        type: "string",
+    },
+    backIconStyle: {
+        type: "boolean",
+        default: false,
+    },
+    backIconShape: {
+        type: "string",
+        default: "square",
+    },
+    backIconShapeBackground: {
+        type: "string",
+        default: "#000000",
+    },
+    backIconHasShapeBorder: {
+        type: "boolean",
+        default: false,
+    },
+    backIconShapeborderRadius: {
+        type: "string",
+    },
+    backIconShapeborder: {
+        type: "object",
+    },
+    frontContentHorAlignment: {
+        type: "string",
+    },
+    frontContentVerAlignment: {
+        type: "string",
+    },
+    backContentHorAlignment: {
+        type: "string",
+    },
+    backContentVerAlignment: {
+        type: "string",
+    },
+    frontFlipboxborder: {
+        type: "object"
+    },
+    frontFlipboxborderRadius: {
+        type: "string"
+    },
+    backFlipboxborder: {
+        type: "object"
+    },
+    backFlipboxborderRadius: {
+        type: "string"
+    },
+    frontFlipboxBackground: {
+        type: "string"
+    },
+    backFlipboxBackground: {
+        type: "string"
     },
 };
 
