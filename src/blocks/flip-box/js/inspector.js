@@ -13,9 +13,8 @@ import {
     Button,
     TextControl,
     TextareaControl,
-    SVG,
-    Path,
 } from "@wordpress/components";
+import preAttributes from "./attributes";
 
 const Inspector = (props) => {
 
@@ -61,7 +60,7 @@ const Inspector = (props) => {
         )
     ];
     
-    props = Object.assign({}, props, {preAttributes: {}});
+    props = Object.assign({}, props, {preAttributes: preAttributes});
 
     const [ contentType, setContentType ] = useState('front'),
     [ elementType, setElementType ] = useState('front'),
@@ -72,7 +71,8 @@ const Inspector = (props) => {
     [ elementStyleType, setelEmentStyleType ] = useState('front'),
     [ contentAlignType, setContentAlignType ] = useState('front'),
     [ flipboxBorderType, setFlipboxBorderType ] = useState('front'),
-    [ flipboxBackgroundType, setFlipboxBackgroundType ] = useState('front');
+    [ flipboxBackgroundType, setFlipboxBackgroundType ] = useState('front'),
+    [ flipboxWidthType, setFlipboxWidthType ] = useState('front');
 
     const headingLavels = [
         {
@@ -300,6 +300,11 @@ const Inspector = (props) => {
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
                 <PanelBody title={ __( 'Global Styling', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoRangeSize
+                        label={ __( 'Content Width', 'wpmozo-addons-for-gutenberg') }
+                        rangeSizeKey='flipboxWidth'
+                        props={props}
+                    />
                     <WpmozoColorPicker
                         ColorKey="global"
                         props={props}
@@ -533,12 +538,10 @@ const Inspector = (props) => {
                                                 },
                                             ]}
                                         />
-                                        <RangeControl
-                                            label={ __( 'Icon Size', 'wpmozo-addons-for-gutenberg' ) }
-                                            value={ attributes.frontIconSize }
-                                            onChange={ ( newValue ) => setAttributes( { frontIconSize: newValue } ) }
-                                            min={ 0 }
-                                            max={ 300 }
+                                        <WpmozoRangeSize
+                                            label={ __( 'Icon Size', 'wpmozo-addons-for-gutenberg') }
+                                            rangeSizeKey='frontIconSize'
+                                            props={props}
                                         />
                                     </>
                                 }
@@ -606,7 +609,10 @@ const Inspector = (props) => {
                                                             value: 'hexagon',
                                                         }
                                                     ]}
-                                                    onChange={ ( newValue ) => setAttributes( { frontIconShape: newValue } ) }
+                                                    onChange={ ( newValue ) => { 
+                                                        setAttributes( { frontIconShapeborderRadius: '' } )
+                                                        setAttributes( { frontIconShape: newValue } ) 
+                                                    }}
                                                 />
                                                 <WpmozoColorPicker  
                                                     ColorKey="front"
@@ -623,6 +629,11 @@ const Inspector = (props) => {
                                                         <WpmozoBorder
                                                             BorderKey="frontIconShape"
                                                             props={props}
+                                                            BorderTypes={ 
+                                                                ( 'square' !== attributes.frontIconShape ) 
+                                                                ? {border: true} 
+                                                                : {border: true,radius: true} 
+                                                            }
                                                         />
                                                     </>
                                                 }
@@ -637,7 +648,7 @@ const Inspector = (props) => {
                                 { 'icon' === attributes.backElType &&
                                     <>
                                         <WpmozoColorPicker  
-                                            ColorKey="frontElement"
+                                            ColorKey="back"
                                             props={props}
                                             ColorTypes={[ 
                                                 {
@@ -646,12 +657,10 @@ const Inspector = (props) => {
                                                 },
                                             ]}
                                         />
-                                        <RangeControl
-                                            label={ __( 'Icon Size', 'wpmozo-addons-for-gutenberg' ) }
-                                            value={ attributes.backIconSize }
-                                            onChange={ ( newValue ) => setAttributes( { backIconSize: newValue } ) }
-                                            min={ 0 }
-                                            max={ 300 }
+                                        <WpmozoRangeSize
+                                            label={ __( 'Icon Size', 'wpmozo-addons-for-gutenberg') }
+                                            rangeSizeKey='backIconSize'
+                                            props={props}
                                         />
                                     </>
                                 }
@@ -671,7 +680,7 @@ const Inspector = (props) => {
                                 }
                                 <SelectControl
                                     label={ __( 'Image/Icon Placment', 'wpmozo-addons-for-gutenberg' ) }
-                                    value={ attributes.backAlign }
+                                    value={ attributes.backElementAlign }
                                     options={[
                                         {
                                             label: __( 'Top', 'wpmozo-addons-for-gutenberg' ),
@@ -686,7 +695,7 @@ const Inspector = (props) => {
                                             value: 'right',
                                         }
                                     ]}
-                                    onChange={ ( newValue ) => setAttributes( { backAlign: newValue } ) }
+                                    onChange={ ( newValue ) => setAttributes( { backElementAlign: newValue } ) }
                                 />
                                 { 'icon' === attributes.backElType &&
                                     <>
@@ -719,7 +728,10 @@ const Inspector = (props) => {
                                                             value: 'hexagon',
                                                         }
                                                     ]}
-                                                    onChange={ ( newValue ) => setAttributes( { backIconShape: newValue } ) }
+                                                    onChange={ ( newValue ) => {
+                                                        setAttributes( { backIconShapeborderRadius: '' } )
+                                                        setAttributes( { backIconShape: newValue } ) 
+                                                    }}
                                                 />
                                                 <WpmozoColorPicker  
                                                     ColorKey="back"
@@ -736,6 +748,11 @@ const Inspector = (props) => {
                                                         <WpmozoBorder
                                                             BorderKey="backIconShape"
                                                             props={props}
+                                                            BorderTypes={ 
+                                                                ( 'square' !== attributes.backIconShape ) 
+                                                                ? {border: true} 
+                                                                : {border: true,radius: true} 
+                                                            }
                                                         />
                                                     </>
                                                 }

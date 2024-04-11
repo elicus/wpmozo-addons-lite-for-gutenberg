@@ -47,6 +47,7 @@ const attributes = {
     },
     frontElIcon: {
     	type: "string",
+        default: "fas fa-star",
     },
     frontElImage: {
     	type: "string",
@@ -57,15 +58,18 @@ const attributes = {
     },
     backElIcon: {
     	type: "string",
+        default: "fas fa-star",
     },
     backElImage: {
     	type: "string",
     },
     globalTitleColor: {
     	type: "string",
+        default: "#fff"
     },
     globalContentColor: {
     	type: "string",
+        default: "#fff"
     },
     globalTitletext: {
         type: "string",
@@ -97,12 +101,6 @@ const attributes = {
     },
     globalTitleLineHeight: {
         type: "string",
-    },
-    globalTitleColor: {
-    	type: "string",
-    },
-    globalContentColor: {
-    	type: "string",
     },
     globalContenttext: {
         type: "string",
@@ -285,9 +283,13 @@ const attributes = {
     },
     frontIconColor: {
         type: "string",
+        default: "#fff"
     },
     frontIconSize: {
-        type: "number",
+        type: "string",
+    },
+    frontIconSizeUnit: {
+        type: "string",
     },
     frontImageAlignment: {
         type: "string",
@@ -295,9 +297,11 @@ const attributes = {
     },
     frontImageWidth: {
         type: "string",
+        default: "100px"
     },
     frontImageWidthUnit: {
         type: "string",
+        default: "px"
     },
     frontIconStyle: {
         type: "boolean",
@@ -327,9 +331,13 @@ const attributes = {
     },
     backIconColor: {
         type: "string",
+        default: "#fff"
     },
     backIconSize: {
-        type: "number",
+        type: "string",
+    },
+    backIconSizeUnit: {
+        type: "string",
     },
     backImageAlignment: {
         type: "string",
@@ -337,9 +345,11 @@ const attributes = {
     },
     backImageWidth: {
         type: "string",
+        default: "100px"
     },
     backImageWidthUnit: {
         type: "string",
+        default: "px"
     },
     backIconStyle: {
         type: "boolean",
@@ -365,15 +375,19 @@ const attributes = {
     },
     frontContentHorAlignment: {
         type: "string",
+        default: "center"
     },
     frontContentVerAlignment: {
         type: "string",
+        default: "center"
     },
     backContentHorAlignment: {
         type: "string",
+        default: "center"
     },
     backContentVerAlignment: {
         type: "string",
+        default: "center"
     },
     frontFlipboxborder: {
         type: "object"
@@ -388,10 +402,20 @@ const attributes = {
         type: "string"
     },
     frontFlipboxBackground: {
-        type: "string"
+        type: "string",
+        default: "#543EC4"
     },
     backFlipboxBackground: {
-        type: "string"
+        type: "string",
+        default: "#863AD0"
+    },
+    flipboxWidth: {
+        type: "string",
+        default: "100%"
+    },
+    flipboxWidthUnit: {
+        type: "string",
+        default: "%"
     },
 };
 
