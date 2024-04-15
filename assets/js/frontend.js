@@ -79,4 +79,17 @@ jQuery(document).ready(function($){
 
     }
 
+    jQuery('body').find('.wpmozo-adfgu-flip-box-wrap').each(function(){
+
+        let $this = jQuery(this);
+        var maxHeight = Math.max.apply( null, $this.find('.wpmozo-adfgu-flip-box-side').map( function(){
+            return jQuery(this).outerHeight();
+        }).get());
+
+        jQuery(this).find('.wpmozo-adfgu-flip-box-side').each(function(){
+            jQuery(this).css('height', maxHeight+'px');
+        });
+
+    });
+
 })

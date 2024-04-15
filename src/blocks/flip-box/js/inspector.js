@@ -121,7 +121,7 @@ const Inspector = (props) => {
                         onChange={ ( newValue ) => setAttributes( { animationType: newValue } ) }
                     />
                     <SelectControl
-                        label={ __( 'Animation Type', 'wpmozo-addons-for-gutenberg' ) }
+                        label={ __( 'Flip Direction', 'wpmozo-addons-for-gutenberg' ) }
                         value={ attributes.flipDirection }
                         options={ flipAllDirection }
                         onChange={ ( newValue ) => setAttributes( { flipDirection: newValue } ) }
@@ -292,6 +292,52 @@ const Inspector = (props) => {
                                         attrKye="backElImage" 
                                         props={props} 
                                     />
+                                }
+                                <ToggleControl
+                                    label={ __( 'Show Button', 'wpmozo-addons-for-gutenberg' ) }
+                                    checked={ attributes.backHasButton }
+                                    onChange={ ( newValue ) => setAttributes( { backHasButton: newValue } ) }
+                                />
+                                { attributes.backHasButton &&
+                                    <>
+                                        <TextControl
+                                            label={ __( 'Button Text', 'wpmozo-addons-for-gutenberg' ) }
+                                            value={ attributes.backBtnText }
+                                            onChange={ ( newValue ) => setAttributes( { backBtnText: newValue } ) }
+                                        />
+                                        <TextControl
+                                            label={ __( 'Button Url', 'wpmozo-addons-for-gutenberg' ) }
+                                            value={ attributes.backBtnUrl }
+                                            onChange={ ( newValue ) => setAttributes( { backBtnUrl: newValue } ) }
+                                        />
+                                        <WpmozoIconpicker
+                                            label={ __( 'Button Icon', 'wpmozo-addons-for-gutenberg' ) }
+                                            iconPickerKey='backBtnIcon'
+                                            props={ props }
+                                            value={ attributes.backBtnIcon }
+                                            onChange={ ( newValue ) => setAttributes( { backBtnIcon: newValue } ) }
+                                        />
+                                        <SelectControl
+                                            label={ __( 'Element Type', 'wpmozo-addons-for-gutenberg' ) }
+                                            value={ attributes.backBtnIconPosition }
+                                            options={[
+                                                {
+                                                    label: __( 'Before', 'wpmozo-addons-for-gutenberg' ),
+                                                    value: 'before',
+                                                },
+                                                {
+                                                    label: __( 'After', 'wpmozo-addons-for-gutenberg' ),
+                                                    value: 'after',
+                                                },
+                                            ]}
+                                            onChange={ ( newValue ) => setAttributes( { backBtnIconPosition: newValue } ) }
+                                        />
+                                        <ToggleControl
+                                            label={ __( 'Show Icon On Hover', 'wpmozo-addons-for-gutenberg' ) }
+                                            checked={ attributes.backBtnIconOnHover }
+                                            onChange={ ( newValue ) => setAttributes( { backBtnIconOnHover: newValue } ) }
+                                        />
+                                    </>
                                 }
                             </>
                         }
@@ -624,7 +670,7 @@ const Inspector = (props) => {
                                                         },
                                                     ]}
                                                 />
-                                                { attributes.frontIconHasShapeBorder &&
+                                                { attributes.frontIconHasShapeBorder && 'hexagon' !== attributes.frontIconShape &&
                                                     <>
                                                         <WpmozoBorder
                                                             BorderKey="frontIconShape"
@@ -634,6 +680,20 @@ const Inspector = (props) => {
                                                                 ? {border: true} 
                                                                 : {border: true,radius: true} 
                                                             }
+                                                        />
+                                                    </>
+                                                }
+                                                { attributes.frontIconHasShapeBorder && 'hexagon' === attributes.frontIconShape &&
+                                                    <>
+                                                        <WpmozoColorPicker  
+                                                            ColorKey="front"
+                                                            props={props}
+                                                            ColorTypes={[ 
+                                                                {
+                                                                    key: 'IconShapeBorderColor',
+                                                                    label: __( 'Shape Border Color', 'wpmozo-addons-for-gutenberg' ),
+                                                                },
+                                                            ]}
                                                         />
                                                     </>
                                                 }
@@ -743,7 +803,7 @@ const Inspector = (props) => {
                                                         },
                                                     ]}
                                                 />
-                                                { attributes.backIconHasShapeBorder &&
+                                                { attributes.backIconHasShapeBorder && 'hexagon' !== attributes.backIconShape && 
                                                     <>
                                                         <WpmozoBorder
                                                             BorderKey="backIconShape"
@@ -753,6 +813,20 @@ const Inspector = (props) => {
                                                                 ? {border: true} 
                                                                 : {border: true,radius: true} 
                                                             }
+                                                        />
+                                                    </>
+                                                }
+                                                { attributes.backIconHasShapeBorder && 'hexagon' === attributes.backIconShape &&
+                                                    <>
+                                                        <WpmozoColorPicker  
+                                                            ColorKey="back"
+                                                            props={props}
+                                                            ColorTypes={[ 
+                                                                {
+                                                                    key: 'IconShapeBorderColor',
+                                                                    label: __( 'Shape Border Color', 'wpmozo-addons-for-gutenberg' ),
+                                                                },
+                                                            ]}
                                                         />
                                                     </>
                                                 }
@@ -896,6 +970,42 @@ const Inspector = (props) => {
                         }
                     </BaseControl>
                 </PanelBody>
+                { attributes.backHasButton &&
+                    <>
+                        <PanelBody title={ __( 'FlipBox Button', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                            <WpmozoColorPicker  
+                                ColorKey="back"
+                                props={props}
+                                ColorTypes={[ 
+                                    {
+                                        key: 'BtnColor',
+                                        label: __( 'Color', 'wpmozo-addons-for-gutenberg' ),
+                                    },
+                                    {
+                                        key: 'BtnBackground',
+                                        label: __( 'Background', 'wpmozo-addons-for-gutenberg' ),
+                                    },
+                                ]}
+                            />
+                            <WpmozoTypography
+                                TypographyKey="backBtn"
+                                props={props}
+                            />
+                            <WpmozoBorder
+                                BorderKey="backBtn"
+                                props={props}
+                            />
+                            <WpmozoDimensions
+                                DimensionKey='backBtnDimensions'
+                                DimensionsTypes={{
+                                    padding: true,
+                                    margin: true,
+                                }}
+                                props={props}
+                            />
+                        </PanelBody>
+                    </>
+                }
             </InspectorControls>
         </>
     );

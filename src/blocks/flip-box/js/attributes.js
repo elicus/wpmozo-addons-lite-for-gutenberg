@@ -23,7 +23,7 @@ const attributes = {
     },
     flipSpeed: {
         type: "number",
-        default: 100,
+        default: 700,
     },
     frontTitle: {
         type: "string",
@@ -416,6 +416,99 @@ const attributes = {
     flipboxWidthUnit: {
         type: "string",
         default: "%"
+    },
+    backHasButton: {
+        type: "boolean",
+        default: false,
+    },
+    backBtnText: {
+        type: "string",
+        default: __( 'Click ME!', 'wpmozo-addons-for-gutenberg' )
+    },
+    backBtnUrl: {
+        type: "string",
+        default: '#',
+    },
+    backBtnIcon: {
+        type: "string",
+        default: 'fas fa-arrow-right',
+    },
+    backBtnIconPosition: {
+        type: "string",
+        default: 'after',
+    },
+    backBtnIconOnHover: {
+        type: "boolean",
+        default: false,
+    },
+    backBtnColor: {
+        type: "string",
+        default: '#fff',
+    },
+    backBtnBackground: {
+        type: "string",
+    },
+    backBtntext: {
+        type: "string",
+    },
+    backBtnFontSize: {
+        type: "string",
+    },
+    backBtnFontAppearance: {
+        type: "object",
+        fontStyle: {
+            type: "string",
+        },
+        fontWeight: {
+            type: "string",
+        },
+        default: {
+            fontStyle: "",
+            fontWeight: "",
+        }
+    },
+    backBtnLetterSpacing: {
+        type: "string",
+    },
+    backBtnDecoration: {
+        type: "string",
+        default: "none",
+    },
+    backBtnLetterCase: {
+        type: "string",
+    },
+    backBtnLineHeight: {
+        type: "string",
+    },
+    backBtnborder: {
+        type: "object",
+        default: {
+            "width": "1px",
+            "style": "solid",
+            "color": "#fff",
+        }
+    },
+    backBtnborderRadius: {
+        type: "string",
+        default: "3px",
+    },
+    backBtnDimensionspadding: {
+        type: "object",
+        default: {
+            "top": '5px',
+            "right": '8px',
+            "bottom": '5px',
+            "left": '8px',
+        }
+    },
+    backBtnDimensionsmargin: {
+        type: "object",
+    },
+    frontIconShapeBorderColor: {
+        type: "string"
+    },
+    backIconShapeBorderColor: {
+        type: "string"
     },
 };
 
