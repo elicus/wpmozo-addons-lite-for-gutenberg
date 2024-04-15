@@ -30,18 +30,27 @@ const Edit = (props) => {
         editModeSide = '';
     }
 
-    jQuery('body').find('.wpmozo-adfgu-flip-box-wrap').each(function(){
+    
+    useEffect(() => {
+        jQuery('body').find('.wpmozo-adfgu-flip-box-wrap').each(function(){
 
-        let $this = jQuery(this);
-        var maxHeight = Math.max.apply( null, $this.find('.wpmozo-adfgu-flip-box-side').map( function(){
-            return jQuery(this).outerHeight();
-        }).get());
+            jQuery(this).find('.wpmozo-adfgu-flip-box-side').each(function(){
+                jQuery(this).removeAttr('style');
+            });
 
-        jQuery(this).find('.wpmozo-adfgu-flip-box-side').each(function(){
-            jQuery(this).css('height', maxHeight+'px');
+            let $this = jQuery(this);
+            var maxHeight = Math.max.apply( null, $this.find('.wpmozo-adfgu-flip-box-side').map( function(){
+                return jQuery(this).outerHeight();
+            }).get());
+            
+
+            jQuery(this).find('.wpmozo-adfgu-flip-box-side').each(function(){
+                jQuery(this).css('height', maxHeight+'px');
+            });
+
         });
-
     });
+    
 
     let backBtnIcon = (
         <i className={ attributes.backBtnIcon }></i>
