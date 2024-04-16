@@ -123,16 +123,18 @@ const Inspector = (props) => {
                     />
                 </PanelBody>
                 <PanelBody title={ __( 'Layout Settings', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
-                    <WpmozoColorPicker  
-                        ColorKey="overlay"
-                        props={props}
-                        ColorTypes={[ 
-                            {
-                                key: 'Color',
-                                label: __( 'Overlay Color', 'wpmozo-addons-for-gutenberg' ),
-                            },
-                        ]}
-                    />
+                    { 'romeo' !== attributes.layout && 'marley' !== attributes.layout &&
+                        <WpmozoColorPicker  
+                            ColorKey="overlay"
+                            props={props}
+                            ColorTypes={[ 
+                                {
+                                    key: 'Color',
+                                    label: __( 'Overlay Color', 'wpmozo-addons-for-gutenberg' ),
+                                },
+                            ]}
+                        />
+                    }
                     { 'lily' !== attributes.layout && 'sadie' !== attributes.layout &&
                         <WpmozoBorder
                             BorderKey="layout"
@@ -221,11 +223,13 @@ const Inspector = (props) => {
                             </>
                         }
                     </BaseControl>
-                    <WpmozoAlignment
-                        label={ __( 'Title Alignment', 'wpmozo-addons-for-gutenberg') }
-                        onChange={ ( newValue ) => setAttributes( { titleAlign: newValue } ) }
-                        value={ attributes.titleAlign }
-                    />
+                    { 'milo' !== attributes.layout &&
+                        <WpmozoAlignment
+                            label={ __( 'Title Alignment', 'wpmozo-addons-for-gutenberg') }
+                            onChange={ ( newValue ) => setAttributes( { titleAlign: newValue } ) }
+                            value={ attributes.titleAlign }
+                        />
+                    }
                 </PanelBody>
                 <PanelBody title={ __( 'Content', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorPicker  
@@ -242,11 +246,13 @@ const Inspector = (props) => {
                         TypographyKey="content"
                         props={props}
                     />
-                    <WpmozoAlignment
-                        label={ __( 'Content Alignment', 'wpmozo-addons-for-gutenberg') }
-                        onChange={ ( newValue ) => setAttributes( { contentAlign: newValue } ) }
-                        value={ attributes.contentAlign }
-                    />
+                    { 'milo' !== attributes.layout &&
+                        <WpmozoAlignment
+                            label={ __( 'Content Alignment', 'wpmozo-addons-for-gutenberg') }
+                            onChange={ ( newValue ) => setAttributes( { contentAlign: newValue } ) }
+                            value={ attributes.contentAlign }
+                        />
+                    }
                 </PanelBody>
             </InspectorControls>
         </>

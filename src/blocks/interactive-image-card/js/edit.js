@@ -11,20 +11,21 @@ const Edit = (props) => {
 
     const attributes = props.attributes,
     clientId = props.clientId,
-    setAttributes = props.setAttributes;
-
-    const blockProps = useBlockProps({ className: 'wpmozo-adfgu-interactive-image-card-main' });
+    setAttributes = props.setAttributes,
+    blockProps = useBlockProps({ className: 'wpmozo-adfgu-interactive-image-card-main' });
 
     let backImage = ( attributes.backImage ) ? attributes.backImage : WPMozoEditorObj.placeholderImg;
+
+    attributes.clientId = clientId;
 
 	return (
         <Fragment>
             <Inspector {...props} />
             <Style {...attributes} />
             <div {...blockProps}>
-                <div className="wpmozo-adfgu-interactive-image-card-wrap">
+                <div className="wpmozo-adfgu-interactive-image-card-wrap editor">
                     <figure className={`effect-${ attributes.layout }`}>
-                        <img src={ backImage } />
+                        <img className="wpmozo-adfgu-interactive-image-card-image" src={ backImage } />
                         <figcaption>
                             <div className="wpmozo-adfgu-interactive-image-card-inner">
                                 <RichText

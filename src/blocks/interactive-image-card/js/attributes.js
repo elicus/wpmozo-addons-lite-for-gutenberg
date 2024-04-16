@@ -26,6 +26,11 @@ const attributes = {
     },
     layoutborder: {
         type: "object",
+        default: {
+            color: "#000000",
+            width: "1px",
+            style: "solid",
+        }
     },
     overlayColor: {
         type: "String",
