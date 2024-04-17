@@ -47,9 +47,6 @@ const attributes = {
         type: "String",
         default: "#000000",
     },
-    titleNormaltext: {
-        type: "string",
-    },
     titleNormalFontSize: {
         type: "string",
     },
@@ -76,9 +73,6 @@ const attributes = {
         type: "string",
     },
     titleNormalLineHeight: {
-        type: "string",
-    },
-    titleHovertext: {
         type: "string",
     },
     titleHoverFontSize: {
@@ -116,9 +110,6 @@ const attributes = {
     contentColor: {
         type: "String",
         default: "#222222",
-    },
-    contenttext: {
-        type: "string",
     },
     contentFontSize: {
         type: "string",

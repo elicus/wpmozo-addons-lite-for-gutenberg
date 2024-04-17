@@ -44,6 +44,23 @@ const Style = (attributes) => {
     	},
     ];
 
+    if ( 'milo' !== attributes.layout ) {
+    	allInline.push(
+	    	{
+	    		selector: '.wpmozo-adfgu-interactive-image-card-title',
+	    		style: {
+	    			'text-align': attributes.titleAlign,
+	    		}
+	    	},
+	    	{
+	    		selector: '.wpmozo-adfgu-interactive-image-card-content',
+	    		style: {
+	    			'text-align': attributes.contentAlign,
+	    		}
+	    	},
+    	);
+    }
+
     if ('romeo' !== attributes.layout && 'marley' !== attributes.layout ) {
     	allInline.push({
     		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure',
@@ -77,6 +94,20 @@ const Style = (attributes) => {
 	    	}
     	);
     }
+    if ( 'romeo' === attributes.layout ) {
+    	allInline.push(
+	    	{
+	    		selector: `
+	    		.wpmozo-adfgu-interactive-image-card-wrap figure.effect-romeo figcaption::after, 
+	    		.wpmozo-adfgu-interactive-image-card-wrap figure.effect-romeo figcaption::before
+	    		`,
+	    		style: {
+	    			'height': attributes.layoutborder.width,
+	    			'background': attributes.layoutborder.color,
+	    		}
+	    	},
+    	);
+    }
     if ( 'layla' === attributes.layout ) {
     	allInline.push(
 	    	{
@@ -100,6 +131,19 @@ const Style = (attributes) => {
     		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure.effect-oscar figcaption::before',
     		additional: convertedStyle.layout
     	});
+    }
+    if ( 'marley' === attributes.layout ) {
+    	allInline.push(
+	    	{
+	    		selector: `
+	    		.wpmozo-adfgu-interactive-image-card-wrap figure.effect-marley .wpmozo-adfgu-interactive-image-card-title::after
+	    		`,
+	    		style: {
+	    			'height': attributes.layoutborder.width,
+	    			'background': attributes.layoutborder.color,
+	    		}
+	    	},
+    	);
     }
     if ( 'ruby' === attributes.layout ) {
     	allInline.push({

@@ -23,7 +23,7 @@ const Edit = (props) => {
             <Inspector {...props} />
             <Style {...attributes} />
             <div {...blockProps}>
-                <div className="wpmozo-adfgu-interactive-image-card-wrap editor">
+                <div className="wpmozo-adfgu-interactive-image-card-wrap wpmozo-editor">
                     <figure className={`effect-${ attributes.layout }`}>
                         <img className="wpmozo-adfgu-interactive-image-card-image" src={ backImage } />
                         <figcaption>

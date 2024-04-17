@@ -2,7 +2,7 @@
     display: flex;
     width: 100%;
 }
-.wpmozo-adfgu-interactive-image-card-wrap.editor {
+.wpmozo-adfgu-interactive-image-card-wrap.wpmozo-editor {
     position: relative;
     z-index: 1;
 }
