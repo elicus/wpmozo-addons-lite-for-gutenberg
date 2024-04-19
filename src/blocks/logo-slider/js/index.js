@@ -9,6 +9,7 @@ import { __ } from "@wordpress/i18n";
 registerBlockType( 'wpmozo/logo-slider', {
 	title: __( 'Logo Slider', 'wpmozo-addons-for-gutenberg' ),
     icon: '',
+    apiVersion: 2,
     category: 'wpmozo',
     keywords: [ 'wpmozo', 'logo-slider', 'slider', 'logo' ],
     attributes: attributes,

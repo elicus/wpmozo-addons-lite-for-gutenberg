@@ -10,6 +10,8 @@ import {
     MediaUpload,
     MediaUploadCheck,
     BlockControls,
+    InnerBlocks,
+    useInnerBlocksProps
 } from '@wordpress/block-editor';
 
 
@@ -20,16 +22,38 @@ register();
 
 const Edit = (props) => {
 
-    const attributes = props.attributes,
+    const wpmozoCoreFun = window.wpmozo,
+    attributes = props.attributes,
     setAttributes = props.setAttributes,
-    clientId = props.clientId;
+    clientId = props.clientId,
+    blockProps = useBlockProps(),
+    swiperElRef = useRef(null);
 
-    const blockProps = useBlockProps();
+    let innerBlocks = [];
+    if (  ! wpmozoCoreFun.wpmozo_is_empty( attributes.images ) ) {
+        attributes.images.map((logo) => {
+            innerBlocks.push(
+                [ 
+                    'wpmozo/logo-slide', 
+                    {
+                        logo: logo,
+                        lock: { 
+                            remove: true 
+                        }
+                    },
+                ]
+            )
+        });
+    }
 
-    const swiperElRef = useRef(null);
+    const innerBlocksProps = useInnerBlocksProps( blockProps, {
+        allowedBlocks: [ 'wpmozo/logo-slide' ],
+        template: innerBlocks,
+    });
 
 	return (
         <Fragment>
+        { wpmozoCoreFun.wpmozo_is_empty( attributes.images ) &&
            <MediaPlaceholder
                 multiple={true}
                 onSelect={(media) =>
@@ -51,20 +75,19 @@ const Edit = (props) => {
                     ),
                 }}
             />
+        }
             <Inspector {...props} />
             <Style {...attributes} />
-            <div {...blockProps}>
+            <div { ...blockProps }>
                 <swiper-container
                   ref={swiperElRef}
                   slides-per-view="3"
                   navigation="true"
                   pagination="true"
                 >
-                  <swiper-slide>Slide 1</swiper-slide>
-                  <swiper-slide>Slide 2</swiper-slide>
-                  <swiper-slide>Slide 3</swiper-slide>
-                  <swiper-slide>Slide 4</swiper-slide>
-                  <swiper-slide>Slide 5</swiper-slide>
+                { ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) &&
+                    innerBlocksProps.children
+                }
                 </swiper-container>
             </div>
         </Fragment>

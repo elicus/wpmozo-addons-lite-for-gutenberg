@@ -7,8 +7,13 @@ import {
     ToggleControl,
     TextControl,
     SelectControl,
-    RangeControl
+    RangeControl,
+    BaseControl,
+    ButtonGroup,
+    Button,
+    Icon,
 } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 const Inspector = (props) => {
 
@@ -17,11 +22,43 @@ const Inspector = (props) => {
     
     props = Object.assign({}, props, {preAttributes: {}});
 
+    const [ contentType, setContentType ] = useState('front');
+    console.log( props );
 	return (
         <>
             <InspectorControls key="controls">
-                <PanelBody title={ __( '', 'wpmozo-addons-for-gutenberg' ) } initialOpen={false}>
-                    
+                <PanelBody title={ __( 'General Settings', 'wpmozo-addons-for-gutenberg' ) } initialOpen={false}>
+                    <TextControl
+                        label={ __( 'Alt Text', 'wpmozo-addons-for-gutenberg' ) }
+                        value={ attributes.altText }
+                        onChange={ ( newValue ) => setAttributes( { altText: newValue } ) }
+                    />
+                    <TextControl
+                        label={ __( 'Link', 'wpmozo-addons-for-gutenberg' ) }
+                        value={ attributes.link }
+                        onChange={ ( newValue ) => setAttributes( { link: newValue } ) }
+                    /> 
+                    <BaseControl
+                        label={ __( 'Link Target', 'wpmozo-addons-for-gutenberg' ) }
+                        className="wpmozo-button-tabs-wrap"
+                    >    
+                        <ButtonGroup>
+                            <Button
+                                className="wpmozo-button-tabs-btn"
+                                isPressed={ ( 'same' === attributes.linkTarget ) ? true : false }
+                                onClick={ () => setAttributes( { linkTarget: 'same' } ) }
+                                icon={ <Icon icon="admin-links" /> }
+                                label={ __( 'Same Window', 'wpmozo-addons-for-gutenberg' ) }
+                            /> 
+                            <Button 
+                                className="wpmozo-button-tabs-btn"
+                                isPressed={ ( 'external' === attributes.linkTarget ) ? true : false }
+                                onClick={ () => setAttributes( { linkTarget: 'external' } ) }
+                                icon={ <Icon icon="external" /> }
+                                label={ __( 'External', 'wpmozo-addons-for-gutenberg' ) }
+                            />
+                        </ButtonGroup>
+                    </BaseControl>
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
