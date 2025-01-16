@@ -23,7 +23,7 @@ const Inspector = (props) => {
     props = Object.assign({}, props, {preAttributes: {}});
 
     const [ contentType, setContentType ] = useState('front');
-    console.log( props );
+
 	return (
         <>
             <InspectorControls key="controls">

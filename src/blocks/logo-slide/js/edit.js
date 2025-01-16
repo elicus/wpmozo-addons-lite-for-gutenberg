@@ -17,11 +17,11 @@ const Edit = (props) => {
     const blockProps = useBlockProps();
 
 	return (
-        <swiper-slide {...blockProps}>
+        <div className="swiper-slide">
             <Inspector {...props} />
             <Style {...attributes} />
                 <img src={ attributes.logo.url } />
-        </swiper-slide>
+        </div>
     );
 
 };
