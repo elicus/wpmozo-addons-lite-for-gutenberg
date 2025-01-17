@@ -131,6 +131,32 @@ const Inspector = (props) => {
             value: 'bottom_center'
         },
     ];
+    const controlDotStyles = [
+        {
+            label: __( 'Solid Dot', 'wpmozo-addons-for-gutenberg' ),
+            value: 'solid_dot'
+        },
+        {
+            label: __( 'Transparent Dot', 'wpmozo-addons-for-gutenberg' ),
+            value: 'transparent_dot'
+        },
+        {
+            label: __( 'Stretched Dot', 'wpmozo-addons-for-gutenberg' ),
+            value: 'stretched_dot'
+        },
+        {
+            label: __( 'Line', 'wpmozo-addons-for-gutenberg' ),
+            value: 'line'
+        },
+        {
+            label: __( 'Rounded Line', 'wpmozo-addons-for-gutenberg' ),
+            value: 'rounded_line'
+        },
+        {
+            label: __( 'Squared Dot', 'wpmozo-addons-for-gutenberg' ),
+            value: 'square_dot'
+        },
+    ];
     
     props = Object.assign({}, props, {preAttributes: {}});
 
@@ -193,36 +219,114 @@ const Inspector = (props) => {
                         checked={ attributes.showArrow }
                         onChange={ ( newValue ) => setAttributes( { showArrow: newValue } ) }
                     />
-                    <WpmozoIconpicker
-                        label={ __( 'Previous Arrow', 'wpmozo-addons-for-gutenberg' ) }
-                        iconPickerKey='previousSlideArrow'
-                        props={ props }
-                        value={ attributes.previousSlideArrow }
-                        onChange={ ( newValue ) => setAttributes( { previousSlideArrow: newValue } ) }
-                    />
-                    <WpmozoIconpicker
-                        label={ __( 'Next Arrow', 'wpmozo-addons-for-gutenberg' ) }
-                        iconPickerKey='nextSlideArrow'
-                        props={ props }
-                        value={ attributes.nextSlideArrow }
-                        onChange={ ( newValue ) => setAttributes( { nextSlideArrow: newValue } ) }
-                    />
+                    { attributes.showArrow && 
+                        <>
+                            <WpmozoIconpicker
+                                label={ __( 'Previous Arrow', 'wpmozo-addons-for-gutenberg' ) }
+                                iconPickerKey='previousSlideArrow'
+                                props={ props }
+                                value={ attributes.previousSlideArrow }
+                                onChange={ ( newValue ) => setAttributes( { previousSlideArrow: newValue } ) }
+                            />
+                            <WpmozoIconpicker
+                                label={ __( 'Next Arrow', 'wpmozo-addons-for-gutenberg' ) }
+                                iconPickerKey='nextSlideArrow'
+                                props={ props }
+                                value={ attributes.nextSlideArrow }
+                                onChange={ ( newValue ) => setAttributes( { nextSlideArrow: newValue } ) }
+                            />
+                            <ToggleControl
+                                label={ __( 'Show Arrows Only On Hover', 'wpmozo-addons-for-gutenberg' ) }
+                                checked={ attributes.showArrowOnHover }
+                                onChange={ ( newValue ) => setAttributes( { showArrowOnHover: newValue } ) }
+                            />
+                            <SelectControl
+                                label={ __( 'Arrows Position', 'wpmozo-addons-for-gutenberg' ) }
+                                value={ attributes.arrowsPosition }
+                                options={arrowsPositions}
+                                onChange={ ( newValue ) => setAttributes( { arrowsPosition: newValue } ) }
+                            />
+                        </>
+                    }
                     <ToggleControl
-                        label={ __( 'Show Arrows Only On Hover', 'wpmozo-addons-for-gutenberg' ) }
-                        checked={ attributes.showArrowOnHover }
-                        onChange={ ( newValue ) => setAttributes( { showArrowOnHover: newValue } ) }
+                        label={ __( 'Show Dots Pagination', 'wpmozo-addons-for-gutenberg' ) }
+                        checked={ attributes.showControlDot }
+                        onChange={ ( newValue ) => setAttributes( { showControlDot: newValue } ) }
                     />
-                    <SelectControl
-                        label={ __( 'Arrows Position', 'wpmozo-addons-for-gutenberg' ) }
-                        value={ attributes.arrowsPosition }
-                        options={arrowsPositions}
-                        onChange={ ( newValue ) => setAttributes( { arrowsPosition: newValue } ) }
-                    />
+                    { attributes.showControlDot && 
+                        <>
+                            <SelectControl
+                                label={ __( 'Dots Pagination Style', 'wpmozo-addons-for-gutenberg' ) }
+                                value={ attributes.controlDotStyle }
+                                options={controlDotStyles}
+                                onChange={ ( newValue ) => setAttributes( { controlDotStyle: newValue } ) }
+                            />
+                            <ToggleControl
+                                label={ __( 'Enable Dynamic Dots', 'wpmozo-addons-for-gutenberg' ) }
+                                checked={ attributes.enableDynamicDots }
+                                onChange={ ( newValue ) => setAttributes( { enableDynamicDots: newValue } ) }
+                            />
+                        </>
+                    }
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
-                <PanelBody title={ __( '', 'wpmozo-addons-for-gutenberg' ) } initialOpen={false}>
-                    
+                <PanelBody title={ __( 'Container', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoColorPicker  
+                        ColorKey="container"
+                        props={props}
+                        ColorTypes={[ 
+                            {
+                                key: 'background',
+                                label: __( 'Background Color', 'wpmozo-addons-for-gutenberg' ),
+                            },
+                        ]}
+                    />
+                    <WpmozoDimensions
+                        DimensionKey='container'
+                        DimensionsTypes={{
+                            padding: true
+                        }}
+                        props={props}
+                    />
+                </PanelBody>
+                <PanelBody title={ __( 'Slider', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoColorPicker  
+                        ColorKey="arrow"
+                        props={props}
+                        ColorTypes={[ 
+                            {
+                                key: 'text',
+                                label: __( 'Arrow Color', 'wpmozo-addons-for-gutenberg' ),
+                            },
+                            {
+                                key: 'background',
+                                label: __( 'Arrow Background', 'wpmozo-addons-for-gutenberg' ),
+                            },
+                            {
+                                key: 'activeDoteColor',
+                                label: __( 'Active Dot Pagination Color', 'wpmozo-addons-for-gutenberg' ),
+                            },
+                            {
+                                key: 'inactiveDoteColor',
+                                label: __( 'Inactive Dot Pagination Color', 'wpmozo-addons-for-gutenberg' ),
+                            }
+                        ]}
+                    />
+                    <WpmozoTypography
+                        TypographyKey="arrow"
+                        props={props}
+                        TypoTypes={{
+                            'FontSize': true
+                        }}
+                    />
+                    <WpmozoDimensions
+                        DimensionKey='arrow'
+                        DimensionsTypes={{
+                            padding: true
+                        }}
+                        props={props}
+                    />
                 </PanelBody>
             </InspectorControls>
         </>

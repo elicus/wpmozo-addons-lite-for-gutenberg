@@ -14,11 +14,7 @@ import {
     useInnerBlocksProps
 } from '@wordpress/block-editor';
 
-
 import { useRef, useEffect } from 'react';
-import { register } from 'swiper/element/bundle';
-
-register();
 
 const Edit = (props) => {
 
@@ -54,7 +50,7 @@ const Edit = (props) => {
 
     useEffect(() => {
         setTimeout(function() {
-            console.log('1');
+            console.log(attributes);
             if ( ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) ) {
                 console.log('2');
 

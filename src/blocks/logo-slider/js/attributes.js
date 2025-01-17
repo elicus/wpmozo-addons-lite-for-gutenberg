@@ -55,7 +55,28 @@ const attributes = {
 	showControlDot: {
 		type: "boolean",
 		default: true
-	}	
+	},
+	controlDotStyle: {
+		type: "string"
+	},
+	enableDynamicDots: {
+		type: "boolean"
+	},
+	containerbackground: {
+		type: "string"
+	},
+	containerpadding: {
+		type: "object"
+	},
+	arrowpadding: {
+		type: "object"
+	},
+	activeDoteColor: {
+		type: "string"
+	},
+	inactiveDoteColor: {
+		type: "string"
+	}
 };
 
 export default attributes;
