@@ -10,10 +10,10 @@ import WpmozoColorPicker from '../wpmozo-colorpicker/wpmozo-colorpicker';
 
 const WpmozoColorCombo = function(args){
 
-    const [ colorType, setColorType ] = useState('normal');
-    const label = ( args.hasOwnProperty('label') )
-        ? args.label
-        : '';
+    const [ colorType, setColorType ] = useState('normal'),
+        label                         = ( args.hasOwnProperty('label') )
+            ? args.label
+            : '';
 
     return (
         <BaseControl

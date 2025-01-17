@@ -6,11 +6,12 @@ const { __experimentalToolsPanel, __experimentalToolsPanelItem, Dropdown, Button
 
 const WpmozoColorPicker = function(args){
 
-    const { ColorKey, ColorTypes, props } = args;
-    const preAttributes = props.preAttributes;
-    const withToolPanel = ( args.hasOwnProperty('withToolPanel') ) ? args.withToolPanel : true;
-    const AllColors                               = __experimentalUseMultipleOriginColorsAndGradients();
-    const defaultGradientColor = 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)'; 
+    const { ColorKey, ColorTypes, props } = args,
+        preAttributes                     = props.preAttributes,
+        withToolPanel                     = ( args.hasOwnProperty('withToolPanel') ) ? args.withToolPanel : true,
+        AllColors                         = __experimentalUseMultipleOriginColorsAndGradients(),
+        defaultGradientColor              = 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)',
+        label                             = args.hasOwnProperty('label') ? args.label : __( 'Color', 'wpmozo-addons-for-gutenberg' ); 
 
     const colorSetValue = function( styleType, value = null ) {
 
@@ -212,7 +213,7 @@ const WpmozoColorPicker = function(args){
                 __experimentalToolsPanel,
                 {
                     key: 'wpmozo-color-tools-panel-'+ColorKey,
-                    label: __( 'Color', 'wpmozo-addons-for-gutenberg' ),
+                    label: label,
                     className: 'wpmozo-color-tools-panel',
                     resetAll: () => {
                         ColorTypes.map( type => { 

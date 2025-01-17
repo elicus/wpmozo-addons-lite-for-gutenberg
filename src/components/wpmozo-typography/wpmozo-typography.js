@@ -6,8 +6,9 @@ const { compose }   = wp.compose;
 
 const WpmozoTypography = function(args){
 
-	const { TypographyKey, props } = args;
-	const preAttributes = props.preAttributes;
+	const { TypographyKey, props } = args,
+		preAttributes              = props.preAttributes,
+		label                      = args.hasOwnProperty('label') ? args.label : __( 'Typography', 'wpmozo-addons-for-gutenberg' );
 	let TypoTypes                  = args.hasOwnProperty( 'TypoTypes' ) ? args.TypoTypes : null;
 
 	const typoSetValue = function( styleType, value = null ) {
@@ -56,7 +57,7 @@ const WpmozoTypography = function(args){
 			__experimentalToolsPanel,
 			{
 				key: 'wpmozo-typography-panel-'+TypographyKey,
-				label: __( 'Typography', 'wpmozo-addons-for-gutenberg' ),
+				label: label,
 				resetAll: () => {
 
 					if ( null === TypoTypes ) {

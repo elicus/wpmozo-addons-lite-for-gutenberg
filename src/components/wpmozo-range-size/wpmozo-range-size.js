@@ -6,8 +6,8 @@ const wpmozoCoreFun = window.wpmozo;
 
 const WpmozoRangeSize = function(args){
 
-	const { rangeSizeKey, props } = args;
-	const preAttributes = props.preAttributes;
+	const { rangeSizeKey, props } = args,
+		preAttributes             = props.preAttributes;
 	let element = '';
 
 	const sizeSetValue = function( valueType = 'value', value = null ) {
@@ -42,9 +42,9 @@ const WpmozoRangeSize = function(args){
 
 	}
 
-	let unit = setValue( 'unit', props.attributes[ rangeSizeKey+'Unit' ] ),
-	getRange = setValue( 'value', props.attributes[ rangeSizeKey ] ),
-    defaultRange = ( ! wpmozoCoreFun.wpmozo_is_empty( unit ) && ! wpmozoCoreFun.wpmozo_is_empty( getRange ) ) ? parseFloat(getRange.replace(unit, '')) : 0;
+	let unit         = setValue( 'unit', props.attributes[ rangeSizeKey+'Unit' ] ),
+		getRange     = setValue( 'value', props.attributes[ rangeSizeKey ] ),
+    	defaultRange = ( ! wpmozoCoreFun.wpmozo_is_empty( unit ) && ! wpmozoCoreFun.wpmozo_is_empty( getRange ) ) ? parseFloat(getRange.replace(unit, '')) : 0;
 	const [state, setState] = useState({
         range: defaultRange,
     });

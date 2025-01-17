@@ -19,10 +19,10 @@ const WpmozoIconpicker = function(args){
 	};
 
 	const { iconPickerKey, props, label } = args,
-	attributes = props.attributes,
-	value = ( '' !== args.value ) ? args.value : '',
-	icon = ( 'undefined' !== typeof attributes[ args.iconPickerKey ] && '' !== attributes[ args.iconPickerKey ] ) ? attributes[ args.iconPickerKey ] : 'fas fa-ban',
-	onChange = args.hasOwnProperty( 'onChange' ) ? args.onChange : iconSetValue;
+		attributes                        = props.attributes,
+		value                             = ( '' !== args.value ) ? args.value : '',
+		icon                              = ( 'undefined' !== typeof attributes[ args.iconPickerKey ] && '' !== attributes[ args.iconPickerKey ] ) ? attributes[ args.iconPickerKey ] : 'fas fa-ban',
+		onChange                          = args.hasOwnProperty( 'onChange' ) ? args.onChange : iconSetValue;
 
 	return [
 		el(

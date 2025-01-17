@@ -4,8 +4,10 @@ const { __experimentalToolsPanel, __experimentalToolsPanelItem, __experimentalUn
 
 const WpmozoSize = function(args){
 
-	const { SizeKey, props } = args;
-	const preAttributes = props.preAttributes;
+	const { SizeKey, props } = args,
+		preAttributes        = props.preAttributes,
+		label                = args.hasOwnProperty('label') ? args.label : __( 'Size', 'wpmozo-addons-for-gutenberg' );
+
 	let SizeTypes            = args.hasOwnProperty( 'SizeTypes' ) ? args.SizeTypes : null;
 
 	const sizeSetValue = function( styleType, value = null ) {
@@ -37,7 +39,7 @@ const WpmozoSize = function(args){
 			__experimentalToolsPanel,
 			{
 				key: 'wpmozo-size-panel-'+SizeKey,
-				label: __( 'Size', 'wpmozo-addons-for-gutenberg' ),
+				label: label,
 				resetAll: () => {
 
 					if ( null === SizeTypes ) {

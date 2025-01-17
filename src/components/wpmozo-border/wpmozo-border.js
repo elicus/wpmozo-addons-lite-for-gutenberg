@@ -5,8 +5,10 @@ const { __experimentalToolsPanel, __experimentalToolsPanelItem, __experimentalBo
 
 const WpmozoBorder = function(args){
 
-	const { BorderKey, props } = args;
-	const preAttributes = props.preAttributes;
+	const { BorderKey, props } = args,
+		preAttributes          = props.preAttributes,
+		label 			   	   = args.hasOwnProperty('label') ? args.label : __( 'Border', 'wpmozo-addons-for-gutenberg' );
+		
 	let BorderTypes            = args.hasOwnProperty( 'BorderTypes' ) ? args.BorderTypes : null;
 
 	const borderSetValue = function( styleType, value = null ) {
@@ -38,7 +40,7 @@ const WpmozoBorder = function(args){
 			__experimentalToolsPanel,
 			{
 				key: 'wpmozo-border-panel-'+BorderKey,
-				label: __( 'Border', 'wpmozo-addons-for-gutenberg' ),
+				label: label,
 				resetAll: () => {
 
 					if ( null === BorderTypes ) {

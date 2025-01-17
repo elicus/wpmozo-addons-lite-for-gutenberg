@@ -9,13 +9,13 @@ const el = window.wp.element.createElement;
 
 const WpmozoMediaUploader = function(args){
 	
-    const editImage = ( args.hasOwnProperty('edit') ) ? args.edit : __("Edit Image", "wpmozo-addons-for-gutenberg"),
-    selectImage = ( args.hasOwnProperty('select') ) ? args.select : __("Select Image", "wpmozo-addons-for-gutenberg"),
-    allowedTypes = ( args.hasOwnProperty('allowedTypes') ) ? args.allowedTypes : ["image"],
-    accept = ( args.hasOwnProperty('accept') ) ? args.accept : "image/*",
-    props = args.props,
-    attrKye = args.attrKye,
-    imageSrc = props.attributes[ attrKye ];
+    const editImage  = ( args.hasOwnProperty('edit') ) ? args.edit : __("Edit Image", "wpmozo-addons-for-gutenberg"),
+        selectImage  = ( args.hasOwnProperty('select') ) ? args.select : __("Select Image", "wpmozo-addons-for-gutenberg"),
+        allowedTypes = ( args.hasOwnProperty('allowedTypes') ) ? args.allowedTypes : ["image"],
+        accept       = ( args.hasOwnProperty('accept') ) ? args.accept : "image/*",
+        props        = args.props,
+        attrKye      = args.attrKye,
+        imageSrc     = props.attributes[ attrKye ];
 
     const onSelect = function( media ){
         props.setAttributes( { [ attrKye ]: media.url} );

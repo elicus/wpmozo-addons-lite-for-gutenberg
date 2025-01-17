@@ -5,10 +5,10 @@ const { __experimentalToolsPanel, __experimentalToolsPanelItem } = window.wp.com
 
 const WpmozoDimensions = function(args){
 
-	const { DimensionKey, props } = args;
-	const preAttributes = props.preAttributes;
+	const { DimensionKey, props } = args, 
+		preAttributes             = props.preAttributes,
+		label                     = args.hasOwnProperty( 'label' ) ? args.label : __( 'Dimensions', 'wpmozo-addons-for-gutenberg' );
 	let DimensionsTypes           = args.hasOwnProperty( 'DimensionsTypes' ) ? args.DimensionsTypes : null;
-	const label                   = args.hasOwnProperty( 'label' ) ? args.label : __( 'Dimensions', 'wpmozo-addons-for-gutenberg' );
 
 	const dimensionsSetValue = function( styleType, value = null ) {
 
