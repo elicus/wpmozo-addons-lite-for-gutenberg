@@ -68,14 +68,31 @@ const attributes = {
 	containerpadding: {
 		type: "object"
 	},
+	sliderArrowColor: {
+		type: "string"
+	},
+	sliderArrowBackground: {
+		type: "string"
+	},
+	sliderActiveDoteColor: {
+		type: "string"
+	},
+	sliderInactiveDoteColor: {
+		type: "string"
+	},
+	arrowFontSize: {
+        type: "string",
+    },
 	arrowpadding: {
 		type: "object"
 	},
-	activeDoteColor: {
-		type: "string"
+	logoWidth: {
+		type: "number",
+		default: 100
 	},
-	inactiveDoteColor: {
-		type: "string"
+	logoHeight: {
+		type: "number",
+		default: 100
 	}
 };
 

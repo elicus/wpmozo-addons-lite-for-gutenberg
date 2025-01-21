@@ -6,22 +6,31 @@ import { __ } from "@wordpress/i18n";
 import {
     useBlockProps,
 } from '@wordpress/block-editor';
+import { Fragment } from "@wordpress/element";
 
 
 const Edit = (props) => {
 
     const attributes = props.attributes,
     setAttributes = props.setAttributes,
-    clientId = props.clientId;
+    clientId = props.clientId,
+    altText = ! window.wpmozo.wpmozo_is_empty( attributes.altText ) 
+        ? attributes.altText
+        : 'alt',
+    blockProps = useBlockProps({
+        className:"swiper-slide"
+    });
 
-    const blockProps = useBlockProps();
+    attributes.clientId = clientId;
 
 	return (
-        <div className="swiper-slide">
+        <Fragment>
             <Inspector {...props} />
-            <Style {...attributes} />
-                <img src={ attributes.logo.url } />
-        </div>
+            <div className="swiper-slide" id={`block-${clientId}`}>
+                <Style {...attributes} />
+                <img src={ attributes.logo.url } alt={altText} />
+            </div>
+        </Fragment>
     );
 
 };

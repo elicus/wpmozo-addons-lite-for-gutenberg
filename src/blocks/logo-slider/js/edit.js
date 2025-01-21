@@ -50,9 +50,8 @@ const Edit = (props) => {
 
     useEffect(() => {
         setTimeout(function() {
-            console.log(attributes);
+
             if ( ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) ) {
-                console.log('2');
 
                 let productsPerSlide = parseInt( attributes.logoPerSlide ),
         spaceBetweenSlides = parseInt( attributes.spaceBetweenSlides ),
@@ -127,7 +126,7 @@ const Edit = (props) => {
         };
 
                 if ( ! isInit && ! jQuery('.swiper[data-client-id="'+clientId+'"]').hasClass('swiper-initialized') ) {
-                    console.log('sdfsdfsdf');
+                    
                     const swiper = new Swiper('.swiper[data-client-id="'+clientId+'"]', options );
                     isInit = true;
                 }

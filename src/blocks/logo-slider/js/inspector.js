@@ -1,5 +1,5 @@
 
-import { WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../../components/index';
+import { WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 import { 
@@ -292,29 +292,30 @@ const Inspector = (props) => {
                 </PanelBody>
                 <PanelBody title={ __( 'Slider', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorPicker  
-                        ColorKey="arrow"
+                        ColorKey="slider"
                         props={props}
                         ColorTypes={[ 
                             {
-                                key: 'text',
+                                key: 'ArrowColor',
                                 label: __( 'Arrow Color', 'wpmozo-addons-for-gutenberg' ),
                             },
                             {
-                                key: 'background',
+                                key: 'ArrowBackground',
                                 label: __( 'Arrow Background', 'wpmozo-addons-for-gutenberg' ),
                             },
                             {
-                                key: 'activeDoteColor',
+                                key: 'ActiveDoteColor',
                                 label: __( 'Active Dot Pagination Color', 'wpmozo-addons-for-gutenberg' ),
                             },
                             {
-                                key: 'inactiveDoteColor',
+                                key: 'InactiveDoteColor',
                                 label: __( 'Inactive Dot Pagination Color', 'wpmozo-addons-for-gutenberg' ),
                             }
                         ]}
                     />
                     <WpmozoTypography
                         TypographyKey="arrow"
+                        label={ __( 'Arrow Font Size', 'wpmozo-addons-for-gutenberg' ) }
                         props={props}
                         TypoTypes={{
                             'FontSize': true
@@ -322,10 +323,29 @@ const Inspector = (props) => {
                     />
                     <WpmozoDimensions
                         DimensionKey='arrow'
+                        label={ __( 'Arrows Padding', 'wpmozo-addons-for-gutenberg' ) }
                         DimensionsTypes={{
                             padding: true
                         }}
                         props={props}
+                    />
+                </PanelBody>
+                <PanelBody title={ __( 'Logo', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <RangeControl
+                        label={ __( 'Logo Width', 'wpmozo-addons-for-gutenberg' ) }
+                        value={ attributes.logoWidth }
+                        onChange={ ( newValue ) => setAttributes( { logoWidth: newValue } ) }
+                        min={ 100 }
+                        step={ 1 }
+                        max={ 500 }
+                    />
+                    <RangeControl
+                        label={ __( 'Logo Height', 'wpmozo-addons-for-gutenberg' ) }
+                        value={ attributes.logoHeight }
+                        onChange={ ( newValue ) => setAttributes( { logoHeight: newValue } ) }
+                        min={ 100 }
+                        step={ 1 }
+                        max={ 500 }
                     />
                 </PanelBody>
             </InspectorControls>

@@ -14,5 +14,5 @@ registerBlockType( 'wpmozo/logo-slide', {
     parent: [ 'wpmozo/logo-slider' ],
     attributes: attributes,
     edit: Edit,
-	save: Save,
+    save: Save,
 });

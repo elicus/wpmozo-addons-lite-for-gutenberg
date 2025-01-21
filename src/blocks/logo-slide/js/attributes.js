@@ -3,7 +3,7 @@ import { __ } from "@wordpress/i18n";
 
 const attributes = {
 	logo: {
-		type: "array",
+		type: "object",
 	},
 	altText: {
 		type: "string",

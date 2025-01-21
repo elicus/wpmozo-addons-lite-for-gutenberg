@@ -1,28 +1,57 @@
 
 import Style from "./style";
 
-import { useBlockProps } from "@wordpress/block-editor";
+import { useBlockProps, InnerBlocks, useInnerBlocksProps } from "@wordpress/block-editor";
+import { useSelect } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 
-const Save = ({ attributes }) => {
+    const Save = ({ attributes, clientId }) => {
 
-    const clientId = attributes.clientId;
+      const wpmozoCoreFun = window.wpmozo,
+        blockProps = useBlockProps.save();
 
-    return (
+      let innerBlocks = [],
+       innerBlocksProps = null;
+ if (  ! wpmozoCoreFun.wpmozo_is_empty( attributes.images ) ) {
+      
+    attributes.images.map((logo) => {
+            innerBlocks.push(
+                [ 
+                    'wpmozo/logo-slide',
+                    {
+                        logo: logo,
+                        lock: { 
+                            remove: true 
+                        }
+                    },
+                ]
+            )
+        });
+
+    innerBlocksProps = useInnerBlocksProps.save( blockProps, {
+        allowedBlocks: [ 'wpmozo/logo-slide' ],
+        template: innerBlocks,
+    });
+
+}
+    if( wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) ) {
+        return null;
+    }
+
+      return (
         <div {...useBlockProps.save({ className: 'wpmozo-adfgu-logo-slider-main' })} id={`block-${clientId}`}>
             <Style {...attributes} />
-             <swiper-container
-                  slides-per-view="3"
-                  navigation="true"
-                  pagination="true"
-                >
-                  <swiper-slide>Slide 1</swiper-slide>
-                  <swiper-slide>Slide 2</swiper-slide>
-                  <swiper-slide>Slide 3</swiper-slide>
-                  <swiper-slide>Slide 4</swiper-slide>
-                  <swiper-slide>Slide 5</swiper-slide>
-                </swiper-container>
+            <div className="swiper" data-client-id={clientId}>
+                <div className="swiper-wrapper">
+                    { innerBlocksProps.children }
+                </div>
+                <div className="swiper-pagination"></div>
+                <div className="swiper-button-prev"></div>
+                <div className="swiper-button-next"></div>
+            </div>
         </div>
-    );
-};
+      );
+
+    };
 
 export default Save;
