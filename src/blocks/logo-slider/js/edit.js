@@ -22,8 +22,10 @@ const Edit = (props) => {
     attributes = props.attributes,
     setAttributes = props.setAttributes,
     clientId = props.clientId,
-    blockProps = useBlockProps(),
+    blockProps = useBlockProps({ className: 'wpmozo-adfgu-logo-slider-main' }),
     swiperElRef = useRef(null);
+
+    attributes.clientId = clientId;
 
     let innerBlocks = [],
     isInit = false;
@@ -161,8 +163,8 @@ const Edit = (props) => {
             />
         }
             <Inspector {...props} />
-            <Style {...attributes} />
-            <div { ...blockProps }>
+            <div { ...blockProps } id={`block-${clientId}`}>
+                <Style {...attributes} />
                 <div className="swiper" ref={swiperElRef} data-client-id={clientId}>
                     <div className="swiper-wrapper">
                         { ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) &&

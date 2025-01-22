@@ -1,56 +1,59 @@
 
 import Style from "./style";
 
-import { useBlockProps, InnerBlocks, useInnerBlocksProps } from "@wordpress/block-editor";
+import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 import { useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 
-    const Save = ({ attributes, clientId }) => {
+    const Save = ({ attributes }) => {
 
-      const wpmozoCoreFun = window.wpmozo,
-        blockProps = useBlockProps.save();
+        const wpmozoCoreFun = window.wpmozo,
+            clientId = attributes.clientId,
+            blockProps = useBlockProps.save();
 
-      let innerBlocks = [],
-       innerBlocksProps = null;
- if (  ! wpmozoCoreFun.wpmozo_is_empty( attributes.images ) ) {
-      
-    attributes.images.map((logo) => {
-            innerBlocks.push(
-                [ 
-                    'wpmozo/logo-slide',
-                    {
-                        logo: logo,
-                        lock: { 
-                            remove: true 
-                        }
-                    },
-                ]
-            )
-        });
+        let innerBlocks = [],
+           innerBlocksProps = null;
 
-    innerBlocksProps = useInnerBlocksProps.save( blockProps, {
-        allowedBlocks: [ 'wpmozo/logo-slide' ],
-        template: innerBlocks,
-    });
+        if (  ! wpmozoCoreFun.wpmozo_is_empty( attributes.images ) ) {
+              
+            attributes.images.map((logo) => {
+                innerBlocks.push(
+                    [ 
+                        'wpmozo/logo-slide',
+                        {
+                            logo: logo,
+                            lock: { 
+                                remove: true 
+                            }
+                        },
+                    ]
+                )
+            });
 
-}
-    if( wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) ) {
-        return null;
-    }
+            innerBlocksProps = useInnerBlocksProps.save( blockProps, {
+                allowedBlocks: [ 'wpmozo/logo-slide' ],
+                template: innerBlocks,
+            });
 
-      return (
-        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-logo-slider-main' })} id={`block-${clientId}`}>
-            <Style {...attributes} />
-            <div className="swiper" data-client-id={clientId}>
-                <div className="swiper-wrapper">
-                    { innerBlocksProps.children }
+        }
+
+        if( wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) ) {
+            return null;
+        }
+
+        return (
+            <div {...innerBlocksProps} id={`block-${clientId}`}>
+                <Style {...attributes} />
+                <div className="swiper" data-client-id={clientId}>
+                    <div className="swiper-wrapper">
+                        { innerBlocksProps.children }
+                    </div>
+                    <div className="swiper-pagination"></div>
+                    <div className="swiper-button-prev"></div>
+                    <div className="swiper-button-next"></div>
                 </div>
-                <div className="swiper-pagination"></div>
-                <div className="swiper-button-prev"></div>
-                <div className="swiper-button-next"></div>
             </div>
-        </div>
-      );
+        );
 
     };
 
