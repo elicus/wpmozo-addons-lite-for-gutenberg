@@ -50,12 +50,9 @@ const Edit = (props) => {
         template: innerBlocks,
     });
 
-    useEffect(() => {
-        setTimeout(function() {
+    const initSwiper = ( attributes ) => {
 
-            if ( ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) ) {
-
-                let productsPerSlide = parseInt( attributes.logoPerSlide ),
+        let productsPerSlide = parseInt( attributes.logoPerSlide ),
         spaceBetweenSlides = parseInt( attributes.spaceBetweenSlides ),
         slidesPerGroup = parseInt( attributes.slidesPerGroup ),
         autoHeightSlider = false;
@@ -127,15 +124,21 @@ const Edit = (props) => {
             },
         };
 
-                if ( ! isInit && ! jQuery('.swiper[data-client-id="'+clientId+'"]').hasClass('swiper-initialized') ) {
-                    
-                    const swiper = new Swiper('.swiper[data-client-id="'+clientId+'"]', options );
-                    isInit = true;
-                }
+        const swiper = new Swiper('.swiper[data-client-id="'+clientId+'"]', options );    
+
+    }
+
+    useEffect(() => {
+        setTimeout(function() {
+
+            if ( ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) ) {
+                initSwiper( attributes );
             }
 
         }, 10);
-    });
+    }, [
+        attributes.logoPerSlide
+    ]);
 
 	return (
         <Fragment>
