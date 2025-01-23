@@ -91,11 +91,34 @@ const attributes = {
 	},
 	logoWidth: {
 		type: "number",
-		default: 100
+		default: 150
 	},
 	logoHeight: {
 		type: "number",
-		default: 100
+		default: 150
+	},
+	tabletLogoPerSlide: {
+		type: "string",
+		default: '3'
+	},
+	tabletSlidesPerGroup: {
+		type: "string",
+		default: '1'
+	},
+	tabletSpaceBetweenSlides: {
+		type: "number",
+		default: 20
+	},
+	mobileLogoPerSlide: {
+		type: "string",
+		default: '1'
+	},
+	mobileSlidesPerGroup: {
+		type: "string",
+		default: '1'
+	},
+	mobileSpaceBetweenSlides: {
+		type: "number"
 	}
 };
 

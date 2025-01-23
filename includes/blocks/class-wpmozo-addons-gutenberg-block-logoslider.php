@@ -75,6 +75,13 @@ class WPMozo_Addons_Gutenberg_Block_Logoslider extends WPMozo_Addons_Gutenberg_B
 			'ver'    => time(),
 		);
 
+		$this->styles[] = array(
+			'handle' => $this->plugin_name . '-logo-slide-style',
+			'src'    => WPMOZO_ADDONS_GUTENBERG_SRC_DIR_URL . 'blocks/logo-slide/css/logo-slide.css',
+			'deps'   => array(),
+			'ver'    => time(),
+		);
+
 		$this->args = array(
 			'script_handles' => array(
 				$this->plugin_name . '-swiper-script',

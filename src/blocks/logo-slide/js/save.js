@@ -13,7 +13,9 @@ const Save = ({attributes}) => {
     return (
         <div className="swiper-slide" id={`block-${clientId}`}>
             <Style {...attributes} />
-            <img src={ attributes.logo.url } alt={altText} />
+            <div className="logo-wrap">
+                <img className="logo-img" src={ attributes.logo.url } alt={altText} />
+            </div>
         </div>
     );
 };

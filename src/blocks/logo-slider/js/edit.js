@@ -28,7 +28,8 @@ const Edit = (props) => {
     attributes.clientId = clientId;
 
     let innerBlocks = [],
-    isInit = false;
+    swiperInstance = null;
+
     if (  ! wpmozoCoreFun.wpmozo_is_empty( attributes.images ) ) {
         attributes.images.map((logo) => {
             innerBlocks.push(
@@ -124,18 +125,27 @@ const Edit = (props) => {
             },
         };
 
-        const swiper = new Swiper('.swiper[data-client-id="'+clientId+'"]', options );    
+        const swiper = new Swiper('.swiper[data-client-id="'+clientId+'"]', options );   
 
+        return swiper;
     }
 
     useEffect(() => {
-        setTimeout(function() {
+        if ( ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) && ! jQuery('.swiper[data-client-id="'+clientId+'"]').hasClass('swiper-initialized') ) {
+            swiperInstance = initSwiper( attributes );
+        }
+    });
 
-            if ( ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) ) {
-                initSwiper( attributes );
-            }
+    useEffect(() => {
 
-        }, 10);
+        let el = jQuery( '.swiper[data-client-id="'+clientId+'"]' )[0],
+            swiperInstance = ( el.hasOwnProperty( 'swiper' ) ) ? el.swiper : null;
+
+        if ( ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) && ! wpmozoCoreFun.wpmozo_is_empty( swiperInstance ) ) {
+            swiperInstance.destroy(true, true);
+            initSwiper( attributes );
+        }
+
     }, [
         attributes.logoPerSlide
     ]);

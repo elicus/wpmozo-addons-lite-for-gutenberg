@@ -7,13 +7,18 @@ import {
     ToggleControl,
     TextControl,
     SelectControl,
-    RangeControl
+    RangeControl,
+    BaseControl,
+    ButtonGroup,
+    Button
 } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 const Inspector = (props) => {
 
     const attributes = props.attributes,
-    setAttributes = props.setAttributes;
+    setAttributes = props.setAttributes,
+    [ deviceType, setDeviceType ] = useState('tablet');
 
     const oneToTwenty = [
         {
@@ -268,6 +273,76 @@ const Inspector = (props) => {
                             />
                         </>
                     }
+                </PanelBody>
+                <PanelBody title={ __( 'Slider Responsive', 'wpmozo-addons-for-gutenberg' ) } initialOpen={false}>
+                    <BaseControl
+                        className='wpmozo-color-combo-wrap'
+                    >    
+                        <ButtonGroup>
+                            <Button
+                                className='wpmozo-color-combo-type'
+                                isPressed={ ( 'tablet' === deviceType ) ? true : false }
+                                onClick={ () => setDeviceType( 'tablet' ) }
+                            >
+                                { __( 'Tablet', 'wpmozo-addons-for-gutenberg' ) }
+                            </Button>
+                            <Button 
+                                className='wpmozo-color-combo-type'
+                                isPressed={ ( 'mobile' === deviceType ) ? true : false }
+                                onClick={ () => setDeviceType( 'mobile' ) }
+                            >
+                                { __( 'Mobile', 'wpmozo-addons-for-gutenberg' ) }
+                            </Button>
+                        </ButtonGroup>
+                        { 'tablet' === deviceType &&
+                            <>
+                                <SelectControl
+                                    label={ __( 'Number of Logo Per View', 'wpmozo-addons-for-gutenberg' ) }
+                                    value={ attributes.tabletLogoPerSlide }
+                                    options={oneToTwenty}
+                                    onChange={ ( newValue ) => setAttributes( { tabletLogoPerSlide: newValue } ) }
+                                />
+                                <SelectControl
+                                    label={ __( 'Number of Slides Per Group', 'wpmozo-addons-for-gutenberg' ) }
+                                    value={ attributes.tabletSlidesPerGroup }
+                                    options={oneToTwenty}
+                                    onChange={ ( newValue ) => setAttributes( { tabletSlidesPerGroup: newValue } ) }
+                                />
+                                <RangeControl
+                                    label={ __( 'Space between Slides', 'wpmozo-addons-for-gutenberg' ) }
+                                    value={ attributes.tabletSpaceBetweenSlides }
+                                    onChange={ ( newValue ) => setAttributes( { tabletSpaceBetweenSlides: newValue } ) }
+                                    min={ 0 }
+                                    step={ 1 }
+                                    max={ 100 }
+                                />
+                            </>
+                        }
+                        { 'mobile' === deviceType &&
+                            <>
+                                <SelectControl
+                                    label={ __( 'Number of Logo Per View', 'wpmozo-addons-for-gutenberg' ) }
+                                    value={ attributes.mobileLogoPerSlide }
+                                    options={oneToTwenty}
+                                    onChange={ ( newValue ) => setAttributes( { mobileLogoPerSlide: newValue } ) }
+                                />
+                                <SelectControl
+                                    label={ __( 'Number of Slides Per Group', 'wpmozo-addons-for-gutenberg' ) }
+                                    value={ attributes.mobileSlidesPerGroup }
+                                    options={oneToTwenty}
+                                    onChange={ ( newValue ) => setAttributes( { mobileSlidesPerGroup: newValue } ) }
+                                />
+                                <RangeControl
+                                    label={ __( 'Space between Slides', 'wpmozo-addons-for-gutenberg' ) }
+                                    value={ attributes.mobileSpaceBetweenSlides }
+                                    onChange={ ( newValue ) => setAttributes( { mobileSpaceBetweenSlides: newValue } ) }
+                                    min={ 0 }
+                                    step={ 1 }
+                                    max={ 100 }
+                                />
+                            </>
+                        }
+                    </BaseControl>
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
