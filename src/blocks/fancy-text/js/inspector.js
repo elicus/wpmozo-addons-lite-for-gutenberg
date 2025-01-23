@@ -18,89 +18,89 @@ const Inspector = (props) => {
     clientId = attributes.clientId,
     bgAllSize = [
         {
-            label: __( 'Cover', 'wpmozo-addons-for-gutenberg' ),
+            label: __( 'Cover', 'wpmozo-addons-lite-for-gutenberg' ),
             value: 'cover',
         },
         {
-            label: __( 'Contain', 'wpmozo-addons-for-gutenberg' ),
+            label: __( 'Contain', 'wpmozo-addons-lite-for-gutenberg' ),
             value: 'contain',
         },
         {
-            label: __( 'Auto', 'wpmozo-addons-for-gutenberg' ),
+            label: __( 'Auto', 'wpmozo-addons-lite-for-gutenberg' ),
             value: 'auto',
         }
     ],
     bgAllPositions = [
         {
-            label: __('Top Left', 'wpmozo-addons-for-gutenberg'),
+            label: __('Top Left', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'top left'
         },
         {
-            label: __('Top Center', 'wpmozo-addons-for-gutenberg'),
+            label: __('Top Center', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'top center'
         },
         {
-            label: __('Top Right', 'wpmozo-addons-for-gutenberg'),
+            label: __('Top Right', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'top right'
         },
         {
-            label: __('Center Left', 'wpmozo-addons-for-gutenberg'),
+            label: __('Center Left', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'center left'
         },
         {
-            label: __('Center', 'wpmozo-addons-for-gutenberg'),
+            label: __('Center', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'center'
         },
         {
-            label: __('Center Right', 'wpmozo-addons-for-gutenberg'),
+            label: __('Center Right', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'center right'
         },
         {
-            label: __('Bottom Left', 'wpmozo-addons-for-gutenberg'),
+            label: __('Bottom Left', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'bottom left'
         },
         {
-            label: __('Bottom Center', 'wpmozo-addons-for-gutenberg'),
+            label: __('Bottom Center', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'bottom center'
         },
         {
-            label: __('Bottom Right', 'wpmozo-addons-for-gutenberg'),
+            label: __('Bottom Right', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'bottom right'
         },
     ],
     bgAllRepeat = [
         {
-            label: __('No Repeat', 'wpmozo-addons-for-gutenberg'),
+            label: __('No Repeat', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'no-repeat'
         },                  
         {
-            label: __('Repeat', 'wpmozo-addons-for-gutenberg'),
+            label: __('Repeat', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'repeat'
         },
         {
-            label: __('Repeat X (horizontal)', 'wpmozo-addons-for-gutenberg'),
+            label: __('Repeat X (horizontal)', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'repeat-x'
         },
         {
-            label: __('Repeat Y (vertical)', 'wpmozo-addons-for-gutenberg'),
+            label: __('Repeat Y (vertical)', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'repeat-y'
         },
         {
-            label: __('Space', 'wpmozo-addons-for-gutenberg'),
+            label: __('Space', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'space'
         },
         {
-            label: __('Round', 'wpmozo-addons-for-gutenberg'),
+            label: __('Round', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'round'
         },
     ],
     bgAllOverlay = [
         {
-            label: __('None', 'wpmozo-addons-for-gutenberg'),
+            label: __('None', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'none'
         },
         {
-            label: __('Color', 'wpmozo-addons-for-gutenberg'),
+            label: __('Color', 'wpmozo-addons-lite-for-gutenberg'),
             value: 'color'
         },
     ];
@@ -112,31 +112,31 @@ const Inspector = (props) => {
 	return (
         <>
             <InspectorControls key="controls">
-                <PanelBody title={ __( 'Fancy Text Content', 'wpmozo-addons-for-gutenberg' ) } initialOpen={false}>
+                <PanelBody title={ __( 'Fancy Text Content', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
                     <SelectControl
-                        label={ __( 'Text Style', 'wpmozo-addons-for-gutenberg' ) }
+                        label={ __( 'Text Style', 'wpmozo-addons-lite-for-gutenberg' ) }
                         value={ attributes.textStyle }
                         options={[
                             {
-                                label: __( 'Gradient', 'wpmozo-addons-for-gutenberg' ),
+                                label: __( 'Gradient', 'wpmozo-addons-lite-for-gutenberg' ),
                                 value: 'gradient',
                             },
                             {
-                                label: __( 'Background Clipping', 'wpmozo-addons-for-gutenberg' ),
+                                label: __( 'Background Clipping', 'wpmozo-addons-lite-for-gutenberg' ),
                                 value: 'clipping',
                             }
                         ]}
                         onChange={ ( newValue ) => setAttributes( { textStyle: newValue } ) }
                     />
                     <TextareaControl
-                      label={ __( 'Fancy Text', 'wpmozo-addons-for-gutenberg' ) }
+                      label={ __( 'Fancy Text', 'wpmozo-addons-lite-for-gutenberg' ) }
                       onChange={ ( newValue ) => setAttributes( { fancyText: newValue } ) }
                       value={ attributes.fancyText }
                     />
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
-                <PanelBody title={ __( 'Fancy Text Style', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Fancy Text Style', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     { 'gradient' === attributes.textStyle && (
                         <>
                             <WpmozoColorPicker
@@ -145,7 +145,7 @@ const Inspector = (props) => {
                                 ColorTypes={[ 
                                     {
                                         key: 'Background',
-                                        label: __( 'Background', 'wpmozo-addons-for-gutenberg' ),
+                                        label: __( 'Background', 'wpmozo-addons-lite-for-gutenberg' ),
                                         onlyGradient: true,
                                     },
                                 ]}
@@ -155,7 +155,7 @@ const Inspector = (props) => {
                     { 'clipping' === attributes.textStyle && (
                         <>
                             <BaseControl 
-                                label={ __( 'Background Image', 'wpmozo-addons-for-gutenberg' ) }
+                                label={ __( 'Background Image', 'wpmozo-addons-lite-for-gutenberg' ) }
                             >
                                 <MediaUploadCheck>
                                     <MediaUpload
@@ -176,7 +176,7 @@ const Inspector = (props) => {
                                                                 open();
                                                             }}
                                                         >
-                                                            {__( 'Select Image', 'wpmozo-addons-for-gutenberg' )}
+                                                            {__( 'Select Image', 'wpmozo-addons-lite-for-gutenberg' )}
                                                         </div>
                                                         <img
                                                             src={ backImage }
@@ -190,25 +190,25 @@ const Inspector = (props) => {
                                 </MediaUploadCheck>
                             </BaseControl>
                             <SelectControl
-                                label={ __( 'Background Size', 'wpmozo-addons-for-gutenberg' ) }
+                                label={ __( 'Background Size', 'wpmozo-addons-lite-for-gutenberg' ) }
                                 value={ attributes.textBgSize }
                                 options={ bgAllSize }
                                 onChange={ ( newValue ) => setAttributes( { textBgSize: newValue } ) }
                             />
                             <SelectControl
-                                label={ __( 'Background Position', 'wpmozo-addons-for-gutenberg' ) }
+                                label={ __( 'Background Position', 'wpmozo-addons-lite-for-gutenberg' ) }
                                 value={ attributes.textBgPosition }
                                 options={ bgAllPositions }
                                 onChange={ ( newValue ) => setAttributes( { textBgPosition: newValue } ) }
                             /> 
                             <SelectControl
-                                label={ __( 'Background Repeat', 'wpmozo-addons-for-gutenberg' ) }
+                                label={ __( 'Background Repeat', 'wpmozo-addons-lite-for-gutenberg' ) }
                                 value={ attributes.textBgRepeat }
                                 options={ bgAllRepeat }
                                 onChange={ ( newValue ) => setAttributes( { textBgRepeat: newValue } ) }
                             />
                             <SelectControl
-                                label={ __( 'Background Overlay', 'wpmozo-addons-for-gutenberg' ) }
+                                label={ __( 'Background Overlay', 'wpmozo-addons-lite-for-gutenberg' ) }
                                 value={ attributes.textBgOverlay }
                                 options={ bgAllOverlay }
                                 onChange={ ( newValue ) => setAttributes( { textBgOverlay: newValue } ) }
@@ -221,7 +221,7 @@ const Inspector = (props) => {
                                         ColorTypes={[ 
                                             {
                                                 key: 'Color',
-                                                label: __( 'Clip Background Color', 'wpmozo-addons-for-gutenberg' ),
+                                                label: __( 'Clip Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
                                                 withGradient: true,
                                             },
                                         ]}
@@ -236,14 +236,14 @@ const Inspector = (props) => {
                                 </>
                             )} 
                             <WpmozoAlignment
-                                label={__( 'Text Alignment', 'wpmozo-addons-for-gutenberg')}
+                                label={__( 'Text Alignment', 'wpmozo-addons-lite-for-gutenberg')}
                                 onChange={ ( newValue ) => setAttributes( { textAlignment: newValue } ) }
                                 value={ attributes.textAlignment }
                             />                
                         </>
                     )}
                 </PanelBody>
-                <PanelBody title={ __( 'Fancy Text Typography', 'wpmozo-addons-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Fancy Text Typography', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoTypography
                         TypographyKey="text"
                         props={props}

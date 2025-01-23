@@ -9,8 +9,8 @@ const el = window.wp.element.createElement;
 
 const WpmozoMediaUploader = function(args){
 	
-    const editImage  = ( args.hasOwnProperty('edit') ) ? args.edit : __("Edit Image", "wpmozo-addons-for-gutenberg"),
-        selectImage  = ( args.hasOwnProperty('select') ) ? args.select : __("Select Image", "wpmozo-addons-for-gutenberg"),
+    const editImage  = ( args.hasOwnProperty('edit') ) ? args.edit : __("Edit Image", "wpmozo-addons-lite-for-gutenberg"),
+        selectImage  = ( args.hasOwnProperty('select') ) ? args.select : __("Select Image", "wpmozo-addons-lite-for-gutenberg"),
         allowedTypes = ( args.hasOwnProperty('allowedTypes') ) ? args.allowedTypes : ["image"],
         accept       = ( args.hasOwnProperty('accept') ) ? args.accept : "image/*",
         props        = args.props,

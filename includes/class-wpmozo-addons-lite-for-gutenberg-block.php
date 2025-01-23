@@ -5,19 +5,19 @@
  * @link       https://elicus.com
  * @since      1.0.0
  *
- * @package    WPMozo_Addons_For_Gutenberg
- * @subpackage WPMozo_Addons_For_Gutenberg/includes
+ * @package    WPMozo_Addons_Lite_For_Gutenberg
+ * @subpackage WPMozo_Addons_Lite_For_Gutenberg/includes
  */
 
 /**
  * This class responsible for defining all methods for gutenberg block.
  *
  * @since      1.0.0
- * @package    WPMozo_Addons_For_Gutenberg
- * @subpackage WPMozo_Addons_For_Gutenberg/includes
+ * @package    WPMozo_Addons_Lite_For_Gutenberg
+ * @subpackage WPMozo_Addons_Lite_For_Gutenberg/includes
  * @author     Elicus <hello@elicus.com>
  */
-abstract class WPMozo_Addons_Gutenberg_Block {
+abstract class WPMozo_Addons_Lite_Gutenberg_Block {
 
     /**
      * The unique identifier of this plugin.
@@ -113,7 +113,7 @@ abstract class WPMozo_Addons_Gutenberg_Block {
      */
     public function get_uri(){
         return sprintf( '%1$s%2$s', 
-            WPMOZO_ADDONS_GUTENBERG_SRC_DIR_URL, 
+            WPMOZO_ADDONS_LITE_GUTENBERG_SRC_DIR_URL, 
             $this->block_name 
         );
     }
@@ -221,7 +221,7 @@ abstract class WPMozo_Addons_Gutenberg_Block {
         
         $this->init();
 
-        $args = apply_filters( 'wpmozo_addons_for_gutenberg_block_' . $this->get_name() . '_args', $this->args );
+        $args = apply_filters( 'wpmozo_addons_litefor_gutenberg_block_' . $this->get_name() . '_args', $this->args );
         $full_name = $this->get_full_name();
 
         register_block_type( $full_name, $args );

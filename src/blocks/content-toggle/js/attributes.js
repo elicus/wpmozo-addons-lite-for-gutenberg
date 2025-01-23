@@ -44,7 +44,7 @@ const attributes = {
     },
     toggleOneTitle: {
         type: "string",
-        default: __('Title One', 'wpmozo-addons-for-gutenberg')
+        default: __('Title One', 'wpmozo-addons-lite-for-gutenberg')
     },
     titleOneColor: {
         type: "string",
@@ -95,7 +95,7 @@ const attributes = {
     },
     toggleTwoTitle: {
         type: "string",
-        default: __('Title Two', 'wpmozo-addons-for-gutenberg')
+        default: __('Title Two', 'wpmozo-addons-lite-for-gutenberg')
     },
     toggleTwoIcon: {
         type: "string",

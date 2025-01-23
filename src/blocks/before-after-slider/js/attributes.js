@@ -42,7 +42,7 @@ const attributes = {
     },
     beforeLabel: {
         type: "string",
-        default: __( 'Before', 'wpmozo-addons-for-gutenberg' )
+        default: __( 'Before', 'wpmozo-addons-lite-for-gutenberg' )
     },
     beforeLabelbackground: {
         type: "string",
@@ -91,7 +91,7 @@ const attributes = {
     },
     afterLabel: {
         type: "string",
-        default: __( 'After', 'wpmozo-addons-for-gutenberg' )
+        default: __( 'After', 'wpmozo-addons-lite-for-gutenberg' )
     },
     afterLabelbackground: {
         type: "string",

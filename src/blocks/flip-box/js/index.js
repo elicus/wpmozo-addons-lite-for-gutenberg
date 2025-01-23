@@ -7,7 +7,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
 registerBlockType( 'wpmozo/flip-box', {
-	title: __( 'Flip Box', 'wpmozo-addons-for-gutenberg' ),
+	title: __( 'Flip Box', 'wpmozo-addons-lite-for-gutenberg' ),
     icon: '',
     apiVersion: 3,
     category: 'wpmozo',

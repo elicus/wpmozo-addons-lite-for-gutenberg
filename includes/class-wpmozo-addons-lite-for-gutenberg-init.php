@@ -5,25 +5,25 @@
  * @link       https://elicus.com
  * @since      1.0.0
  *
- * @package    WPMozo_Addons_For_Gutenberg
- * @subpackage WPMozo_Addons_For_Gutenberg/includes
+ * @package    WPMozo_Addons_Lite_For_Gutenberg
+ * @subpackage WPMozo_Addons_Lite_For_Gutenberg/includes
  */
 
 /**
  * This class responsible for defining all actions for WP initialization of the plugin.
  *
  * @since      1.0.0
- * @package    WPMozo_Addons_For_Gutenberg
- * @subpackage WPMozo_Addons_For_Gutenberg/includes
+ * @package    WPMozo_Addons_Lite_For_Gutenberg
+ * @subpackage WPMozo_Addons_Lite_For_Gutenberg/includes
  * @author     Elicus <hello@elicus.com>
  */
-class WPMozo_Addons_Gutenberg_Init {
+class WPMozo_Addons_Lite_Gutenberg_Init {
 
 	/**
 	 * The instance of blocks class.
 	 *
 	 * @since 1.0.0
-	 * @var WPMozo_Addons_Gutenberg_Blocks $wpmozo_blocks The instance of blocks class.
+	 * @var WPMozo_Addons_Lite_Gutenberg_Blocks $wpmozo_blocks The instance of blocks class.
 	 */
 	public $wpmozo_blocks;
 
@@ -34,8 +34,8 @@ class WPMozo_Addons_Gutenberg_Init {
 	 */
 	public function __construct() {
 
-		require_once WPMOZO_ADDONS_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-gutenberg-blocks.php';
-		$this->wpmozo_blocks = WPMozo_Addons_Gutenberg_Blocks::instance();
+		require_once WPMOZO_ADDONS_LITE_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-lite-for-gutenberg-blocks.php';
+		$this->wpmozo_blocks = WPMozo_Addons_Lite_Gutenberg_Blocks::instance();
 
 	}
 
@@ -62,7 +62,7 @@ class WPMozo_Addons_Gutenberg_Init {
 
 		wp_register_script(
 			$plugin_name . '-common-function-script',
-			WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'js/wpmozo-common-functions.js',
+			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'js/wpmozo-common-functions.js',
 			array(),
 			time(),
 			true
@@ -72,7 +72,7 @@ class WPMozo_Addons_Gutenberg_Init {
 
 		wp_register_script(
 			$plugin_name . '-editor-script',
-			WPMOZO_ADDONS_GUTENBERG_PLUGIN_DIR_URL . 'build/index.js',
+			WPMOZO_ADDONS_LITE_GUTENBERG_PLUGIN_DIR_URL . 'build/index.js',
 			array( 'react', 'wp-polyfill', 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-api', 'wp-api-fetch', 'lodash', 'wp-editor', 'wp-dom-ready', 'jquery' ),
 			time(),
 			true
@@ -83,14 +83,14 @@ class WPMozo_Addons_Gutenberg_Init {
 		$icons = $this->wpmozo_get_icons();
 
 		$all_options = array(
-			'placeholderImg' => WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'images/placeholder.webp',
+			'placeholderImg' => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'images/placeholder.webp',
 			'icons'          => $icons,
 		);
 		wp_localize_script( $plugin_name . '-editor-script', 'wpmozo_adfgu_editor_object', $all_options );
 
 		wp_register_style(
 			$plugin_name . '-editor-style',
-			WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'css/wpmozo-addons-for-gutenberg-editor.css',
+			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/wpmozo-addons-lite-for-gutenberg-editor.css',
 			array( 'wp-edit-blocks' ),
 			time()
 		);
@@ -111,7 +111,7 @@ class WPMozo_Addons_Gutenberg_Init {
 
 		wp_register_script(
 			$plugin_name . '-common-function-script',
-			WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'js/wpmozo-common-functions.js',
+			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'js/wpmozo-common-functions.js',
 			array(),
 			time(),
 			true
@@ -121,7 +121,7 @@ class WPMozo_Addons_Gutenberg_Init {
 
 		wp_register_script(
 			$plugin_name . '-blocks-script',
-			WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'js/frontend.js',
+			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'js/frontend.js',
 			array( 'wp-i18n', 'jquery' ),
 			time(),
 			true
@@ -151,7 +151,7 @@ class WPMozo_Addons_Gutenberg_Init {
 			array(
 				array(
 					'slug'  => 'wpmozo',
-					'title' => __( 'WPMozo', 'wpmozo-addons-for-gutenberg' ),
+					'title' => __( 'WPMozo', 'wpmozo-addons-lite-for-gutenberg' ),
 				),
 			)
 		);
@@ -165,7 +165,7 @@ class WPMozo_Addons_Gutenberg_Init {
 	 */
 	public function wpmozo_get_icons() {
 
-		$json = file_get_contents( WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_PATH . 'libs/fontawesome/fonts.json' );
+		$json = file_get_contents( WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_PATH . 'libs/fontawesome/fonts.json' );
 		if ( empty( $json ) ) {
 			return array();
 		}
@@ -176,7 +176,7 @@ class WPMozo_Addons_Gutenberg_Init {
 		$klsdf->value  = '';
 		$jklsfd[]      = $klsdf;
 		$default_icons = array_merge( $jklsfd, $default_icons );
-		$icons         = apply_filters( 'wpmozo_addons_gutenberg_block_icons', $default_icons );
+		$icons         = apply_filters( 'wpmozo_addons_litegutenberg_block_icons', $default_icons );
 		return $icons;
 	}
 

@@ -174,7 +174,7 @@ const WpmozoRangeSize = function(args){
 			        el(
 			        	Button,
 			        	{
-			        		text: __( 'Reset', 'wpmozo-addons-for-gutenberg' ),
+			        		text: __( 'Reset', 'wpmozo-addons-lite-for-gutenberg' ),
 			        		variant: 'secondary',
 			        		onClick: () => {
 			        			let sizeRange = setValue( 'value', null );

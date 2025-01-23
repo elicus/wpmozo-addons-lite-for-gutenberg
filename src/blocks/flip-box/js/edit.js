@@ -21,7 +21,7 @@ const Edit = (props) => {
     layoutType = ( 'flip' === attributes.animationType ) ? ' layout1' : ' layout2',
     blockProps = useBlockProps({ className: 'wpmozo-adfgu-flip-box-main' }),
     [ editMode, setEditMode ] = useState(false),
-    editModeLabel = ( ! editMode ) ? __( 'Front', 'wpmozo-addons-for-gutenberg' ) : __( 'Back', 'wpmozo-addons-for-gutenberg' );
+    editModeLabel = ( ! editMode ) ? __( 'Front', 'wpmozo-addons-lite-for-gutenberg' ) : __( 'Back', 'wpmozo-addons-lite-for-gutenberg' );
 
     attributes.clientId = clientId;
 
@@ -115,14 +115,14 @@ const Edit = (props) => {
                                         tagName={ attributes.frontHeadingLavel }
                                         value={ attributes.frontTitle }
                                         onChange={ ( newValue ) => setAttributes( { frontTitle: newValue } ) } 
-                                        placeholder={ __('Front Title', 'wpmozo-addons-for-gutenberg') }
+                                        placeholder={ __('Front Title', 'wpmozo-addons-lite-for-gutenberg') }
                                     />
                                 </div>
                                 <div className="wpmozo-adfgu-flip-box-description">
                                     <RichText
                                         value={ attributes.frontContnet }
                                         onChange={ ( newValue ) => setAttributes( { frontContnet: newValue } ) } 
-                                        placeholder={ __('Here you can set front text.', 'wpmozo-addons-for-gutenberg') }
+                                        placeholder={ __('Here you can set front text.', 'wpmozo-addons-lite-for-gutenberg') }
                                     />
                                 </div>
                             </div>
@@ -154,14 +154,14 @@ const Edit = (props) => {
                                         tagName={ attributes.backHeadingLavel }
                                         value={ attributes.backTitle }
                                         onChange={ ( newValue ) => setAttributes( { backTitle: newValue } ) } 
-                                        placeholder={ __('Back Title', 'wpmozo-addons-for-gutenberg') }
+                                        placeholder={ __('Back Title', 'wpmozo-addons-lite-for-gutenberg') }
                                     />
                                 </div>
                                 <div className="wpmozo-adfgu-flip-box-description">
                                     <RichText
                                         value={ attributes.backContnet }
                                         onChange={ ( newValue ) => setAttributes( { backContnet: newValue } ) } 
-                                        placeholder={ __('Here you can set back text.', 'wpmozo-addons-for-gutenberg') }
+                                        placeholder={ __('Here you can set back text.', 'wpmozo-addons-lite-for-gutenberg') }
                                     />
                                 </div>
                                 { 

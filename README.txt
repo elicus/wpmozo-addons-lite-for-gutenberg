@@ -1,4 +1,4 @@
-=== WPMozo Addons For Gutenberg ===
+=== WPMozo Addons Lite For Gutenberg ===
 Contributors: (this should be a list of wordpress.org userid's)
 Requires at least: 3.0.1
 Tested up to: 3.4
@@ -41,7 +41,7 @@ This section describes how to install the plugin and get it working.
 
 e.g.
 
-1. Upload `wpmozo-addons-for-gutenberg.php` to the `/wp-content/plugins/` directory
+1. Upload `wpmozo-addons-lite-for-gutenberg.php` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
 

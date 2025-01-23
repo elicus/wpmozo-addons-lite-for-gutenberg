@@ -33,14 +33,14 @@ const Edit = (props) => {
                                     tagName={ attributes.titleLavel }
                                     value={ attributes.title }
                                     onChange={ ( newValue ) => setAttributes( { title: newValue } ) } 
-                                    placeholder={ __('Image Card Title', 'wpmozo-addons-for-gutenberg') }
+                                    placeholder={ __('Image Card Title', 'wpmozo-addons-lite-for-gutenberg') }
                                 />
                                 <RichText
                                     className="wpmozo-adfgu-interactive-image-card-content"
                                     tagName="div"
                                     value={ attributes.content }
                                     onChange={ ( newValue ) => setAttributes( { content: newValue } ) } 
-                                    placeholder={ __('Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.', 'wpmozo-addons-for-gutenberg') }
+                                    placeholder={ __('Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.', 'wpmozo-addons-lite-for-gutenberg') }
                                 />
                             </div>
                         </figcaption>

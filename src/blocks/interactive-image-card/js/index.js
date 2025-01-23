@@ -7,7 +7,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
 registerBlockType( 'wpmozo/interactive-image-card', {
-	title: __( 'Interactive Image Card', 'wpmozo-addons-for-gutenberg' ),
+	title: __( 'Interactive Image Card', 'wpmozo-addons-lite-for-gutenberg' ),
     icon: '',
     apiVersion: 3,
     category: 'wpmozo',

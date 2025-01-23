@@ -5,19 +5,19 @@
  * @link       https://elicus.com
  * @since      1.0.0
  *
- * @package    WPMozo_Addons_For_Gutenberg
- * @subpackage WPMozo_Addons_For_Gutenberg/includes
+ * @package    WPMozo_Addons_Lite_For_Gutenberg
+ * @subpackage WPMozo_Addons_Lite_For_Gutenberg/includes
  */
 
 /**
  * This class responsible for defining all methods for content toggle block.
  *
  * @since      1.0.0
- * @package    WPMozo_Addons_For_Gutenberg
- * @subpackage WPMozo_Addons_For_Gutenberg/includes
+ * @package    WPMozo_Addons_Lite_For_Gutenberg
+ * @subpackage WPMozo_Addons_Lite_For_Gutenberg/includes
  * @author     Elicus <hello@elicus.com>
  */
-class WPMozo_Addons_Gutenberg_Block_Contenttoggle extends WPMozo_Addons_Gutenberg_Block {
+class WPMozo_Addons_Lite_Gutenberg_Block_Contenttoggle extends WPMozo_Addons_Lite_Gutenberg_Block {
 
 	/**
 	 * The name of block.
@@ -33,17 +33,17 @@ class WPMozo_Addons_Gutenberg_Block_Contenttoggle extends WPMozo_Addons_Gutenber
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var WPMozo_Addons_Gutenberg_Block $_instance The instances of this class.
+	 * @var WPMozo_Addons_Lite_Gutenberg_Block $_instance The instances of this class.
 	 */
 	protected static $_instance = null;
 
 	/**
 	 * The instance of this class.
 	 *
-	 * Ensures only one instance of WPMozo_Addons_Gutenberg_Block is loaded or can be loaded.
+	 * Ensures only one instance of WPMozo_Addons_Lite_Gutenberg_Block is loaded or can be loaded.
 	 *
 	 * @since 1.0.0
-	 * @return WPMozo_Addons_Gutenberg_Block - Main instance.
+	 * @return WPMozo_Addons_Lite_Gutenberg_Block - Main instance.
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -64,14 +64,14 @@ class WPMozo_Addons_Gutenberg_Block_Contenttoggle extends WPMozo_Addons_Gutenber
 		// rgister fontawesome style.
 		$this->styles[] = array(
 			'handle' => $this->plugin_name . '-fontawesome-style',
-			'src'    => WPMOZO_ADDONS_GUTENBERG_ASSETS_DIR_URL . 'libs/fontawesome/all.min.css',
+			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'libs/fontawesome/all.min.css',
 			'deps'   => array(),
 			'ver'    => time(),
 		);
 
 		$this->styles[] = array(
 			'handle' => $this->plugin_name . '-content-toggle-style',
-			'src'    => WPMOZO_ADDONS_GUTENBERG_SRC_DIR_URL . 'blocks/content-toggle/css/content-toggle.css',
+			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_SRC_DIR_URL . 'blocks/content-toggle/css/content-toggle.css',
 			'deps'   => array(),
 			'ver'    => time(),
 		);

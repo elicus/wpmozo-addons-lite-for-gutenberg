@@ -8,8 +8,8 @@
  * @link       https://elicus.com
  * @since      1.0.0
  *
- * @package    WPMozo_Addons_For_Gutenberg
- * @subpackage WPMozo_Addons_For_Gutenberg/includes
+ * @package    WPMozo_Addons_Lite_For_Gutenberg
+ * @subpackage WPMozo_Addons_Lite_For_Gutenberg/includes
  */
 
 /**
@@ -22,11 +22,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    WPMozo_Addons_For_Gutenberg
- * @subpackage WPMozo_Addons_For_Gutenberg/includes
+ * @package    WPMozo_Addons_Lite_For_Gutenberg
+ * @subpackage WPMozo_Addons_Lite_For_Gutenberg/includes
  * @author     Elicus <hello@elicus.com>
  */
-class WPMozo_Addons_For_Gutenberg {
+class WPMozo_Addons_Lite_For_Gutenberg {
 
 	/**
 	 * The instances of classes.
@@ -43,7 +43,7 @@ class WPMozo_Addons_For_Gutenberg {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      WPMozo_Addons_For_Gutenberg_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      WPMozo_Addons_Lite_For_Gutenberg_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -70,17 +70,17 @@ class WPMozo_Addons_For_Gutenberg {
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var WPMozo_Addons_For_Gutenberg $_instance The instances of this class.
+	 * @var WPMozo_Addons_Lite_For_Gutenberg $_instance The instances of this class.
 	 */
 	protected static $_instance = null;
 
 	/**
 	 * The instance of this class.
 	 *
-	 * Ensures only one instance of WPMozo_Addons_For_Gutenberg is loaded or can be loaded.
+	 * Ensures only one instance of WPMozo_Addons_Lite_For_Gutenberg is loaded or can be loaded.
 	 *
 	 * @since 1.0.0
-	 * @return WPMozo_Addons_For_Gutenberg - Main instance.
+	 * @return WPMozo_Addons_Lite_For_Gutenberg - Main instance.
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -99,12 +99,12 @@ class WPMozo_Addons_For_Gutenberg {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'WPMOZO_ADDONS_GUTENBERG_VERSION' ) ) {
-			$this->version = WPMOZO_ADDONS_GUTENBERG_VERSION;
+		if ( defined( 'WPMOZO_ADDONS_LITE_GUTENBERG_VERSION' ) ) {
+			$this->version = WPMOZO_ADDONS_LITE_GUTENBERG_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'wpmozo-addons-for-gutenberg';
+		$this->plugin_name = 'wpmozo-addons-lite-for-gutenberg';
 
 	}
 
@@ -113,9 +113,9 @@ class WPMozo_Addons_For_Gutenberg {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - WPMozo_Addons_Gutenberg_Loader. Orchestrates the hooks of the plugin.
-	 * - WPMozo_Addons_Gutenberg_i18n. Defines internationalization functionality.
-	 * - WPMozo_Addons_Gutenberg_Init. Define the hooks for WP initialization.
+	 * - WPMozo_Addons_Lite_Gutenberg_Loader. Orchestrates the hooks of the plugin.
+	 * - WPMozo_Addons_Lite_Gutenberg_i18n. Defines internationalization functionality.
+	 * - WPMozo_Addons_Lite_Gutenberg_Init. Define the hooks for WP initialization.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -129,22 +129,22 @@ class WPMozo_Addons_For_Gutenberg {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once WPMOZO_ADDONS_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-gutenberg-loader.php';
-		$this->loader = new WPMozo_Addons_Gutenberg_Loader();
+		require_once WPMOZO_ADDONS_LITE_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-lite-for-gutenberg-loader.php';
+		$this->loader = new WPMozo_Addons_Lite_Gutenberg_Loader();
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once WPMOZO_ADDONS_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-gutenberg-i18n.php';
+		require_once WPMOZO_ADDONS_LITE_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-lite-for-gutenberg-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions for WP initialization of the plugin.
 		 */
-		include_once WPMOZO_ADDONS_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-gutenberg-init.php';
+		include_once WPMOZO_ADDONS_LITE_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-lite-for-gutenberg-init.php';
 
-		$wpmozo_i18n = new WPMozo_Addons_Gutenberg_I18n();
-		$wpmozo_init = new WPMozo_Addons_Gutenberg_Init();
+		$wpmozo_i18n = new WPMozo_Addons_Lite_Gutenberg_I18n();
+		$wpmozo_init = new WPMozo_Addons_Lite_Gutenberg_Init();
 
 		$this->classes['i18n'] = $wpmozo_i18n;
 		$this->classes['init'] = $wpmozo_init;
@@ -199,7 +199,7 @@ class WPMozo_Addons_For_Gutenberg {
 			$_GET['deactivate'] = true;
 		}
 		add_action( 'admin_notices', array( $this, 'deactivation_notice' ) );
-		deactivate_plugins( WPMOZO_ADDONS_GUTENBERG_FILE );
+		deactivate_plugins( WPMOZO_ADDONS_LITE_GUTENBERG_FILE );
 
 	}
 
@@ -210,7 +210,7 @@ class WPMozo_Addons_For_Gutenberg {
 	 */
 	public function deactivation_notice() {
 
-		$plugin_name = sprintf( '<strong>%s</strong>', esc_html( 'WPMozo Addons For Gutenberg' ) );
+		$plugin_name = sprintf( '<strong>%s</strong>', esc_html( 'WPMozo Addons Lite For Gutenberg' ) );
 		$message     = esc_html( 'plugin requires WordPress 5.0 or later version in order to work. So please ensure that your WordPress installation is running on version 5.0 or later.' );
 		$notice      = sprintf( '%s %s', $plugin_name, $message );
 
@@ -245,7 +245,7 @@ class WPMozo_Addons_For_Gutenberg {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    WPMozo_Addons_For_Gutenberg_Loader    Orchestrates the hooks of the plugin.
+	 * @return    WPMozo_Addons_Lite_For_Gutenberg_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

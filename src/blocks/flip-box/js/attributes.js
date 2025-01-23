@@ -27,19 +27,19 @@ const attributes = {
     },
     frontTitle: {
         type: "string",
-    	default: __('Front Title', 'wpmozo-addons-for-gutenberg'),
+    	default: __('Front Title', 'wpmozo-addons-lite-for-gutenberg'),
     },
     frontContnet: {
         type: "string",
-    	default: __('Here you can set front text.', 'wpmozo-addons-for-gutenberg'),
+    	default: __('Here you can set front text.', 'wpmozo-addons-lite-for-gutenberg'),
     },
     backTitle: {
         type: "string",
-    	default: __('Back Title', 'wpmozo-addons-for-gutenberg'),
+    	default: __('Back Title', 'wpmozo-addons-lite-for-gutenberg'),
     },
     backContnet: {
         type: "string",
-    	default: __('Here you can set back text.', 'wpmozo-addons-for-gutenberg'),
+    	default: __('Here you can set back text.', 'wpmozo-addons-lite-for-gutenberg'),
     },
     frontElType: {
         type: "string",
@@ -423,7 +423,7 @@ const attributes = {
     },
     backBtnText: {
         type: "string",
-        default: __( 'Click ME!', 'wpmozo-addons-for-gutenberg' )
+        default: __( 'Click ME!', 'wpmozo-addons-lite-for-gutenberg' )
     },
     backBtnUrl: {
         type: "string",

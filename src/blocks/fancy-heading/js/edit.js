@@ -26,13 +26,13 @@ const Edit = (props) => {
         return ( isSelected && type === currentHeadingType ) ? 'wpmozo-active-sub-block' : '';
     }
     const activeTypeText = () => {
-        let type = __( 'Pre', 'wpmozo-addons-for-gutenberg' );
+        let type = __( 'Pre', 'wpmozo-addons-lite-for-gutenberg' );
         if ( 't1' === currentHeadingType ) {
-            type = __( 'Pre', 'wpmozo-addons-for-gutenberg' );
+            type = __( 'Pre', 'wpmozo-addons-lite-for-gutenberg' );
         }else if ( 't2' === currentHeadingType ){
-            type = __( 'Main', 'wpmozo-addons-for-gutenberg' );
+            type = __( 'Main', 'wpmozo-addons-lite-for-gutenberg' );
         }else if ( 't3' === currentHeadingType ){
-            type = __( 'Post', 'wpmozo-addons-for-gutenberg' );
+            type = __( 'Post', 'wpmozo-addons-lite-for-gutenberg' );
         }
         return type;
     }
@@ -45,7 +45,7 @@ const Edit = (props) => {
                 tagName='span'
                 value={ attributes.preHeading }
                 onChange={ ( newValue ) => setAttributes( { preHeading: newValue } ) } 
-                placeholder={ __( 'Pre', 'wpmozo-addons-for-gutenberg' ) }
+                placeholder={ __( 'Pre', 'wpmozo-addons-lite-for-gutenberg' ) }
                 onFocus={ () => setcurrentHeadingType( 't1' ) }
             />
             <RichText
@@ -54,7 +54,7 @@ const Edit = (props) => {
                 tagName='span'
                 value={ attributes.mainHeading }
                 onChange={ ( newValue ) => setAttributes( { mainHeading: newValue } ) } 
-                placeholder={ __( 'Main', 'wpmozo-addons-for-gutenberg' ) }
+                placeholder={ __( 'Main', 'wpmozo-addons-lite-for-gutenberg' ) }
                 onFocus={ () => setcurrentHeadingType( 't2' ) }
             />
             <RichText
@@ -63,7 +63,7 @@ const Edit = (props) => {
                 tagName='span'
                 value={ attributes.postHeading }
                 onChange={ ( newValue ) => setAttributes( { postHeading: newValue } ) } 
-                placeholder={ __( 'Post', 'wpmozo-addons-for-gutenberg' ) }
+                placeholder={ __( 'Post', 'wpmozo-addons-lite-for-gutenberg' ) }
                 onFocus={ () => setcurrentHeadingType( 't3' ) }
             />
         </>

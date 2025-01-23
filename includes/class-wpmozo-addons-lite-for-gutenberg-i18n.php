@@ -8,8 +8,8 @@
  * @link       https://elicus.com
  * @since      1.0.0
  *
- * @package    WPMozo_Addons_For_Gutenberg
- * @subpackage WPMozo_Addons_For_Gutenberg/includes
+ * @package    WPMozo_Addons_Lite_For_Gutenberg
+ * @subpackage WPMozo_Addons_Lite_For_Gutenberg/includes
  */
 
 /**
@@ -19,11 +19,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    WPMozo_Addons_For_Gutenberg
- * @subpackage WPMozo_Addons_For_Gutenberg/includes
+ * @package    WPMozo_Addons_Lite_For_Gutenberg
+ * @subpackage WPMozo_Addons_Lite_For_Gutenberg/includes
  * @author     Elicus <hello@elicus.com>
  */
-class WPMozo_Addons_Gutenberg_I18n {
+class WPMozo_Addons_Lite_Gutenberg_I18n {
 
 
 	/**
@@ -34,7 +34,7 @@ class WPMozo_Addons_Gutenberg_I18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'wpmozo-addons-for-gutenberg',
+			'wpmozo-addons-lite-for-gutenberg',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

@@ -26,14 +26,14 @@ const WpmozoColorCombo = function(args){
                     isPressed={ ( 'normal' === colorType ) ? true : false }
                     onClick={ () => setColorType( 'normal' ) }
                 >
-                    { __( 'Normal', 'wpmozo-addons-for-gutenberg' ) }
+                    { __( 'Normal', 'wpmozo-addons-lite-for-gutenberg' ) }
                 </Button>
                 <Button 
                     className='wpmozo-color-combo-type'
                     isPressed={ ( 'hover' === colorType ) ? true : false }
                     onClick={ () => setColorType( 'hover' ) }
                 >
-                    { __( 'Hover', 'wpmozo-addons-for-gutenberg' ) }
+                    { __( 'Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
                 </Button>
             </ButtonGroup>
             { 'normal' === colorType &&
