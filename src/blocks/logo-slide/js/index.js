@@ -7,7 +7,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
 registerBlockType( 'wpmozo/logo-slide', {
-	title: __( 'Logo Slide', 'wpmozo-addons-for-gutenberg' ),
+	title: __( 'Logo Slide', 'wpmozo-addons-lite-for-gutenberg' ),
     icon: '',
     apiVersion: 2,
     category: 'wpmozo',

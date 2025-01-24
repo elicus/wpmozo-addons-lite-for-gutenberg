@@ -170,7 +170,7 @@ const Edit = (props) => {
                 labels={{
                     title: __(
                         'Add Logos',
-                        'wpmozo-addons-for-gutenberg'
+                        'wpmozo-addons-lite-for-gutenberg'
                     ),
                 }}
             />
