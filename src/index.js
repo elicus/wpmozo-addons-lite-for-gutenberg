@@ -7,3 +7,5 @@ import "./blocks/flip-box/js/index.js";
 import "./blocks/interactive-image-card/js/index.js";
 import "./blocks/logo-slider/js/index.js";
 import "./blocks/logo-slide/js/index.js";
+import "./blocks/floating-image-item/js/index.js";
+import "./blocks/floating-image/js/index.js";

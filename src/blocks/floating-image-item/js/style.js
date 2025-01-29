@@ -1,22 +1,12 @@
 
 const Style = (attributes) => {
 
-	const clientId = attributes.clientId,
+    const clientId = attributes.clientId,
     parent = '#block-'+clientId,
-    toConvertStyles = [],
     wpmozoCoreFun = window.wpmozo;
-
-    let css = '';
     
-    let allInline = [
-        {
-            selector: '.logo-img',
-            style: {
-                'width': attributes.logoWidth+'px',
-                'height': attributes.logoHeight+'px',
-            }
-        }
-    ];
+    let allInline = [],
+    css = '';
 
     let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
     
@@ -28,9 +18,9 @@ const Style = (attributes) => {
         `;
     }
 
-	return (
-		<style>{css}</style>
-	);
+    return (
+        <style>{css}</style>
+    );
 
 }
 
