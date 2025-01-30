@@ -28,11 +28,22 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 	public $wpmozo_blocks;
 
 	/**
+	 * The unique identifier of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 */
+	public $plugin_name;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since 1.0.0
 	 */
 	public function __construct() {
+
+		$wpmozo_adfgu       = wpmozo_adfgu();
+		$this->plugin_name  = $wpmozo_adfgu->get_plugin_name();
 
 		require_once WPMOZO_ADDONS_LITE_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-lite-for-gutenberg-blocks.php';
 		$this->wpmozo_blocks = WPMozo_Addons_Lite_Gutenberg_Blocks::instance();
@@ -46,6 +57,44 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 	 */
 	public function wpmozo_register_blocks() {
 
+		wp_register_script(
+			$this->plugin_name . '-common-function-script',
+			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'js/wpmozo-common-functions.js',
+			array(),
+			time(),
+			true
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-editor-script',
+			WPMOZO_ADDONS_LITE_GUTENBERG_PLUGIN_DIR_URL . 'build/index.js',
+			array( 'react', 'wp-polyfill', 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-api', 'wp-api-fetch', 'lodash', 'wp-editor', 'wp-dom-ready', 'jquery' ),
+			time(),
+			true
+		);
+
+		wp_register_style(
+			$this->plugin_name . '-editor-style',
+			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/wpmozo-addons-lite-for-gutenberg-editor.css',
+			array( 'wp-edit-blocks' ),
+			time()
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-blocks-script',
+			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'js/frontend.js',
+			array( 'wp-i18n', 'jquery' ),
+			time(),
+			true
+		);
+
+		wp_register_style(
+			$this->plugin_name . '-blocks-style',
+			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/frontend.css',
+			array(),
+			time()
+		);
+
 		$this->wpmozo_blocks->register_blocks();
 
 	}
@@ -57,28 +106,8 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 	 */
 	public function enqueue_block_editor_assets() {
 
-		$wpmozo_adfgu = wpmozo_adfgu();
-		$plugin_name  = $wpmozo_adfgu->get_plugin_name();
-
-		wp_register_script(
-			$plugin_name . '-common-function-script',
-			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'js/wpmozo-common-functions.js',
-			array(),
-			time(),
-			true
-		);
-
-		wp_enqueue_script( $plugin_name . '-common-function-script' );
-
-		wp_register_script(
-			$plugin_name . '-editor-script',
-			WPMOZO_ADDONS_LITE_GUTENBERG_PLUGIN_DIR_URL . 'build/index.js',
-			array( 'react', 'wp-polyfill', 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-api', 'wp-api-fetch', 'lodash', 'wp-editor', 'wp-dom-ready', 'jquery' ),
-			time(),
-			true
-		);
-
-		wp_enqueue_script( $plugin_name . '-editor-script' );
+		wp_enqueue_script( $this->plugin_name . '-common-function-script' );
+		wp_enqueue_script( $this->plugin_name . '-editor-script' );
 
 		$icons = $this->wpmozo_get_icons();
 
@@ -86,16 +115,10 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 			'placeholderImg' => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'images/placeholder.webp',
 			'icons'          => $icons,
 		);
-		wp_localize_script( $plugin_name . '-editor-script', 'wpmozo_adfgu_editor_object', $all_options );
+		wp_localize_script( $this->plugin_name . '-editor-script', 'wpmozo_adfgu_editor_object', $all_options );
 
-		wp_register_style(
-			$plugin_name . '-editor-style',
-			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/wpmozo-addons-lite-for-gutenberg-editor.css',
-			array( 'wp-edit-blocks' ),
-			time()
-		);
-
-		wp_enqueue_style( $plugin_name . '-editor-style' );
+		wp_enqueue_style( $this->plugin_name . '-editor-style' );
+		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
 
 	}
 
@@ -106,37 +129,9 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 	 */
 	public function enqueue_block_assets() {
 
-		$wpmozo_adfgu = wpmozo_adfgu();
-		$plugin_name  = $wpmozo_adfgu->get_plugin_name();
-
-		wp_register_script(
-			$plugin_name . '-common-function-script',
-			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'js/wpmozo-common-functions.js',
-			array(),
-			time(),
-			true
-		);
-
-		wp_enqueue_script( $plugin_name . '-common-function-script' );
-
-		wp_register_script(
-			$plugin_name . '-blocks-script',
-			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'js/frontend.js',
-			array( 'wp-i18n', 'jquery' ),
-			time(),
-			true
-		);
-
-		wp_enqueue_script( $plugin_name . '-blocks-script' );
-
-		wp_register_style(
-			$plugin_name . '-blocks-style',
-			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/frontend.css',
-			array(),
-			time()
-		);
-
-		wp_enqueue_style( $plugin_name . '-blocks-style' );
+		wp_enqueue_script( $this->plugin_name . '-common-function-script' );
+		wp_enqueue_script( $this->plugin_name . '-blocks-script' );
+		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
 
 	}
 
