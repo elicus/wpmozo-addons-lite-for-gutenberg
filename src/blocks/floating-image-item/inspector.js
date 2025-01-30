@@ -1,4 +1,4 @@
-import { WpmozoMediaUploader, WpmozoSize, WpmozoColorPicker } from '../../../components/index';
+import { WpmozoMediaUploader, WpmozoSize, WpmozoColorPicker } from '../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls, HeightControl } from "@wordpress/block-editor";
 import { 
