@@ -7,7 +7,11 @@ const attributes = {
     },
 	images: {
 		type: "array",
-	}
+	},
+	containerHeight: {
+		type: "string",
+		default: "450px"
+	},
 };
 
 export default attributes;

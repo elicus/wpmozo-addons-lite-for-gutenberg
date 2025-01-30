@@ -10,10 +10,15 @@ const Style = (attributes) => {
     
     let allInline = [
         {
-            selector: '.logo-img',
+            selector: '',
             style: {
-                'width': attributes.logoWidth+'px',
-                'height': attributes.logoHeight+'px',
+                'height': attributes.containerHeight,
+            }
+        },
+        {
+            selector: '.floating-image-item img',
+            style: {
+                'max-height': attributes.containerHeight,
             }
         }
     ];

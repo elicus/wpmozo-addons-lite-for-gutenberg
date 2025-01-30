@@ -40,7 +40,8 @@ const attributes = {
 		type: "number"
 	},
 	animationDuration: {
-		type: "number"
+		type: "number",
+		default: 4000
 	},
 	animationRepeat: {
 		type: "string",

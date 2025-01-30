@@ -14,4 +14,5 @@ registerBlockType( 'wpmozo/floating-image-item', {
     parent: [ 'wpmozo/floating-image' ],
     attributes: attributes,
     edit: Edit,
+    save: Save,
 });

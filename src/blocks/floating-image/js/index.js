@@ -14,4 +14,5 @@ registerBlockType( 'wpmozo/floating-image', {
     keywords: [ 'wpmozo', 'floating-image', 'floating', 'image' ],
     attributes: attributes,
     edit: Edit,
+    save: Save,
 });

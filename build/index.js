@@ -4973,7 +4973,8 @@ const attributes = {
     type: "number"
   },
   animationDuration: {
-    type: "number"
+    type: "number",
+    default: 4000
   },
   animationRepeat: {
     type: "string"
@@ -5013,25 +5014,20 @@ const Edit = props => {
   const attributes = props.attributes,
     setAttributes = props.setAttributes,
     clientId = props.clientId,
-    altText = !window.wpmozo.wpmozo_is_empty(attributes.altText) ? attributes.altText : 'alt',
-    blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
-      className: "swiper-slide"
-    });
+    altText = !window.wpmozo.wpmozo_is_empty(attributes.altText) ? attributes.altText : 'alt';
   attributes.clientId = clientId;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_1__["default"], {
     ...props
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "swiper-slide",
+    className: "floating-image-item",
     id: `block-${clientId}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_style__WEBPACK_IMPORTED_MODULE_2__["default"], {
     ...attributes
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "logo-wrap"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    className: "logo-img",
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    className: "floating-image",
     src: attributes.image.url,
     alt: altText
-  }))));
+  })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -5063,7 +5059,8 @@ __webpack_require__.r(__webpack_exports__);
   category: 'wpmozo',
   parent: ['wpmozo/floating-image'],
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_0__["default"],
-  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"]
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
+  save: _save__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 
 /***/ }),
@@ -5290,17 +5287,15 @@ const Save = ({
   const clientId = attributes.clientId,
     altText = !window.wpmozo.wpmozo_is_empty(attributes.altText) ? attributes.altText : 'alt';
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "swiper-slide",
+    className: "floating-image-item-wrapper",
     id: `block-${clientId}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_style__WEBPACK_IMPORTED_MODULE_1__["default"], {
     ...attributes
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "logo-wrap"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    className: "logo-img",
-    src: attributes.logo.url,
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    className: "floating-image",
+    src: attributes.image.url,
     alt: altText
-  })));
+  }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
 
@@ -5322,9 +5317,23 @@ __webpack_require__.r(__webpack_exports__);
 const Style = attributes => {
   const clientId = attributes.clientId,
     parent = '#block-' + clientId,
-    wpmozoCoreFun = window.wpmozo;
+    wpmozoCoreFun = window.wpmozo,
+    wpmozo_is_empty = wpmozoCoreFun.wpmozo_is_empty;
   let allInline = [],
     css = '';
+  css += `
+        .floating-image-item {
+            position: absolute !important;
+        }
+    `;
+  if (!wpmozo_is_empty(attributes.horizontalAlign)) {
+    allInline.push({
+      selector: '',
+      style: {
+        'top': attributes.horizontalAlign
+      }
+    });
+  }
   let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
   if (!wpmozoCoreFun.wpmozo_is_empty(generateStyle)) {
     css += `
@@ -5358,6 +5367,10 @@ const attributes = {
   },
   images: {
     type: "array"
+  },
+  containerHeight: {
+    type: "string",
+    default: "450px"
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (attributes);
@@ -5397,7 +5410,7 @@ const Edit = props => {
     setAttributes = props.setAttributes,
     clientId = props.clientId,
     blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
-      className: 'wpmozo-adfgu-logo-slider-main'
+      className: 'wpmozo-adfgu-floating-image-wrapper'
     });
   attributes.clientId = clientId;
   let innerBlocks = [];
@@ -5467,7 +5480,8 @@ __webpack_require__.r(__webpack_exports__);
   category: 'wpmozo',
   keywords: ['wpmozo', 'floating-image', 'floating', 'image'],
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_0__["default"],
-  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"]
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
+  save: _save__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 
 /***/ }),
@@ -5501,17 +5515,22 @@ __webpack_require__.r(__webpack_exports__);
 
 const Inspector = props => {
   const attributes = props.attributes,
-    setAttributes = props.setAttributes,
-    [deviceType, setDeviceType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)('tablet');
+    setAttributes = props.setAttributes;
   props = Object.assign({}, props, {
     preAttributes: {}
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
     key: "controls"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('', 'wpmozo-addons-lite-for-gutenberg'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Container', 'wpmozo-addons-lite-for-gutenberg'),
     initialOpen: false
-  })));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.HeightControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Container Height', 'wpmozo-addons-lite-for-gutenberg'),
+    value: attributes.containerHeight,
+    onChange: newValue => setAttributes({
+      containerHeight: newValue
+    })
+  }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Inspector);
 
@@ -5597,10 +5616,14 @@ const Style = attributes => {
     wpmozoCoreFun = window.wpmozo;
   let css = '';
   let allInline = [{
-    selector: '.logo-img',
+    selector: '',
     style: {
-      'width': attributes.logoWidth + 'px',
-      'height': attributes.logoHeight + 'px'
+      'height': attributes.containerHeight
+    }
+  }, {
+    selector: '.floating-image-item img',
+    style: {
+      'max-height': attributes.containerHeight
     }
   }];
   let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);

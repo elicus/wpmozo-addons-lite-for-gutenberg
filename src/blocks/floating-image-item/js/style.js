@@ -3,10 +3,26 @@ const Style = (attributes) => {
 
     const clientId = attributes.clientId,
     parent = '#block-'+clientId,
-    wpmozoCoreFun = window.wpmozo;
+    wpmozoCoreFun = window.wpmozo,
+    wpmozo_is_empty = wpmozoCoreFun.wpmozo_is_empty;
     
     let allInline = [],
     css = '';
+
+    css += `
+        .floating-image-item {
+            position: absolute !important;
+        }
+    `;
+
+    if ( ! wpmozo_is_empty( attributes.horizontalAlign ) ) {
+        allInline.push({
+            selector: '',
+            style: {
+                'top': attributes.horizontalAlign,
+            }
+        })
+    }
 
     let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
     

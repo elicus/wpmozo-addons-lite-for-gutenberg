@@ -16,21 +16,16 @@ const Edit = (props) => {
     clientId = props.clientId,
     altText = ! window.wpmozo.wpmozo_is_empty( attributes.altText ) 
         ? attributes.altText
-        : 'alt',
-    blockProps = useBlockProps({
-        className:"swiper-slide"
-    });
-
+        : 'alt';
+        
     attributes.clientId = clientId;
 
 	return (
         <Fragment>
             <Inspector {...props} />
-            <div className="swiper-slide" id={`block-${clientId}`}>
+            <div className="floating-image-item" id={`block-${clientId}`}>
                 <Style {...attributes} />
-                <div className="logo-wrap">
-                    <img className="logo-img" src={ attributes.image.url } alt={altText} />
-                </div>
+                <img className="floating-image" src={ attributes.image.url } alt={altText} />
             </div>
         </Fragment>
     );

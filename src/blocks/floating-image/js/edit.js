@@ -21,7 +21,7 @@ const Edit = (props) => {
     attributes = props.attributes,
     setAttributes = props.setAttributes,
     clientId = props.clientId,
-    blockProps = useBlockProps({ className: 'wpmozo-adfgu-logo-slider-main' });
+    blockProps = useBlockProps({ className: 'wpmozo-adfgu-floating-image-wrapper' });
 
     attributes.clientId = clientId;
 
