@@ -129,6 +129,15 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 
 		wp_enqueue_script( $plugin_name . '-blocks-script' );
 
+		wp_register_style(
+			$plugin_name . '-blocks-style',
+			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/frontend.css',
+			array(),
+			time()
+		);
+
+		wp_enqueue_style( $plugin_name . '-blocks-style' );
+
 	}
 
 	/**
@@ -165,18 +174,25 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 	 */
 	public function wpmozo_get_icons() {
 
-		$json = file_get_contents( WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_PATH . 'libs/fontawesome/fonts.json' );
-		if ( empty( $json ) ) {
-			return array();
+		global $wp_filesystem;
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		WP_Filesystem();
+
+		$json      = array();
+		$file_path = WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_PATH . 'libs/fontawesome/fonts.json';
+
+		if ( $wp_filesystem->exists( $file_path ) ) {
+			$json = $wp_filesystem->get_contents( $file_path );
 		}
-		$default_icons = json_decode( $json );
-		$jklsfd        = array();
-		$klsdf         = new stdClass();
-		$klsdf->label  = 'None';
-		$klsdf->value  = '';
-		$jklsfd[]      = $klsdf;
-		$default_icons = array_merge( $jklsfd, $default_icons );
-		$icons         = apply_filters( 'wpmozo_addons_litegutenberg_block_icons', $default_icons );
+
+		$default_icons 	  = json_decode( $json );
+		$icons            = array();
+		$none_obj         = new stdClass();
+		$none_obj->label  = 'None';
+		$none_obj->value  = '';
+		$icons[]          = $none_obj;
+		$default_icons    = array_merge( $icons, $default_icons );
+		$icons            = apply_filters( 'wpmozo_addons_litegutenberg_block_icons', $default_icons );
 		return $icons;
 	}
 

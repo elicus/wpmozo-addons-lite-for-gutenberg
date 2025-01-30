@@ -9,12 +9,6 @@ const Style = (attributes) => {
     let allInline = [],
     css = '';
 
-    css += `
-        .floating-image-item {
-            position: absolute !important;
-        }
-    `;
-
     if ( ! wpmozo_is_empty( attributes.horizontalAlign ) ) {
         allInline.push({
             selector: '.floating-image-item',
