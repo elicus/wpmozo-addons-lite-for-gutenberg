@@ -7,19 +7,28 @@ const Style = (attributes) => {
     wpmozo_is_empty = wpmozoCoreFun.wpmozo_is_empty;
     
     let allInline = [],
-    css = '';
+    css           = '';
 
-    if ( ! wpmozo_is_empty( attributes.horizontalAlign ) ) {
-        allInline.push({
-            selector: '.floating-image-item',
-            style: {
-                'top': attributes.horizontalAlign,
-            }
-        })
-    }
+    let generateStyle = wpmozoCoreFun.wpmozo_generate_style([{
+        selector: parent,
+        style: {
+            'top': attributes.horizontalAlign,
+            'left': attributes.verticalAlign,
+            'width': attributes.imagewidth,
+            'background': attributes.imageBackground,
+            'animation-name': `wpmozo_float_${attributes.animationEffect}`,
+            'animation-duration': attributes.animationDuration+'ms',
+            'animation-direction': 'alternate',
+            'animation-iteration-count': attributes.animationRepeat,
+            'animation-timing-function': attributes.speedCurve,
+            'animation-delay': attributes.animationDelay+'ms'
+        },
+    }]);
 
-    let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
-    
+    css += generateStyle;
+
+    generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
+
     if ( ! wpmozoCoreFun.wpmozo_is_empty( generateStyle ) ) {
         css += `
             ${parent} {

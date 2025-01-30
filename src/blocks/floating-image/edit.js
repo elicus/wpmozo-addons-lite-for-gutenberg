@@ -70,18 +70,24 @@ const Edit = (props) => {
                         'Add Images',
                         'wpmozo-addons-lite-for-gutenberg'
                     ),
+                    instructions: __(
+                        'Insert Images',
+                        'wpmozo-addons-lite-for-gutenberg'
+                    ),
                 }}
             />
         }
-            <Inspector {...props} />
-            <div { ...blockProps } id={`block-${clientId}`}>
-                <Style {...attributes} />
-                <div className="wpmozo-adfgu-floating-image-wrapper">
-                    { ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) &&
-                        innerBlocksProps.children
-                    }
+        { ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) &&
+            <Fragment>
+                <Inspector {...props} />
+                <div { ...blockProps } id={`block-${clientId}`}>
+                    <Style {...attributes} />
+                    <div className="wpmozo-adfgu-floating-image-wrapper">
+                        { innerBlocksProps.children }
+                    </div>
                 </div>
-            </div>
+            </Fragment>
+        }
         </Fragment>
     );
 

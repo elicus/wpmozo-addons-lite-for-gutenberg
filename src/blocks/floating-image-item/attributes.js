@@ -20,13 +20,6 @@ const attributes = {
 	altText: {
 		type: "string",
 	},
-	link: {
-		type: "string",
-	},
-	linkTarget: {
-		type: "string",
-		default: "same",
-	},
 	horizontalAlign: {
 		type: "string",
 	},
@@ -35,9 +28,11 @@ const attributes = {
 	},
 	animationEffect: {
 		type: "string",
+		default: "no_effect"
 	},
 	animationDelay: {
-		type: "number"
+		type: "number",
+		default: 0
 	},
 	animationDuration: {
 		type: "number",
@@ -45,7 +40,11 @@ const attributes = {
 	},
 	animationRepeat: {
 		type: "string",
+		default: "infinite"
 	},
+	speedCurve: {
+		type: "string",
+	}
 };
 
 export default attributes;

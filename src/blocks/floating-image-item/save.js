@@ -11,7 +11,7 @@ const Save = ({attributes}) => {
     	: 'alt';
  
     return (
-        <div className="floating-image-item-wrapper" id={`block-${clientId}`}>
+       <div className="floating-image-item" id={`block-${clientId}`}>
             <Style {...attributes} />
             <img className="floating-image" src={ attributes.image.url } alt={altText} />
         </div>

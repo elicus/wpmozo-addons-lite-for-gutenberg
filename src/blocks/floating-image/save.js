@@ -44,7 +44,9 @@ import { useEffect } from '@wordpress/element';
         return (
             <div {...innerBlocksProps} id={`block-${clientId}`}>
                 <Style {...attributes} />
-                { innerBlocksProps.children }
+                <div className="wpmozo-adfgu-floating-image-wrapper">
+                    { innerBlocksProps.children }
+                </div>
             </div>
         );
 
