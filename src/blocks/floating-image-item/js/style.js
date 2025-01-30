@@ -17,7 +17,7 @@ const Style = (attributes) => {
 
     if ( ! wpmozo_is_empty( attributes.horizontalAlign ) ) {
         allInline.push({
-            selector: '',
+            selector: '.floating-image-item',
             style: {
                 'top': attributes.horizontalAlign,
             }

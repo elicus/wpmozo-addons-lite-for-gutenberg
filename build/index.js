@@ -5328,7 +5328,7 @@ const Style = attributes => {
     `;
   if (!wpmozo_is_empty(attributes.horizontalAlign)) {
     allInline.push({
-      selector: '',
+      selector: '.floating-image-item',
       style: {
         'top': attributes.horizontalAlign
       }
@@ -5409,9 +5409,7 @@ const Edit = props => {
     attributes = props.attributes,
     setAttributes = props.setAttributes,
     clientId = props.clientId,
-    blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
-      className: 'wpmozo-adfgu-floating-image-wrapper'
-    });
+    blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)();
   attributes.clientId = clientId;
   let innerBlocks = [];
   if (!wpmozoCoreFun.wpmozo_is_empty(attributes.images)) {
@@ -5448,7 +5446,9 @@ const Edit = props => {
     id: `block-${clientId}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_style__WEBPACK_IMPORTED_MODULE_2__["default"], {
     ...attributes
-  }), !wpmozoCoreFun.wpmozo_is_empty(innerBlocks) && innerBlocksProps.children));
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wpmozo-adfgu-floating-image-wrapper"
+  }, !wpmozoCoreFun.wpmozo_is_empty(innerBlocks) && innerBlocksProps.children)));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -5616,7 +5616,7 @@ const Style = attributes => {
     wpmozoCoreFun = window.wpmozo;
   let css = '';
   let allInline = [{
-    selector: '',
+    selector: '.wpmozo-adfgu-floating-image-wrapper',
     style: {
       'height': attributes.containerHeight
     }

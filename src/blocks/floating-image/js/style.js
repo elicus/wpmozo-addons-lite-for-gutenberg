@@ -9,8 +9,8 @@ const Style = (attributes) => {
     let css = '';
     
     let allInline = [
-        {
-            selector: '',
+        { 
+            selector: '.wpmozo-adfgu-floating-image-wrapper',
             style: {
                 'height': attributes.containerHeight,
             }

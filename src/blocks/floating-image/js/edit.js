@@ -21,7 +21,7 @@ const Edit = (props) => {
     attributes = props.attributes,
     setAttributes = props.setAttributes,
     clientId = props.clientId,
-    blockProps = useBlockProps({ className: 'wpmozo-adfgu-floating-image-wrapper' });
+    blockProps = useBlockProps();
 
     attributes.clientId = clientId;
 
@@ -76,9 +76,11 @@ const Edit = (props) => {
             <Inspector {...props} />
             <div { ...blockProps } id={`block-${clientId}`}>
                 <Style {...attributes} />
-                { ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) &&
-                    innerBlocksProps.children
-                }
+                <div className="wpmozo-adfgu-floating-image-wrapper">
+                    { ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) &&
+                        innerBlocksProps.children
+                    }
+                </div>
             </div>
         </Fragment>
     );
