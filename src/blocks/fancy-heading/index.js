@@ -7,12 +7,12 @@ import Icon from "./icon.js";
 import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
-registerBlockType( 'wpmozo/content-toggle', {
-	title: __( 'Content Toggle', 'wpmozo-addons-lite-for-gutenberg' ),
-    apiVersion: 2,
+registerBlockType( 'wpmozo/fancy-heading', {
+	title: __( 'Fancy Heading', 'wpmozo-addons-lite-for-gutenberg' ),
     icon: Icon,
+    apiVersion: 2,
     category: 'wpmozo',
-    keywords: [ 'wpmozo', 'content-toggle', 'content' ],
+    keywords: [ 'wpmozo', 'fancy-heading', 'heading' ],
     attributes: attributes,
     edit: Edit,
 	save: Save,

@@ -1,9 +1,11 @@
-import "./blocks/before-after-slider/js/index.js";
+import "./blocks/before-after-slider/index.js";
 import "./blocks/content-toggle/js/index.js";
-import "./blocks/content-wraper/js/index.js";
-import "./blocks/fancy-heading/js/index.js";
-import "./blocks/fancy-text/js/index.js";
+import "./blocks/content-wraper/index.js";
+import "./blocks/fancy-heading/index.js";
+import "./blocks/fancy-text/index.js";
 import "./blocks/flip-box/js/index.js";
 import "./blocks/interactive-image-card/js/index.js";
-import "./blocks/logo-slider/js/index.js";
-import "./blocks/logo-slide/js/index.js";
+import "./blocks/logo-slider/index.js";
+import "./blocks/logo-slide/index.js";
+import "./blocks/floating-image-item/index.js";
+import "./blocks/floating-image/index.js";

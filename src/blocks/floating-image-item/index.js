@@ -2,19 +2,18 @@
 import attributes from "./attributes";
 import Edit from "./edit";
 import Save from "./save";
-import Icon from "./icon.js";
+import Icon from "../floating-image/icon.js";
 
 import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
-registerBlockType( 'wpmozo/content-toggle', {
-	title: __( 'Content Toggle', 'wpmozo-addons-lite-for-gutenberg' ),
-    apiVersion: 2,
+registerBlockType( 'wpmozo/floating-image-item', {
+	title: __( 'Floating Image Item', 'wpmozo-addons-lite-for-gutenberg' ),
     icon: Icon,
+    apiVersion: 2,
     category: 'wpmozo',
-    keywords: [ 'wpmozo', 'content-toggle', 'content' ],
+    parent: [ 'wpmozo/floating-image' ],
     attributes: attributes,
     edit: Edit,
-	save: Save,
-    example: {},
+    save: Save,
 });

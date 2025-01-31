@@ -15,7 +15,7 @@ const WpmozoMediaUploader = function(args){
         accept       = ( args.hasOwnProperty('accept') ) ? args.accept : "image/*",
         props        = args.props,
         attrKye      = args.attrKye,
-        imageSrc     = props.attributes[ attrKye ];
+        imageSrc     = ( args.hasOwnProperty('imageSrc') ) ? args.imageSrc : props.attributes[ attrKye ];
 
     const onSelect = function( media ){
         props.setAttributes( { [ attrKye ]: media.url} );

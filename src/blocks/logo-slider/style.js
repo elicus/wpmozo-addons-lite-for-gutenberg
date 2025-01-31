@@ -6,8 +6,6 @@ const Style = (attributes) => {
     toConvertStyles = [],
     wpmozoCoreFun = window.wpmozo;
 
-    console.log( window.wpmozo )
-
     let css = '';
     
     let allInline = [
