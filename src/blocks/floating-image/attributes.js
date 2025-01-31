@@ -11,7 +11,7 @@ const attributes = {
 	containerHeight: {
 		type: "string",
 		default: "450px"
-	},
+	}
 };
 
 export default attributes;

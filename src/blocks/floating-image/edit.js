@@ -7,9 +7,6 @@ import { Fragment } from "@wordpress/element";
 import {
     useBlockProps,
     MediaPlaceholder,
-    MediaUpload,
-    MediaUploadCheck,
-    InnerBlocks,
     useInnerBlocksProps
 } from '@wordpress/block-editor';
 
@@ -33,11 +30,8 @@ const Edit = (props) => {
                 [ 
                     'wpmozo/floating-image-item', 
                     {
-                        image: image,
-                        lock: { 
-                            remove: true 
-                        }
-                    },
+                        image: image
+                    }
                 ]
             )
         });
@@ -53,6 +47,7 @@ const Edit = (props) => {
         { wpmozoCoreFun.wpmozo_is_empty( attributes.images ) &&
            <MediaPlaceholder
                 multiple={true}
+                gallery={false}
                 onSelect={(media) =>
                     setAttributes({
                         images: media,
@@ -64,17 +59,14 @@ const Edit = (props) => {
                     })
                 }
                 onSelectURL={false}
-                allowedTypes={['image']}
+                allowedTypes={['-','image']}
                 labels={{
                     title: __(
                         'Add Images',
                         'wpmozo-addons-lite-for-gutenberg'
                     ),
-                    instructions: __(
-                        'Insert Images',
-                        'wpmozo-addons-lite-for-gutenberg'
-                    ),
                 }}
+                accept="image/*"
             />
         }
         { ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) &&
